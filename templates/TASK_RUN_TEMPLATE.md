@@ -123,6 +123,74 @@ Dùng `evaluation/EVALUATION_RUBRIC.md`. Chấm từng chiều; không tạo t�
 
 ---
 
+## G. Continuation / Handoff — Tiếp tục công việc
+
+> Cập nhật mục này khi tạm dừng, kết thúc một phiên làm việc, đạt checkpoint có ý nghĩa hoặc chuẩn bị chuyển nhiệm vụ sang AI/người khác. Không cần cập nhật sau từng thao tác nhỏ. Khi tiếp tục cùng một mục tiêu, giữ nguyên Task ID và cập nhật hồ sơ hiện có.
+
+### G1. Trạng thái hiện tại
+- **Task status:** `[draft / not_started / in_progress / blocked / paused / completed]`
+- **Last updated:** `[YYYY-MM-DD HH:MM + timezone]`
+- **Last checkpoint:** `[tên checkpoint/ngắn gọn]`
+- **Current objective:** `[nhắc lại mục tiêu ban đầu, không diễn giải rộng hơn]`
+- **Completion criteria changed?** `[no / yes — mô tả thay đổi, lý do và nơi được người dùng chấp thuận]`
+
+### G2. Đã hoàn thành và bằng chứng
+| Item | Kết quả đã hoàn thành | Bằng chứng/đường dẫn | Mức xác minh |
+|---|---|---|---|
+| DONE-1 | `[điền]` | `[section, file, URL, test, log hoặc artifact]` | `[reported / observed / independently verified]` |
+
+> Chỉ ghi là hoàn thành khi có đầu ra hoặc bằng chứng tương ứng. Tóm tắt trong hội thoại có thể giúp truy vết nhưng không thay thế artifact nếu cần tái kiểm tra.
+
+### G3. Đang thực hiện
+- **Current subtask:** `[việc đang dở hoặc “không có”]`
+- **Current state:** `[điều đã làm đến đâu; kết quả gần nhất]`
+- **Immediate blocker/dependency:** `[không có / mô tả chính xác]`
+
+### G4. Việc còn mở
+| Open ID | Việc cần làm | Vì sao còn mở | Điều kiện để đóng | Ưu tiên |
+|---|---|---|---|---|
+| OPEN-1 | `[điền]` | `[thiếu dữ liệu/bằng chứng/chưa thử]` | `[kết quả quan sát được]` | `[cao/vừa/thấp]` |
+
+### G5. Quyết định và ràng buộc cần giữ
+- **Decisions to preserve:** `[quyết định đã thống nhất và lý do; ghi nguồn/bằng chứng nếu có]`
+- **Confirmed facts:** `[điều đã xác nhận, kèm vị trí bằng chứng]`
+- **Assumptions to revalidate:** `[giả định chưa xác nhận; không được nâng thành sự thật khi tiếp tục]`
+- **Do not repeat:** `[việc đã hoàn tất hoặc đã xác nhận không cần lặp lại, trừ khi có bằng chứng mới hoặc lý do rõ]`
+
+### G6. Bước tiếp theo
+- **Next action (một bước rõ ràng):** `[hành động cụ thể tiếp theo]`
+- **Purpose:** `[câu hỏi/giả thuyết mà bước này giúp giải quyết]`
+- **Expected observable result:** `[đầu ra hoặc bằng chứng cần thu được]`
+- **Fallback if blocked:** `[phương án hợp lý tiếp theo; nếu chưa biết, ghi rõ]`
+
+### G7. Tài liệu cần nạp để tiếp tục
+| File/URL | Lý do cần đọc | Vai trò |
+|---|---|---|
+| `[đường dẫn tương đối hoặc URL]` | `[lý do]` | `[source of truth / supporting evidence / reference]` |
+
+- **Source of truth:** `[Task Run/file nào là bản trạng thái mới nhất]`
+- **Related Task/Case/Failure IDs:** `[IDs hoặc N/A]`
+
+### G8. Lịch sử checkpoint
+| Checkpoint | Ngày | Thay đổi trạng thái/kết quả | Bằng chứng hoặc artifact |
+|---|---|---|---|
+| CP-1 | `[YYYY-MM-DD]` | `[điền]` | `[điền]` |
+
+### G9. Chỉ dẫn cho AI nhận bàn giao
+Khi được yêu cầu tiếp tục nhiệm vụ này:
+1. Đọc Task Run hiện tại, mục G mới nhất và các file được liệt kê ở G7 trước khi hành động.
+2. Tiếp tục cùng Task ID nếu mục tiêu vẫn là mục tiêu này; không tạo Task Run mới chỉ vì đổi phiên trò chuyện hoặc đổi AI.
+3. Tóm lược trạng thái dựa trên file: mục tiêu/tiêu chí; việc đã hoàn thành; việc còn mở; quyết định cần giữ; bước kế tiếp. Phân biệt điều đã xác minh với điều mới chỉ được báo cáo hoặc giả định.
+4. Tiếp tục từ G6. Không làm lại việc đã hoàn tất nếu không có mâu thuẫn, bằng chứng mới hoặc lý do kiểm tra lại cụ thể.
+5. Nếu phát hiện thông tin mâu thuẫn với Task Run, nêu rõ mâu thuẫn và kiểm tra trước khi thay đổi quyết định hoặc tiêu chí.
+6. Sau một checkpoint có ý nghĩa, cập nhật cùng Task Run: nhật ký thực hiện, bằng chứng, trạng thái và mục G. Nếu không có quyền ghi file, xuất nội dung cập nhật đầy đủ để người dùng lưu.
+7. Tạo Task ID mới chỉ khi người dùng bắt đầu một mục tiêu thực sự khác; liên kết nhiệm vụ mới với nhiệm vụ hiện tại nếu có quan hệ.
+8. Không tuyên bố rằng file đã được cập nhật hoặc commit lên repository nếu thao tác đó chưa thực sự được thực hiện và xác minh.
+
+---
+
 ## Chỉ dẫn có thể gửi kèm cho AI
 
 > Hãy thực hiện yêu cầu nguyên gốc theo đặc tả và tiêu chí ở phần A. Đừng tự thay đổi phạm vi hoặc tiêu chí. Chọn cách làm phù hợp, không mặc định mọi nhiệm vụ đều cần tìm kiếm sâu hay một quy trình cố định. Khi cần nguồn hoặc bằng chứng, chủ động tìm trong phạm vi công cụ được phép; nếu nguồn đầu tiên chưa đủ, cân nhắc các phương án hợp lý khác và ghi lại giới hạn trước khi kết luận bị chặn. Phân biệt dữ kiện đã kiểm tra, suy luận và điều chưa xác minh. Không tuyên bố đã thực hiện hành động nếu không thực sự làm hoặc không có bằng chứng có thể quan sát. Hoàn thành đầu ra trước, sau đó đối chiếu với từng tiêu chí; nêu phần đạt, chưa đạt và chưa thể đánh giá. Nếu thiếu điều kiện thiết yếu, giải thích chính xác thiếu gì và tiếp tục những phần có thể làm được. Không bắt buộc ghi lại chuỗi suy nghĩ nội bộ; thay vào đó hãy cung cấp căn cứ, kết quả kiểm tra, nguồn và lý do kết luận có thể xem xét được.
+>
+> **Nếu đây là việc tiếp tục:** trước tiên đọc Task Run hiện có và mục G. Giữ nguyên Task ID, mục tiêu, tiêu chí và quyết định đã thống nhất; tiếp tục từ bước tiếp theo trong G6 thay vì bắt đầu lại. Cập nhật cùng file sau checkpoint có ý nghĩa. Chỉ tạo Task Run mới khi người dùng giao một mục tiêu thực sự khác. Nếu không thể ghi file trực tiếp, trả lại toàn bộ phần cập nhật để người dùng lưu.

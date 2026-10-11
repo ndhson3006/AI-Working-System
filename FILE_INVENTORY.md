@@ -1,16 +1,18 @@
-# File Inventory
+# File Inventory — AI Working System v0.4
 
-> This inventory lists all package files except itself because a file cannot contain its own stable content hash.
+> Danh sách file trong gói, trừ chính file inventory này. Hash hiển thị 12 ký tự đầu SHA-256 để kiểm tra tính toàn vẹn nhanh.
 
-- `CHANGELOG.md` — 1327 bytes — SHA-256 `26df49137814`
-- `MANIFEST.json` — 554 bytes — SHA-256 `40b48b0ac1fb`
-- `README.md` — 6262 bytes — SHA-256 `afff4c8793f4`
-- `WORKING_AGREEMENT.md` — 5494 bytes — SHA-256 `b6786fb677c4`
-- `comparison/MODEL_COMPARISON_PROTOCOL.md` — 4905 bytes — SHA-256 `d59f3d4d798c`
-- `evaluation/EVALUATION_CASE_SET.md` — 8979 bytes — SHA-256 `3f0931ad8406`
-- `evaluation/EVALUATION_RUBRIC.md` — 7701 bytes — SHA-256 `1022cbc5a441`
-- `examples/PILOT-01_book_six_principles.md` — 4740 bytes — SHA-256 `0374e7530d37`
-- `improvement/FAILURE_CHANGE_LOG.md` — 4168 bytes — SHA-256 `7fe25eb00450`
-- `research/SOURCES_AND_METHOD.md` — 8031 bytes — SHA-256 `70d5b7905a18`
+- `CHANGELOG.md` — 2436 bytes — SHA-256 `576bd691b191`
+- `MANIFEST.json` — 1024 bytes — SHA-256 `f104bb87c826`
+- `MIGRATION_v0.3_to_v0.4.md` — 2424 bytes — SHA-256 `f49e11510491`
+- `README.md` — 7696 bytes — SHA-256 `51c833e6c9a5`
+- `WORKING_AGREEMENT.md` — 7514 bytes — SHA-256 `1cda3fc5f200`
+- `comparison/MODEL_COMPARISON_PROTOCOL.md` — 4905 bytes — SHA-256 `b65629cb74d5`
+- `evaluation/EVALUATION_CASE_SET.md` — 10680 bytes — SHA-256 `5c90d93c1081`
+- `evaluation/EVALUATION_RUBRIC.md` — 7701 bytes — SHA-256 `6b0e93f4f4ce`
+- `examples/PILOT-01_book_six_principles.md` — 6880 bytes — SHA-256 `692ab171a5ce`
+- `improvement/FAILURE_CHANGE_LOG.md` — 4168 bytes — SHA-256 `6978c519d792`
+- `research/SOURCES_AND_METHOD.md` — 8739 bytes — SHA-256 `9879e8e4c680`
+- `tasks/SYS-001_ai-working-system-development.md` — 10383 bytes — SHA-256 `94039596d0d7`
 - `templates/EVALUATION_CASE_TEMPLATE.md` — 3089 bytes — SHA-256 `ac7afa9fa36c`
-- `templates/TASK_RUN_TEMPLATE.md` — 9147 bytes — SHA-256 `1ff75bab4ec6`
+- `templates/TASK_RUN_TEMPLATE.md` — 14607 bytes — SHA-256 `198a9e2edd24`

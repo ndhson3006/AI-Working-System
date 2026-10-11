@@ -67,3 +67,28 @@ Chỉ điền nếu kết quả thực tế có lỗi. Đừng giả định tr�
 ## F. Final Review — Chưa thực hiện
 
 Trạng thái hiện tại: **Draft / chưa chạy**. Không được dùng file này làm bằng chứng rằng nội dung sáu nguyên tắc đã được xác minh.
+
+
+## G. Continuation / Handoff — trạng thái khi tạo ví dụ
+
+> Đây là checkpoint của hồ sơ mẫu, không phải kết quả nghiên cứu sách. PILOT-01 chưa được thực hiện hoặc xác minh trong file này.
+
+- **Task status:** `draft`
+- **Last updated:** `2026-10-12`
+- **Last checkpoint:** `đã xác định yêu cầu và tiêu chí; chưa thực hiện truy cứu nội dung sách`
+- **Current objective:** tìm đủ sáu nguyên tắc từ đúng ấn bản và chương của sách, có vị trí tham chiếu kiểm tra được.
+- **Completed work:** đặc tả nhiệm vụ và điều kiện thất bại đã được ghi trong mục A. Bằng chứng thực hiện: chưa có.
+- **Current subtask:** xác định ấn bản/chương chính xác và kiểm tra khả năng truy cập nguồn gốc hợp pháp.
+- **Open items:** tìm nội dung nguồn; ghi từng lần tra cứu thực sự; trích xuất sáu nguyên tắc; đánh giá kết quả theo tiêu chí.
+- **Decisions to preserve:** không thay nguyên tắc trong sách bằng danh sách tự tổng hợp; không coi trang mục lục là bằng chứng cho nội dung chưa được xem.
+- **Assumptions to revalidate:** ấn bản và vị trí chương phải được xác nhận từ nguồn, không dựa vào nhớ lại hoặc kết quả tìm kiếm chưa mở.
+- **Do not repeat:** không cần viết lại phần đặc tả A nếu yêu cầu không đổi.
+- **Next action:** tìm và kiểm tra nguồn xuất bản/bản xem trước có nội dung chương phù hợp; lưu URL và vị trí cụ thể.
+- **Expected observable result:** ấn bản chính xác và có/không có quyền truy cập tới đoạn chứa sáu nguyên tắc, được ghi với bằng chứng.
+- **Source of truth:** file PILOT-01 hiện tại, phần A và G.
+- **Related case:** `RES-001`.
+
+### Lịch sử checkpoint
+| Checkpoint | Ngày | Trạng thái | Bằng chứng |
+|---|---|---|---|
+| CP-1 | 2026-10-12 | Đặc tả đã tạo; nội dung sách chưa xác minh | Phần A đã điền; chưa có execution/evidence record |

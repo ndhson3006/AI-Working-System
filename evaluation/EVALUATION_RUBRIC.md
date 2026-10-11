@@ -1,4 +1,4 @@
-# Evaluation Rubric — v0.3
+# Evaluation Rubric — v0.4
 
 ## 1. Mục đích và cơ sở
 

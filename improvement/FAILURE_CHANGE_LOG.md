@@ -1,4 +1,4 @@
-# Failure and Change Log — v0.3
+# Failure and Change Log — v0.4
 
 ## Mục tiêu
 

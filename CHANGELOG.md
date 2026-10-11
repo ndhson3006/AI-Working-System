@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.4 — 2026-10-12
+
+- Bổ sung mục `G. Continuation / Handoff` vào Task Run Template để lưu trạng thái, checkpoint, việc đã hoàn thành, việc còn mở, quyết định cần giữ, bước tiếp theo và file liên quan.
+- Bổ sung quy tắc tiếp tục cùng Task ID qua nhiều phiên hoặc nhiều AI; không khởi động lại và không lặp việc đã hoàn thành nếu không có lý do mới.
+- Cập nhật Working Agreement, README và ví dụ PILOT-01 để áp dụng cùng một cơ chế bàn giao.
+- Tạo `tasks/SYS-001_ai-working-system-development.md` làm hồ sơ trạng thái cho chính quá trình phát triển hệ thống.
+- Bổ sung case `CONT-001` để kiểm tra khả năng khôi phục trạng thái và tiếp tục công việc.
+- Lý do đổi minor version: đây là thay đổi chức năng trong template và quy trình vận hành, phù hợp quy tắc versioning đã nêu.
+- Trạng thái: cấu trúc đã được cập nhật; hiệu quả của cơ chế continuation chưa được xác minh bằng thử nghiệm thực tế.
+
 ## v0.3 — 2026-10-11
 
 - Hoàn thiện bộ tài liệu khởi đầu cho AI Working System.

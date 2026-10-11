@@ -1,10 +1,20 @@
 {
   "name": "AI Working System",
-  "version": "0.3",
-  "created_date": "2026-10-11",
-  "status": "pilot - not empirically validated",
+  "version": "0.4",
+  "created_date": "2026-10-12",
+  "status": "pilot - continuation/handoff added; not empirically validated",
+  "previous_version": "0.3",
+  "changes": [
+    "Added continuation/handoff fields to the Task Run template",
+    "Added continuation guidance to the Working Agreement and README",
+    "Added CONT-001 evaluation case (draft)",
+    "Added SYS-001 as the active project Task Run",
+    "Added migration guide from v0.3 to v0.4"
+  ],
   "files": [
     "CHANGELOG.md",
+    "FILE_INVENTORY.md",
+    "MIGRATION_v0.3_to_v0.4.md",
     "README.md",
     "WORKING_AGREEMENT.md",
     "comparison/MODEL_COMPARISON_PROTOCOL.md",
@@ -13,6 +23,7 @@
     "examples/PILOT-01_book_six_principles.md",
     "improvement/FAILURE_CHANGE_LOG.md",
     "research/SOURCES_AND_METHOD.md",
+    "tasks/SYS-001_ai-working-system-development.md",
     "templates/EVALUATION_CASE_TEMPLATE.md",
     "templates/TASK_RUN_TEMPLATE.md"
   ]

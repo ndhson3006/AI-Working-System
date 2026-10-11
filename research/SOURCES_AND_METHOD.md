@@ -1,4 +1,4 @@
-# Sources and Method — Cơ sở nghiên cứu của AI Working System v0.3
+# Sources and Method — Cơ sở nghiên cứu của AI Working System v0.4
 
 **Ngày kiểm tra các liên kết:** 2026-10-11  
 **Mục đích:** ghi rõ nguồn phương pháp, phần được kế thừa, phần được điều chỉnh và giới hạn. Các nguồn sau được đưa vào làm cơ sở tham khảo; việc tổng hợp không có nghĩa những tổ chức đó chứng nhận bộ tài liệu này.
@@ -66,7 +66,7 @@ Dùng tham khảo về hướng đánh giá minh bạch, có thể tái lập v�
 
 ## 2. Bản đồ phương pháp → file trong bộ tài liệu
 
-| Thành phần trong bộ v0.3 | Cơ sở tham khảo chính | Phần được điều chỉnh cho cá nhân |
+| Thành phần trong bộ v0.4 | Cơ sở tham khảo chính | Phần được điều chỉnh cho cá nhân |
 |---|---|---|
 | Working Agreement | NIST RMF; Microsoft HAX | Quy tắc duy trì mục tiêu, kiểm tra bằng chứng, thận trọng với lời tự thuật và quyền quyết định |
 | Task Specification | Anthropic Evals; OpenAI evaluation best practices | Mẫu đặc tả dùng trước từng nhiệm vụ |
@@ -86,7 +86,7 @@ Dùng tham khảo về hướng đánh giá minh bạch, có thể tái lập v�
 - Cần cả case năng lực và case hồi quy; bộ test cần được bảo trì.
 - Bối cảnh và rủi ro cần ảnh hưởng đến cách đánh giá.
 
-### Là phần tổng hợp/điều chỉnh của v0.3
+### Là phần tổng hợp/điều chỉnh của v0.4
 - Cấu trúc thư mục và sáu tài liệu vận hành.
 - Taxonomy mã lỗi trong Failure and Change Log.
 - Các chiều R1–R7 và trạng thái đánh giá tiếng Việt.
@@ -106,3 +106,8 @@ Dùng tham khảo về hướng đánh giá minh bạch, có thể tái lập v�
 3. Thay đổi hướng dẫn phải có phiên bản; nếu thay đổi để sửa lỗi, liên kết với Failure ID và case kiểm thử liên quan.
 4. Không dùng nội dung do một nhà cung cấp công bố như bằng chứng họ chứng nhận hoặc ủng hộ bộ tài liệu này.
 5. Kiểm tra lại URL và phiên bản nguồn trước khi dựa vào tài liệu cho quyết định có hệ quả quan trọng.
+
+
+## Bổ sung v0.4 — Continuation / Handoff
+
+Mục continuation/handoff là phần điều chỉnh cho nhu cầu làm việc dài hạn của người dùng, không phải một thành phần nguyên văn của một framework nguồn duy nhất. Nó vận dụng các nguyên tắc đã có trong tài liệu dự án: hồ sơ đánh giá có thể tái lập, lưu kết quả và bằng chứng, duy trì bộ case theo thời gian và ghi nhận thay đổi. Mục này cần được đánh giá thực nghiệm bằng case `CONT-001`; chưa có bằng chứng trong bản phát hành này cho thấy nó đã cải thiện tỷ lệ tiếp tục chính xác hoặc giảm công việc lặp lại.

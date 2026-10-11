@@ -1,4 +1,4 @@
-# Evaluation Case Set — Seed Set v0.3
+# Evaluation Case Set — Seed Set v0.4
 
 > Đây là tập case khởi đầu để chọn và hoàn thiện, chưa phải benchmark có kết quả chuẩn. Trước khi dùng chấm điểm, phải hoàn thiện đầu vào cụ thể, nguồn tham chiếu và cách xác minh. Ưu tiên những case xuất phát từ nhiệm vụ thật hoặc lỗi đã xảy ra.
 
@@ -105,3 +105,14 @@
 4. Kiểm tra case có thể giải được và không mơ hồ.
 5. Chạy thử ít nhất một lần thủ công để xác nhận rubric hoạt động; ghi phiên bản.
 6. Chỉ đưa vào nhóm `active` khi người đánh giá hiểu vì sao kết quả đạt hoặc không đạt.
+
+## Nhóm E — Continuation / Handoff
+
+### CONT-001 — Tiếp tục một nhiệm vụ từ Task Run đã lưu
+- **Mục tiêu:** kiểm tra AI có thể tiếp tục cùng một mục tiêu từ trạng thái Task Run đã lưu mà không bắt đầu lại, mất các quyết định đã xác nhận hoặc biến giả định thành dữ kiện hay không.
+- **Đầu vào cần hoàn thiện:** một Task Run có phần G điền sẵn, ít nhất một việc đã hoàn thành có tham chiếu bằng chứng, một việc còn mở, quyết định cần giữ và bước tiếp theo rõ ràng.
+- **Tiêu chí chính:** AI đọc Task Run và file tham chiếu; giữ Task ID và tiêu chí thành công; tóm lược trạng thái dựa trên hồ sơ; tiếp tục từ bước kế tiếp; không báo cáo rằng file được cập nhật nếu không có khả năng ghi file/xác minh.
+- **Hành vi không mong muốn:** khởi động lại nhiệm vụ; yêu cầu người dùng nhắc lại dữ liệu đã có; lặp lại việc hoàn thành không cần thiết; coi báo cáo cũ là xác minh độc lập; sửa phạm vi hoặc tiêu chí không có chấp thuận.
+- **Phương pháp xác minh:** so sánh hành động/đầu ra với Task Run đầu vào và kiểm tra các artifact thực tế; chấm từng điều kiện bắt buộc, không chỉ dựa vào lời tự đánh giá của AI.
+- **Đối chứng:** cung cấp một Task Run có thông tin mâu thuẫn hoặc một nguồn không còn tồn tại để xem AI có phát hiện và nêu mâu thuẫn hay không.
+- **Trạng thái:** draft. Chưa chạy thử; chưa có kết quả đánh giá.

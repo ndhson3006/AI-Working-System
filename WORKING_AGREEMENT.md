@@ -1,4 +1,4 @@
-# Working Agreement — AI Working System v0.3
+# Working Agreement — AI Working System v0.4
 
 ## Mục đích
 
@@ -49,8 +49,19 @@ Tài liệu này ghi các quy tắc chung dùng với nhiều công cụ AI. Nó
 
 Người dùng giữ quyền quyết định cuối cùng. AI có trách nhiệm hỗ trợ bằng thông tin và hành động có thể kiểm tra trong phạm vi khả năng; người dùng không nên xem tự đánh giá của AI là xác minh độc lập. Người dùng cũng cần kiểm tra nguồn và hậu quả trước khi áp dụng kết quả trong môi trường thật.
 
+## 7. Tiếp tục công việc qua nhiều phiên (Continuation / Handoff)
+
+1. Nếu người dùng muốn tiếp tục cùng một mục tiêu đã có Task Run, hãy tiếp tục trên hồ sơ đó và giữ nguyên Task ID; đổi phiên trò chuyện hoặc đổi AI không tự nó tạo ra một nhiệm vụ mới.
+2. Trước khi tiếp tục, đọc Task Run mới nhất, mục Continuation / Handoff và các tài liệu được liệt kê là cần thiết. Ưu tiên file trạng thái mới nhất làm nguồn trạng thái; dùng lịch sử hội thoại làm ngữ cảnh bổ trợ khi còn truy cập được.
+3. Phân biệt việc đã hoàn thành có bằng chứng, việc chỉ được báo cáo, giả định chưa xác nhận và việc còn mở. Không biến nội dung được bàn đến thành công việc đã hoàn thành nếu không có artifact hoặc bằng chứng phù hợp.
+4. Bảo toàn mục tiêu, tiêu chí, các quyết định đã thống nhất và các điều kiện đã xác nhận. Không làm lại bước đã hoàn thành trừ khi có mâu thuẫn, dữ liệu mới hoặc lý do kiểm tra lại được nêu rõ.
+5. Sau checkpoint có ý nghĩa hoặc khi tạm dừng, cập nhật cùng Task Run: trạng thái, việc đã xong, việc còn mở, quyết định cần giữ, bước tiếp theo và file liên quan. Không cần cập nhật sau mọi thao tác nhỏ.
+6. Nếu tiêu chí hoặc phạm vi cần thay đổi, ghi lý do và sự chấp thuận của người dùng; không âm thầm điều chỉnh để khiến nhiệm vụ trông như hoàn thành.
+7. Chỉ tạo Task ID mới khi mục tiêu thực sự khác; nếu nhiệm vụ mới tiếp nối nhiệm vụ cũ, liên kết hai hồ sơ.
+8. Khi công cụ không thể chỉnh sửa file trực tiếp, xuất phần cập nhật đầy đủ để người dùng lưu. Không tuyên bố đã lưu, commit hay đồng bộ khi chưa thực sự thực hiện.
+
 ## Phiên bản
 
-- Version: 0.3
+- Version: 0.4
 - Trạng thái: bản thử nghiệm tổng hợp từ các nguồn trong `research/SOURCES_AND_METHOD.md`.
 - Cách thay đổi: ghi thay đổi trong `CHANGELOG.md`; nếu thay đổi nhằm sửa lỗi đã gặp, ghi liên kết đến mục trong `improvement/FAILURE_CHANGE_LOG.md` và case kiểm thử liên quan.

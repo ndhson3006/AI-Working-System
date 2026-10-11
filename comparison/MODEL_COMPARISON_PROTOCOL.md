@@ -1,4 +1,4 @@
-# Model Comparison Protocol — v0.3
+# Model Comparison Protocol — v0.4
 
 ## Mục tiêu
 
