@@ -40,10 +40,11 @@ Các nhãn này là taxonomy vận hành được đề xuất cho dự án, kh�
 |---|---|---|---|---|---|---|---|---|---|---|
 | `F-001` | 2026-10-12 | `SYS-001` | Bản repo của `PILOT-01` (6880 B) khác bản trong gói v0.5 (7394 B): thiếu tiêu đề `— v0.5`, trường `Mode`, mục ghi chú mức thủ tục | `ENV` | vừa | chưa biết (chỉ xác nhận khác biệt) | Nghi: gói được cập nhật nhưng không sao chép ngược về repo | `scripts/verify_package.sh` (kiểm tra hồi quy) | trước: inventory lệch; sau: khớp gói | đã sửa phần đồng bộ; nguyên nhân gốc `open` |
 | `F-002` | 2026-10-12 | `PILOT-01`, `RES-001` | Sau 5 phương án tra cứu, nội dung chương 21 không truy cập được (HTTP 403/CAPTCHA); không có nguồn nêu sáu nguyên tắc | `ENV` | vừa (chặn `OPEN-3`) | đã xác nhận (kiểm soát truy cập nguồn) | Không đề xuất đổi phương pháp | N/A | N/A | `blocked`; giữ nguyên yêu cầu, không dựng đáp án |
-| `F-003` | 2026-10-12 | `CONT-001`, `SYS-001` | Hồ sơ handoff chứa chỉ dẫn lỗi thời (mục F/G6 vẫn yêu cầu "chạy Standard" dù Standard đã xong) và không nêu việc repo đã đi trước gói v0.5 | `OTHER` (chất lượng hồ sơ) | vừa | đã xác nhận | Cần đối chiếu next action với bảng DONE/open trước khi giao | `CONT-001` | phát hiện bởi tác nhân tiếp nhận; người chấm xác minh lại | `open` |
+| `F-003` | 2026-10-12 | `CONT-001`, `SYS-001` | Hồ sơ handoff chứa chỉ dẫn lỗi thời (mục F/G6 vẫn yêu cầu "chạy Standard" dù Standard đã xong) và không nêu việc repo đã đi trước gói v0.5 | `OTHER` (chất lượng hồ sơ) | vừa | đã xác nhận | Cần đối chiếu next action với bảng DONE/open trước khi giao | `CONT-001` | phát hiện bởi tác nhân tiếp nhận; người chấm xác minh lại | `closed` |
+| `F-004` | 2026-10-12 | `PORT-001`, `PORTABLE_SNIPPET.md` | AI khác nhà cung cấp (Claude) nhận snippet v0.5 trả lời **báo cáo việc tuân thủ quy tắc** và trả lời lan sang nội dung không được hỏi, thay vì chỉ áp dụng | `OVERHEAD` + `REQ` | cao (làm hỏng mục đích của snippet) | đã xác nhận (lỗi thiết kế snippet) | Bỏ tên các mức khỏi snippet; thêm mục "TRẢ LỜI" quy định im lặng | `PORT-002` | viết lại snippet v0.6; chạy `RUN-PORT-002-1` | `testing` |
 | `F-XXX` | `[YYYY-MM-DD]` | `[id]` | `[mô tả cụ thể]` | `[tag]` | `[thấp/vừa/cao + lý do]` | `[đã xác nhận/giả thuyết/chưa biết]` | `[điền]` | `[IDs]` | `[bằng chứng]` | `[open/testing/kept/reverted/closed]` |
 
-Chi tiết của `F-001`, `F-002`, `F-003` ở mục 6.
+Chi tiết của `F-001`, `F-002`, `F-003`, `F-004` ở mục 6.
 
 ## 4. Mẫu chi tiết khi cần
 
@@ -124,14 +125,37 @@ Nếu lỗi không tái hiện được, chuyển sang `unreproduced` hoặc `in
 - **Thay đổi đã thực hiện:** cập nhật mục F và G6 của `SYS-001` để next action chỉ còn `CONT-001`; ghi rõ trạng thái lệch repo-vs-gói; **bổ sung chế độ đối chiếu hai thư mục vào `scripts/verify_package.sh`** (`bash scripts/verify_package.sh <bản-gốc> <bản-đối-chiếu>`) để tự động phát hiện lệch giữa repo và gói.
 - **Kết quả trước–sau:** trước: script không có cách nào phát hiện lệch repo-vs-gói (chỉ kiểm tra nội bộ). Sau: chạy với gói v0.5, script báo đúng 10 file lệch + 1 file chỉ có ở repo (`tasks/SYS-002_doc_consistency_check.md`) và thoát mã 1. Đã kiểm chứng bằng cách chạy thật trên hai thư mục.
 - **Bài học có thể tái sử dụng:** trước khi giao một Task Run, phải đối chiếu next action với bảng DONE/open — trường đã điền đủ chưa chắc đã còn đúng. Và: kiểm tra tính nhất quán *nội bộ* một thư mục không phát hiện được lệch *giữa hai* thư mục; cần kiểm tra chéo khi có nhiều bản.
-- **Ngày đóng / điều kiện đóng:** phần "chỉ dẫn lỗi thời" đã sửa và có kiểm tra chéo; phần lệch repo-vs-gói vẫn `open` cho tới khi người dùng quyết định bản nào là nguồn sự thật.
+- **Ngày đóng / điều kiện đóng:** `closed` ngày 2026-10-12. Phần "chỉ dẫn lỗi thời" đã sửa và có kiểm tra chéo; phần lệch repo-vs-gói đã được người dùng quyết định (chốt repository làm nguồn sự thật duy nhất, ngừng dùng gói) — xem mục "Lệch repo-vs-gói v0.5" bên dưới.
 
-### Lệch repo-vs-gói v0.5 — phát hiện mới, chưa xử lý
+### Lệch repo-vs-gói v0.5 — đã xử lý (`closed`)
 
 - **Hiện tượng:** sau các lần chạy pilot, repo đã được cập nhật nhưng gói v0.5 (`/home/ndhson/AI_Working_System_v0.5/` và `AI_Working_System_v0.5.zip`) vẫn là snapshot trước pilot. Các file lệch ít nhất gồm: `examples/PILOT-01_book_six_principles.md` (12241 vs 7394), `README.md` (9246 vs 8440), `CHANGELOG.md` (5423 vs 4051), `tasks/SYS-001_...md` (17972 vs 12840), `AI_WORKING_SYSTEM_PROJECT_HANDOFF.md` (37182 vs 34562).
 - **Quan hệ với F-001:** F-001 sửa chiều ngược lại (gói mới hơn repo). Lần này repo mới hơn gói. Cùng một lớp lỗi: không có nguồn sự thật duy nhất và không có kiểm tra chéo giữa hai nơi.
 - **Giới hạn của công cụ:** `scripts/verify_package.sh` chỉ kiểm tra nhất quán *nội bộ* một thư mục, nên báo sạch cho cả hai dù chúng khác nhau. **Đã khắc phục ngày 2026-10-12:** script nay nhận tham số thứ hai là thư mục đối chiếu và báo lệch kích thước từng file dùng chung cùng các file chỉ có ở một bên. Chạy `bash scripts/verify_package.sh . /home/ndhson/AI_Working_System_v0.5` cho kết quả 10 file lệch + 1 file chỉ có ở repo, mã thoát 1.
 - **Trạng thái:** `closed` ngày 2026-10-12 theo quyết định của người dùng. **Repository (nhánh `main`) được chọn làm nguồn sự thật duy nhất**; gói `AI_Working_System_v0.5/` và `AI_Working_System_v0.5.zip` **ngừng dùng**. Đã kiểm tra trước khi ngừng dùng: không có file nào chỉ tồn tại trong gói — gói là tập con của repo, nên không mất nội dung. Công cụ phát hiện lệch (`scripts/verify_package.sh` chế độ hai thư mục) vẫn giữ để dùng cho các bản sao sau này. Ghi nhận `F-003` trong `CHANGELOG.md` và cập nhật `README.md`/handoff cho khớp.
+
+### F-004 — Snippet v0.5 gây "báo cáo tuân thủ" ở AI khác nhà cung cấp
+
+- **Task/Case liên quan:** `PORT-001`, `PORTABLE_SNIPPET.md`, `FLEX-001`/`FLEX-002`.
+- **Yêu cầu gốc:** dán snippet vào hướng dẫn tùy chỉnh của một AI để AI **áp dụng** quy tắc khi làm việc.
+- **Hiện tượng quan sát (do người dùng báo cáo, thử với Claude):** AI trả lời **lan sang nội dung không liên quan đến câu hỏi**, và **tự trình bày mức độ tuân thủ** quy định v0.5. Người dùng chỉ cần AI áp dụng, và chỉ muốn nghe về cách áp dụng khi hỏi thẳng.
+- **Loại lỗi:** `OVERHEAD` (thủ tục/thông báo không tạo giá trị) + `REQ` (không đáp đúng yêu cầu về hình thức trả lời).
+- **Tác động:** cao — làm hỏng đúng mục đích của snippet. Nếu AI báo cáo quy trình thay vì im lặng áp dụng, snippet trở thành nguồn nhiễu thay vì công cụ.
+- **Nguyên nhân đã xác nhận (lỗi thiết kế snippet, không phải lỗi model):**
+  1. Cả 8 điều của bản v0.5 chỉ nói về **tính trung thực**; **không điều nào** quy định hình thức trả lời → AI tự lấp chỗ trống bằng báo cáo tuân thủ.
+  2. Bản v0.5 **đặt tên** các mức (`QUICK`/`STANDARD`/`RIGOROUS`) → cung cấp từ vựng để AI nhại lại trong câu trả lời.
+  3. Bản v0.5 viết như **tài liệu** (tiêu đề + mục, câu dài giải thích) → AI hiểu là bản đặc tả cần tóm tắt, không phải hợp đồng hành vi.
+  4. Không có chỉ dẫn **im lặng**.
+- **Bằng chứng cho thấy phép thử trước đó không bắt được lỗi:** `RUN-PORT-001-1` chạy với **cùng mô hình** đã viết snippet và chỉ được hỏi về nội dung, không quan sát hình thức trả lời → kết luận "đạt" ở lần đó **không** phát hiện được lỗi này. Đây là ví dụ cụ thể cho giới hạn đã ghi ở mục C của `SYS-001`: kiểm tra cùng mô hình không thay thế được kiểm tra khác nhà cung cấp.
+- **Thay đổi đã thực hiện (v0.6):** viết lại `templates/PORTABLE_SNIPPET.md`:
+  - Thêm mục **TRẢ LỜI** đứng đầu: không mở bài, không nhắc lại yêu cầu, không kể quy trình, không nêu mức, không báo cáo tuân thủ, chỉ giải thích khi được hỏi thẳng, độ dài theo độ khó thật.
+  - **Bỏ hoàn toàn** tên `Quick`/`Standard`/`Rigorous` khỏi snippet; mô tả bằng hành vi.
+  - Đổi sang văn phong **mệnh lệnh**, câu ngắn.
+- **Case mục tiêu:** `PORT-002` — kiểm tra hình thức trả lời (không báo cáo quy trình) chứ không chỉ nội dung.
+- **Kết quả thử nghiệm trước–sau:** `RUN-PORT-002-1` (cùng mô hình đã viết bản sửa): AI trả lời thẳng, **không** nêu tên mức, **không** báo cáo tuân thủ, không mở bài; từ chối bịa nội dung nguồn không truy cập được. Bản sửa có hiệu quả trong lần chạy này.
+- **Quyết định:** `testing` — chưa đóng. Lần chạy xác nhận vẫn dùng **cùng mô hình**; cần người dùng thử lại với AI khác nhà cung cấp (chính Claude đã phát hiện lỗi) để xác nhận.
+- **Bài học có thể tái sử dụng:** (a) quy tắc về *tính trung thực* không tự động tạo ra quy tắc về *hình thức trả lời* — thiếu phần sau thì AI lấp bằng báo cáo quy trình; (b) **đừng đặt tên cho cơ chế nội bộ** trong chỉ dẫn dành cho AI — tên trở thành thứ AI nhắc lại; (c) phép thử cùng mô hình có điểm mù hệ thống, và điểm mù đó chỉ lộ ra khi thử khác nhà cung cấp.
+- **Ngày đóng / điều kiện đóng:** đóng khi người dùng xác nhận với AI khác nhà cung cấp rằng AI không còn báo cáo tuân thủ và không trả lời lan.
 
 ## 7. Ghi nhận vấn đề về tính linh hoạt
 

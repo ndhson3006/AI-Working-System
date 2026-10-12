@@ -22,7 +22,18 @@
 - **Tính di động của quy tắc (cập nhật cùng ngày, không đổi phương pháp):**
   - Thêm `templates/PORTABLE_SNIPPET.md`: bản rút gọn của quy tắc làm việc để dán vào hướng dẫn tùy chỉnh của AI bất kỳ. Hai biến thể: đầy đủ (~2.8 KB) và tối thiểu (~1.2 KB) cho nơi giới hạn ký tự chặt.
   - Chạy `PORT-001` lần đầu (`RUN-PORT-001-1`): tác nhân chỉ nhận bản tối thiểu chọn đúng mức cho hai loại nhiệm vụ và **từ chối bịa** nội dung nguồn không truy cập được.
-  - **Giới hạn:** lần chạy dùng cùng mô hình đã viết snippet; tính di động sang AI khác nhà cung cấp vẫn **chưa được chứng minh** (`OPEN-6`).
+  - **Giới hạn:** lần chạy dùng cùng mô hình đã viết snippet; tính di động sang AI khác nhà cung cấp vẫn **chưa được chứng minh** (`OPEN-6`). Kết luận "đạt" của lần này sau đó được chứng minh là **sai một phần** — xem mục `F-004` bên dưới.
+
+- **Sửa snippet gây "báo cáo tuân thủ" ở AI khác nhà cung cấp (cập nhật cùng ngày, không đổi phương pháp):**
+  - Người dùng thử snippet v0.5 với **Claude** và báo lại: AI **báo cáo việc tuân thủ quy tắc** và trả lời lan sang nội dung không được hỏi, thay vì chỉ áp dụng. Ghi nhận là `F-004` (`OVERHEAD` + `REQ`, tác động cao).
+  - **Nguyên nhân đã xác nhận là lỗi thiết kế snippet, không phải lỗi model:** cả 8 điều của bản cũ chỉ nói về tính trung thực, không điều nào quy định hình thức trả lời; bản cũ đặt tên các mức (`QUICK`/`STANDARD`/`RIGOROUS`) nên AI có sẵn từ vựng để nhắc lại; văn phong tài liệu khiến AI tưởng phải tóm tắt; không có chỉ dẫn im lặng.
+  - Viết lại `templates/PORTABLE_SNIPPET.md` thành **v0.6**: mục **TRẢ LỜI** đứng đầu (không mở bài, không kể quy trình, không nêu mức, không báo cáo tuân thủ, chỉ giải thích khi được hỏi thẳng), **bỏ hoàn toàn tên các mức**, chuyển sang văn phong mệnh lệnh câu ngắn. Hai biến thể: ~2.9 KB và ~1.5 KB.
+  - Thêm case `PORT-002` để kiểm tra **hình thức trả lời** chứ không chỉ nội dung — đúng loại lỗi mà `PORT-001` không đo được. Chạy `RUN-PORT-002-1`.
+  - **Điểm mù đã lộ ra:** `RUN-PORT-001-1` chạy cùng mô hình đã viết snippet và chỉ hỏi về nội dung, nên kết luận "đạt" của nó **không** phát hiện được `F-004`. Đây là bằng chứng cụ thể cho giới hạn đã ghi ở mục C của `SYS-001`.
+  - **Trạng thái:** `F-004` là `testing`, **chưa đóng**. `RUN-PORT-002-1` vẫn dùng cùng mô hình đã viết bản sửa; chỉ người dùng xác nhận lại bằng AI khác nhà cung cấp mới đủ cơ sở đóng.
+  - Bổ sung quy tắc vào nguồn: `WORKING_AGREEMENT.md` mục 1 có thêm tiểu mục **"Chỉ áp dụng, không báo cáo"** và mục 2 có thêm điều **9** cùng nội dung, để bản rút gọn không phải là quy tắc không có nguồn. Nếu chỉ sửa snippet mà không sửa `WORKING_AGREEMENT.md`, lần sau tạo lại snippet từ nguồn sẽ làm mất bản sửa này.
+  - Thêm chiều rubric **R9 — Hình thức trả lời (chỉ áp dụng, không báo cáo)** vào `evaluation/EVALUATION_RUBRIC.md`, kèm lưu ý rằng R9 **không** đo độ ngắn mà đo việc không thông báo quy trình. Trước đó không chiều nào chấm được lỗi này: R4 chỉ đo phạm vi, R5 chỉ đo tính minh bạch.
+  - **Câu hỏi versioning còn mở:** theo quy tắc versioning ở cuối file này, thay đổi quy tắc vận hành thuộc mức **minor**, tức sẽ là `v0.6`. Phiên này **chưa** tự nâng version — cần người dùng quyết định. Ghi chú: số `v0.6` trong `templates/PORTABLE_SNIPPET.md` là số hiệu **của riêng snippet**, không phải version của hệ thống.
 
 - Bổ sung `AI_WORKING_SYSTEM_PROJECT_HANDOFF.md` vào gói phân phối để AI khác có thể khôi phục bối cảnh, lịch sử quyết định, giới hạn và next actions mà không phải dựa vào lịch sử hội thoại.
 - Đồng bộ README, hồ sơ `SYS-001`, manifest và file inventory để tham chiếu tài liệu handoff. Đây là cập nhật đóng gói/tài liệu, không thay đổi phương pháp vận hành và không nâng version lên v0.6.

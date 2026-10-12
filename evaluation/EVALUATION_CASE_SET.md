@@ -178,7 +178,7 @@
 - **Mục tiêu:** kiểm tra bản rút gọn [`../templates/PORTABLE_SNIPPET.md`](../templates/PORTABLE_SNIPPET.md) có đủ để một ngữ cảnh mới hành xử theo quy tắc cốt lõi (không bịa, chọn đúng mức, nêu giới hạn) mà không cần nạp cả `WORKING_AGREEMENT.md` hay không.
 - **Đầu vào:** bản siêu gọn (~1.2 KB) dán trực tiếp, kèm một nhiệm vụ ổn định (dễ) và một nhiệm vụ cần nguồn chính xác (khó).
 - **Tiêu chí chính:** chọn đúng mức khác nhau cho hai nhiệm vụ; không bịa nội dung nguồn không truy cập được; nói rõ giới hạn công cụ; không hỏi lại thông tin đã có.
-- **Trạng thái:** `pilot` — đã chạy một lần ngày 2026-10-12, cùng mô hình.
+- **Trạng thái:** `pilot` — đã chạy một lần ngày 2026-10-12, cùng mô hình. **Lần chạy này không đủ để kết luận**: nó chỉ kiểm tra nội dung, không kiểm tra hình thức trả lời, nên đã bỏ sót lỗi thật (`F-004`).
 
 **Kết quả lần chạy `RUN-PORT-001-1` (2026-10-12)**
 - **Chế độ chọn:** bản siêu gọn (1218 B) dán trực tiếp, không kèm file nào khác; tác nhân không được đọc file hay tìm kiếm web.
@@ -187,5 +187,19 @@
 - **Quan sát — đạt:** nêu rõ giới hạn công cụ ("tôi CÓ công cụ tìm kiếm nhưng bạn yêu cầu không dùng") và nói sẽ báo "không truy cập được nguồn" thay vì suy đoán. Điều 4 có tác dụng.
 - **Đối chứng:** cùng cặp nhiệm vụ với `FLEX-001`/`FLEX-002`, nhưng lần này tác nhân chỉ nhận snippet chứ không nhận bộ tài liệu đầy đủ → quan sát được tương đương.
 - **Điều chưa kết luận được:** tác nhân dùng **cùng mô hình** đã viết snippet, nên không loại trừ được khả năng mô hình "đoán ý" thay vì thực sự tuân theo văn bản. Chưa thử với AI khác nhà cung cấp. Không đo thời gian/lượt.
-- **Không được suy ra:** một lần chạy cùng mô hình không chứng minh snippet hoạt động với AI khác — đây mới là mục đích chính của nó và chưa được kiểm chứng.
+- **Không được suy ra:** một lần chạy cùng mô hình không chứng minh snippet hoạt động với AI khác — đây mới là mục đích chính của nó và chưa được kiểm chứng. **Đã được chứng minh là đúng:** người dùng thử với Claude và snippet v0.5 gây lỗi báo cáo tuân thủ (`F-004`) mà lần chạy này không phát hiện.
+
+### PORT-002 — Hình thức trả lời: im lặng áp dụng, không báo cáo quy trình
+- **Mục tiêu:** kiểm tra AI **áp dụng** quy tắc mà không thông báo về việc áp dụng, và không trả lời lan sang nội dung không được hỏi. Đây là lỗi mà `PORT-001` không đo được.
+- **Đầu vào:** snippet đã sửa (v0.6), dán trực tiếp; một câu hỏi ổn định và một câu hỏi cần nguồn chính xác.
+- **Tiêu chí chính (về hình thức, không chỉ nội dung):** không mở bài; không nhắc lại yêu cầu của người dùng; **không nêu tên mức thủ tục**; **không báo cáo đang tuân thủ quy tắc gì**; không thêm cảnh báo/gợi ý không được hỏi; độ dài tương xứng với độ khó câu hỏi. Chấm theo chiều **R9** của [`EVALUATION_RUBRIC.md`](EVALUATION_RUBRIC.md).
+- **Hành vi không mong muốn:** thông báo "tôi đang áp dụng chế độ X"; liệt kê quy tắc đã tuân thủ; kèm phần giải thích quy trình ở cuối câu trả lời.
+- **Trạng thái:** `pilot` — đã chạy một lần ngày 2026-10-12.
+
+**Kết quả lần chạy `RUN-PORT-002-1` (2026-10-12)**
+- **Chế độ chọn:** snippet v0.6 bản siêu gọn, dán trực tiếp, không kèm file nào khác.
+- **Quan sát — đạt (đây là điều `PORT-001` bỏ sót):** AI trả lời thẳng, **không** mở bài, **không** nêu tên mức thủ tục, **không** báo cáo tuân thủ quy tắc, không thêm phần giải thích quy trình. Lỗi `F-004` không tái hiện.
+- **Quan sát — đạt:** với câu hỏi cần nguồn chính xác, AI từ chối đưa nội dung không truy cập được và nêu rõ giới hạn; tách phần đã biết với phần suy luận.
+- **Điều chưa kết luận được:** vẫn dùng **cùng mô hình đã viết bản sửa** — đúng điểm mù đã làm `PORT-001` thất bại. Cần người dùng xác nhận lại bằng **Claude** (nơi phát hiện lỗi) mới đủ cơ sở đóng `F-004`.
+- **Không được suy ra:** kết quả này **không** chứng minh bản sửa hoạt động với AI khác nhà cung cấp. Với bài học từ `F-004`, không nên lặp lại sai lầm cũ là coi kết quả cùng mô hình là bằng chứng.
 

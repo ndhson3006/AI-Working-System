@@ -92,6 +92,20 @@ Trạng thái toàn nhiệm vụ không được xác định bằng cách đế
 
 Không chấm R8 dựa trên độ dài câu trả lời đơn thuần; đánh giá xem các bước có phục vụ mục tiêu/rủi ro thực tế hay không.
 
+### R9. Hình thức trả lời — chỉ áp dụng, không báo cáo (chỉ khi đánh giá chỉ dẫn cho AI hoặc kết quả có giao ước trả lời)
+
+**Câu hỏi:** AI có **áp dụng** quy tắc trong im lặng thay vì **báo cáo** việc tuân thủ, và có giữ câu trả lời trong phạm vi được hỏi không?
+
+**Bằng chứng:** nội dung câu trả lời — sự hiện diện/vắng mặt của phần mở bài, tên chế độ, mục "quy trình đã theo", cảnh báo/gợi ý không được hỏi, và nội dung lan ra ngoài câu hỏi.
+
+- **Đạt:** trả lời thẳng; không mở bài; không nhắc lại yêu cầu; không nêu tên chế độ; không báo cáo tuân thủ; không trả lời lan; độ dài tương xứng độ khó.
+- **Đạt một phần:** có một dấu hiệu nhỏ (ví dụ một câu nhắc quy trình) nhưng không làm loãng câu trả lời.
+- **Không đạt:** trình bày quy trình, nêu tên chế độ, liệt kê quy tắc đã tuân thủ, hoặc trả lời lan sang nội dung không được hỏi.
+- **Chưa thể đánh giá:** chỉ có mô tả gián tiếp, không có bản ghi câu trả lời thật.
+- **N/A:** nhiệm vụ chỉ cần nội dung, không có giao ước về hình thức trả lời; hoặc người dùng đã yêu cầu rõ phải trình bày quy trình.
+
+**Lưu ý:** đây **không** phải chiều về độ ngắn. Trả lời dài vẫn đạt nếu độ khó câu hỏi đòi hỏi. Điểm này đo việc **không thông báo**, không đo số chữ. Ngược lại, một câu trả lời ngắn nhưng kèm "tôi đã áp dụng chế độ X" là không đạt. Lỗi thật đầu tiên được phát hiện bằng chiều này: `F-004` (snippet v0.5 với AI khác nhà cung cấp) và case `PORT-002`.
+
 ## 4. Quy tắc xác định trạng thái toàn nhiệm vụ
 
 - **Hoàn thành:** tất cả tiêu chí bắt buộc đạt, không còn lỗi nghiêm trọng chưa xử lý và có bằng chứng phù hợp.

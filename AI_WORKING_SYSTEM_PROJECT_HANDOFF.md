@@ -211,7 +211,7 @@ Tham khảo đánh giá đa chiều, minh bạch và có thể tái lập. `SOUR
 
 **Có cơ sở từ nguồn:** nhiệm vụ và tiêu chí thành công rõ, nhiều dạng grader, kiểm tra outcome thay vì chỉ dựa vào lời báo cáo, đọc transcript khi lỗi, capability/regression cases, đánh giá liên tục và tính đến bối cảnh/rủi ro.
 
-**Là điều chỉnh của dự án:** cấu trúc folder/file, Working Agreement, các chiều rubric R1–R8, taxonomy lỗi, continuation/handoff, Quick/Standard/Rigorous, Mini Task Run, FLEX cases và quy tắc versioning.
+**Là điều chỉnh của dự án:** cấu trúc folder/file, Working Agreement, các chiều rubric R1–R9, taxonomy lỗi, continuation/handoff, Quick/Standard/Rigorous, Mini Task Run, FLEX cases và quy tắc versioning.
 
 **Chưa được thực nghiệm trong dự án:** mức độ đầy đủ của rubric cho mọi ngành; trọng số/ngưỡng chấm tối ưu; số case thích hợp; mức cải thiện so với cách làm thông thường; hiệu quả của handoff; lợi ích định lượng của v0.5 so với v0.4.
 
@@ -230,6 +230,8 @@ Trước khi sử dụng nguồn để quyết định có hệ quả quan trọ
 | `Rigorous` | Cần nguồn/phiên bản chính xác, kiểm thử thực tế, rủi ro đáng kể, so sánh AI hoặc tiếp tục nhiều phiên | `templates/TASK_RUN_TEMPLATE.md` và chỉ các phần rubric/case/log phù hợp |
 
 Nếu người dùng không chỉ định mode, chọn mức thủ tục nhỏ nhất vẫn đáp ứng mục tiêu, rủi ro, yêu cầu kiểm chứng và nhu cầu lưu vết. Mode khác nhau ở lượng thủ tục, **không khác nhau ở nghĩa vụ chính xác/trung thực**.
+
+**Chỉ áp dụng, không báo cáo:** AI **không** nêu tên mode trong câu trả lời, không kể quy trình phân loại, không liệt kê quy tắc đã tuân thủ. Chỉ giải thích cách làm khi người dùng hỏi thẳng. Tên `Quick`/`Standard`/`Rigorous` là **nhãn sổ sách của người dùng**, không phải thứ để AI nhắc lại — và khi viết chỉ dẫn cho AI (kể cả `templates/PORTABLE_SNIPPET.md`), **không nên đưa tên các mode vào**. Lỗi này đã xảy ra thật: xem `F-004` trong `improvement/FAILURE_CHANGE_LOG.md` và case `PORT-002`.
 
 Có thể nâng mức khi phát hiện nguồn chuyên biệt, cập nhật hiện hành, mâu thuẫn, thiếu dữ kiện quan trọng, tác động nguy hiểm hoặc nhu cầu continuation. Có thể giản lược các phần không đóng góp vào chất lượng, nhưng không được bỏ yêu cầu bắt buộc của người dùng hoặc tiêu chí xác minh thiết yếu.
 
@@ -276,10 +278,10 @@ Gốc trong repository: `/home/ndhson/devbix/work/AI-Working-System/`. **Reposit
 | `FILE_INVENTORY.md` | Danh sách file, kích thước và hash rút gọn để kiểm tra nhanh |
 | `MANIFEST.json` | Phiên bản, trạng thái, thay đổi và file được khai báo trong gói |
 | `templates/TASK_RUN_MINI_TEMPLATE.md` | Hồ sơ Standard rút gọn |
-| `templates/PORTABLE_SNIPPET.md` | Bản rút gọn quy tắc để dán vào AI khác (2 biến thể) |
+| `templates/PORTABLE_SNIPPET.md` | Bản rút gọn quy tắc để dán vào AI khác — v0.6, 2 biến thể; **không** chứa tên các chế độ |
 | `templates/TASK_RUN_TEMPLATE.md` | Hồ sơ đầy đủ cho Rigorous/nhiệm vụ kéo dài |
 | `templates/EVALUATION_CASE_TEMPLATE.md` | Khung chi tiết hóa một evaluation case |
-| `evaluation/EVALUATION_RUBRIC.md` | Rubric R1–R8; chọn chiều phù hợp, chưa có trọng số tổng thống nhất |
+| `evaluation/EVALUATION_RUBRIC.md` | Rubric R1–R9; chọn chiều phù hợp, chưa có trọng số tổng thống nhất |
 | `evaluation/EVALUATION_CASE_SET.md` | Seed cases cho research, technical, behavior, efficiency/regression, continuation, flexibility |
 | `comparison/MODEL_COMPARISON_PROTOCOL.md` | Ghi điều kiện và so sánh AI tương đối công bằng |
 | `improvement/FAILURE_CHANGE_LOG.md` | Nhật ký lỗi/giả thuyết/thay đổi/case cần chạy lại |
@@ -301,10 +303,10 @@ Gốc trong repository: `/home/ndhson/devbix/work/AI-Working-System/`. **Reposit
 - v0.4 có continuation/handoff trong full template và hồ sơ `SYS-001`.
 - v0.5 có Quick/Standard/Rigorous, mini template, nguyên tắc bỏ qua mục không phù hợp, R8 và FLEX cases.
 - **Nguồn sự thật:** repository (nhánh `main`), commit `v0.5` ngày 2026-10-12. Gói phát hành `AI_Working_System_v0.5/` và `.zip` đã **ngừng dùng** — snapshot trước pilot, lệch 10 file so với repo.
-- Pilot đã chạy ngày 2026-10-12: `FLEX-001` (Quick), `FLEX-002`/`PILOT-01` (Rigorous), `SYS-002` (Standard), `CONT-001` (handoff), `PORT-001` (snippet di động).
-- Lỗi đồng bộ artifact đã được phát hiện và sửa (`F-001`); `scripts/verify_package.sh` được thêm làm kiểm tra hồi quy.
-- **Lệch repo-vs-gói hiện tại:** sau các pilot, repo mới hơn gói ở nhiều file (`PILOT-01` 12241 vs 7394 B; `README.md` 9246 vs 8440; `CHANGELOG.md` 5423 vs 4051; `SYS-001` 17972 vs 12840). `verify_package.sh` **không** phát hiện được loại lệch này vì nó chỉ kiểm tra nhất quán nội bộ một thư mục. Trạng thái `open`.
-- **Chưa commit:** git HEAD vẫn là `34b51d7 "update v0.4"`. Toàn bộ v0.5, các pilot và bản sửa `F-001` nằm ở working tree chưa commit.
+- Pilot đã chạy ngày 2026-10-12: `FLEX-001` (Quick), `FLEX-002`/`PILOT-01` (Rigorous), `SYS-002` (Standard), `CONT-001` (handoff), `PORT-001` và `PORT-002` (snippet di động, nội dung và hình thức trả lời).
+- Lỗi đồng bộ artifact đã được phát hiện và sửa (`F-001`); `scripts/verify_package.sh` được thêm làm kiểm tra hồi quy, sau đó mở rộng thêm chế độ đối chiếu hai thư mục.
+- **Lệch repo-vs-gói: đã xử lý xong (`closed`).** Repository (nhánh `main`) được chốt làm nguồn sự thật duy nhất; gói `AI_Working_System_v0.5/` và `.zip` đã ngừng dùng sau khi kiểm tra chúng là tập con của repo. Đã commit và push. Chế độ đối chiếu hai thư mục của `verify_package.sh` vẫn được giữ để dùng cho các bản sao sau này.
+- **Đã commit:** v0.5 và các pilot đã được commit trên `main` (`2d0623a`, `1eabadc`, `22ca0f3`) và người dùng đã push lên remote. Lưu ý: các thay đổi của phiên hiện tại (snippet v0.6, `F-004`, case `PORT-002`) vẫn nằm ở working tree **chưa commit** cho tới khi có lệnh commit mới.
 - Lần tạo gói v0.5 đã có kiểm tra cấu trúc ZIP và các liên kết Markdown nội bộ, theo lịch sử thực hiện được ghi trong Task Run.
 
 Đây là trạng thái của artifact, không phải bằng chứng rằng phương pháp đã cải thiện hiệu suất.
@@ -315,11 +317,11 @@ Gốc trong repository: `/home/ndhson/devbix/work/AI-Working-System/`. **Reposit
 - mode lựa chọn có chính xác khi chuyển giữa câu hỏi đơn giản và nhiệm vụ nguồn-cụ-thể không — **đã có 1 lần mỗi mức Quick/Standard/Rigorous; chưa có đối chứng v0.4 và chưa đo thời gian/lượt**.
 - mini template có lưu đủ thông tin với ít công sức hơn không — **đã chạy 1 lần (`SYS-002`): dùng 4/6 mục, đủ cho nhiệm vụ nhỏ; chưa đo thời gian**.
 - handoff có giúp AI khác tiếp tục đúng mà không lặp công việc hay làm mất quyết định không — **đã chạy 1 lần (`CONT-001`, `RUN-CONT-001-1`): 5/5 điều kiện đạt, nhưng dùng cùng mô hình nên chưa chứng minh được handoff khác nhà cung cấp**.
-- bản rút gọn quy tắc có dùng được ở AI khác không — **đã tạo `templates/PORTABLE_SNIPPET.md` và chạy 1 lần (`PORT-001`): chọn đúng mức, từ chối bịa. Cùng mô hình nên tính di động vẫn chưa được chứng minh (`OPEN-6`)**.
+- bản rút gọn quy tắc có dùng được ở AI khác không — **câu trả lời hiện tại là "chưa đủ".** `PORT-001` chạy cùng mô hình và kết luận "đạt", nhưng khi người dùng thử snippet v0.5 với **Claude** thì AI **báo cáo việc tuân thủ quy tắc** và trả lời lan (`F-004`). Đã viết lại snippet thành v0.6 (mục TRẢ LỜI đứng đầu, bỏ tên chế độ, văn phong mệnh lệnh) và thêm case `PORT-002` để đo **hình thức trả lời**. `RUN-PORT-002-1` đạt nhưng vẫn cùng mô hình → `F-004` là `testing`, **chưa đóng**; chỉ người dùng xác nhận với AI khác nhà cung cấp mới đủ cơ sở.
 - rubric có được nhiều người chấm/AI áp dụng nhất quán không — **chưa đo**.
 - sửa quy trình có cải thiện lỗi mục tiêu mà không gây hồi quy không — **chưa thử**.
 - kết quả PILOT-01 có đủ sáu nguyên tắc đúng từ ấn bản sách không — **`blocked`**: đã xác minh ấn bản (Fourth Edition, 2025) và chương (`Learning about Processes and Threads`, chương 21 trên nền tảng nhà xuất bản), nhưng nội dung chương không truy cập được (HTTP 403/CAPTCHA). Xem `F-002`.
-- hệ thống chưa được đẩy lên GitHub trong lịch sử hiện có; không được nói rằng đã tích hợp/triển khai GitHub.
+- hệ thống chưa được đẩy lên GitHub trong lịch sử hiện có; không được nói rằng đã tích hợp/triển khai GitHub. **Cập nhật:** người dùng đã push nhánh `main` lên remote ngày 2026-10-12. Không có tích hợp/triển khai tự động nào được thiết lập.
 
 ### 7.2b. Đã xác minh được trong phiên 2026-10-12
 
@@ -446,7 +448,7 @@ Khi cần giải quyết mâu thuẫn, dùng thứ tự thực tế sau:
 
 AI nhận bàn giao có thể bắt đầu bằng chỉ dẫn sau:
 
-> Bạn đang tiếp tục dự án AI Working System, Task `SYS-001`, hiện ở v0.5/pilot. Đọc file `AI_WORKING_SYSTEM_PROJECT_HANDOFF.md` để hiểu lịch sử và quyết định đã thống nhất. Sau đó đọc `tasks/SYS-001_ai-working-system-development.md`, `README.md`, `WORKING_AGREEMENT.md` và `research/SOURCES_AND_METHOD.md` trong gói hoặc repository nếu được cung cấp. Không bắt đầu lại từ đầu. Mục tiêu là xây dựng phương pháp làm việc với nhiều AI dựa trên nguồn/phương pháp đã có, kiểm chứng bằng nhiệm vụ thực tế và giữ quy trình linh hoạt theo rủi ro. Hiện v0.5 chưa được chứng minh tốt hơn v0.4; hầu hết evaluation case vẫn là draft. Bốn pilot Quick/Standard/Rigorous/`CONT-001` đã chạy một lần mỗi loại. **Trước khi làm bất cứ next action nào, đối chiếu nó với bảng việc đã xong và việc còn mở — hồ sơ từng chứa chỉ dẫn lỗi thời (`F-003`).** Lưu ý repo hiện đi trước gói v0.5 và chưa được commit. Chủ động tra cứu nguồn nếu cần; không bịa hành động/bằng chứng; cập nhật cùng Task Run khi có checkpoint. Nếu repository/file không truy cập được, nói rõ và không giả vờ đã đọc.
+> Bạn đang tiếp tục dự án AI Working System, Task `SYS-001`, hiện ở v0.5/pilot. Đọc file `AI_WORKING_SYSTEM_PROJECT_HANDOFF.md` để hiểu lịch sử và quyết định đã thống nhất. Sau đó đọc `tasks/SYS-001_ai-working-system-development.md`, `README.md`, `WORKING_AGREEMENT.md` và `research/SOURCES_AND_METHOD.md` trong repository. Không bắt đầu lại từ đầu. Mục tiêu là xây dựng phương pháp làm việc với nhiều AI dựa trên nguồn/phương pháp đã có, kiểm chứng bằng nhiệm vụ thực tế và giữ quy trình linh hoạt theo rủi ro. Hiện v0.5 chưa được chứng minh tốt hơn v0.4; hầu hết evaluation case vẫn là draft. Các pilot đã chạy một lần mỗi loại: Quick/Standard/Rigorous/`CONT-001`/`PORT-001`/`PORT-002`. **Trước khi làm bất cứ next action nào, đối chiếu nó với bảng việc đã xong và việc còn mở — hồ sơ từng chứa chỉ dẫn lỗi thời (`F-003`).** Repository (nhánh `main`) là nguồn sự thật duy nhất; gói v0.5 và zip đã ngừng dùng. **Khi viết hoặc dùng chỉ dẫn cho AI: chỉ áp dụng quy tắc, không báo cáo việc tuân thủ — và đừng đưa tên các mode vào chỉ dẫn dành cho AI (`F-004`).** Chủ động tra cứu nguồn nếu cần; không bịa hành động/bằng chứng; cập nhật cùng Task Run khi có checkpoint. Nếu repository/file không truy cập được, nói rõ và không giả vờ đã đọc.
 
 ---
 
@@ -454,4 +456,6 @@ AI nhận bàn giao có thể bắt đầu bằng chỉ dẫn sau:
 
 **Dự án này không tìm cách ép AI vào một checklist cố định. Nó xây dựng một phương pháp làm việc đa-AI, dựa trên nghiên cứu có sẵn, có thể kiểm chứng và cải tiến từ lỗi thật, nhưng dùng ít thủ tục nhất có thể khi nhiệm vụ đơn giản.**
 
-v0.5 đã có cấu trúc tài liệu và cơ chế linh hoạt. Bốn pilot đầu tiên đã chạy (`FLEX-001`, `FLEX-002`/`RES-001`, `SYS-002`, `CONT-001`) và đã phát hiện được một vấn đề thật trong chính hồ sơ handoff (`F-003`). Công việc tiếp theo vẫn không phải viết thêm nguyên tắc từ suy đoán, mà là: lặp `CONT-001` với AI khác nhà cung cấp, chạy `FLEX-003`/`FLEX-004`, xử lý lệch repo-vs-gói, và chỉ thay đổi hệ thống khi kết quả/bằng chứng cho thấy cần thiết.
+v0.5 đã có cấu trúc tài liệu và cơ chế linh hoạt. Sáu pilot đầu tiên đã chạy (`FLEX-001`, `FLEX-002`/`RES-001`, `SYS-002`, `CONT-001`, `PORT-001`, `PORT-002`) và đã phát hiện được hai vấn đề thật: chỉ dẫn lỗi thời trong chính hồ sơ handoff (`F-003`) và lỗi thiết kế snippet khiến AI báo cáo việc tuân thủ thay vì chỉ áp dụng (`F-004`). Công việc tiếp theo vẫn không phải viết thêm nguyên tắc từ suy đoán, mà là: **để người dùng xác nhận snippet v0.6 với AI khác nhà cung cấp** (điều kiện đóng `F-004`), lặp `CONT-001` với AI khác nhà cung cấp, chạy `FLEX-003`/`FLEX-004`, và chỉ thay đổi hệ thống khi kết quả/bằng chứng cho thấy cần thiết.
+
+**Bài học đáng nhớ nhất của phiên này:** một phép thử do chính mô hình đã viết ra tài liệu thực hiện **không** thay thế được phép thử khác nhà cung cấp. `RUN-PORT-001-1` kết luận "đạt" cho snippet v0.5, nhưng chỉ một lần thử với Claude là đủ để lộ ra lỗi thật. Đừng lặp lại kết luận đó.

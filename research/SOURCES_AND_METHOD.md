@@ -71,7 +71,7 @@ Dùng tham khảo về hướng đánh giá minh bạch, có thể tái lập v�
 | Working Agreement | NIST RMF; Microsoft HAX | Quy tắc duy trì mục tiêu, kiểm tra bằng chứng, thận trọng với lời tự thuật và quyền quyết định |
 | Task Specification | Anthropic Evals; OpenAI evaluation best practices | Mẫu đặc tả đầy đủ và mini template theo mức nhiệm vụ |
 | Execution Record | Anthropic định nghĩa transcript, tool calls và outcome | Ghi sự kiện quan sát được, tách khỏi lời tự thuật AI |
-| Evaluation Rubric | Anthropic grader types; OpenAI eval best practices | Các chiều R1–R8, chọn chiều liên quan và trạng thái tiếng Việt |
+| Evaluation Rubric | Anthropic grader types; OpenAI eval best practices | Các chiều R1–R9, chọn chiều liên quan và trạng thái tiếng Việt |
 | Evaluation Case Set | Anthropic capability/regression evals và balanced sets | Các case seed theo nhu cầu người dùng nhiều AI; hiện ở trạng thái draft |
 | Model Comparison Protocol | Anthropic trials/eval sets; HELM về tính tái lập và đa chiều | Ghi lại khác biệt công cụ, model, prompt và điều kiện so sánh |
 | Failure and Change Log | Anthropic transcript review/regression; NIST MEASURE/MANAGE | Sổ theo dõi lỗi và thay đổi cá nhân |

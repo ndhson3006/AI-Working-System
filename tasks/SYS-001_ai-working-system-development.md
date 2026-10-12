@@ -36,6 +36,7 @@ Xây dựng từng bước một quy trình làm việc với nhiều AI, dựa 
 | 9 | Chạy pilot Standard (`SYS-002`) bằng mini template | Nhiệm vụ nhỏ có đầu ra rõ hoàn thành với 4/6 mục; không cần evidence record theo nguồn | `tasks/SYS-002_doc_consistency_check.md` | Đã quan sát 1 lần; chưa đo thời gian |
 | 10 | Chạy `CONT-001` (handoff) với tác nhân ngữ cảnh mới | Giữ đúng Task ID/mục tiêu, chọn đúng next action, không lặp việc đã xong, phân biệt confirmed/reported; phát hiện chỉ dẫn lỗi thời trong mục F/G6 và việc repo đi trước gói v0.5 | `evaluation/EVALUATION_CASE_SET.md` `RUN-CONT-001-1`; `improvement/FAILURE_CHANGE_LOG.md` `F-003` | Đã quan sát 1 lần; **cùng mô hình**, chưa phải handoff khác nhà cung cấp |
 | 11 | Tạo snippet di động và chạy `PORT-001` | `templates/PORTABLE_SNIPPET.md` (2844 B và 1218 B); tác nhân chỉ nhận bản siêu gọn chọn đúng mức cho hai nhiệm vụ và **từ chối bịa** nội dung nguồn không truy cập được | `templates/PORTABLE_SNIPPET.md`; `evaluation/EVALUATION_CASE_SET.md` `RUN-PORT-001-1` | Đã quan sát 1 lần; **cùng mô hình** — chưa chứng minh được tính di động |
+| 12 | Người dùng thử snippet v0.5 với AI khác nhà cung cấp; phát hiện lỗi `F-004` và viết lại snippet thành v0.6 | AI **báo cáo việc tuân thủ quy tắc** và trả lời lan sang nội dung không được hỏi, thay vì chỉ áp dụng. Chẩn đoán 4 lỗi thiết kế snippet (không có quy tắc về hình thức trả lời; đặt tên các mức; văn phong tài liệu; không có chỉ dẫn im lặng). Đã viết lại: mục **TRẢ LỜI** đứng đầu, bỏ tên mức, văn phong mệnh lệnh | `templates/PORTABLE_SNIPPET.md` (v0.6, 2946 B và 1477 B); `improvement/FAILURE_CHANGE_LOG.md` `F-004`; `evaluation/EVALUATION_CASE_SET.md` `RUN-PORT-002-1` | Lỗi đã xác nhận (`F-004` `testing`); bản sửa mới chạy **cùng mô hình** — chờ người dùng xác nhận bằng AI khác nhà cung cấp |
 
 ## C. Bằng chứng và trạng thái tri thức
 
@@ -46,8 +47,10 @@ Xây dựng từng bước một quy trình làm việc với nhiều AI, dựa 
   - Standard (`SYS-002`, mini template): nhiệm vụ nhỏ có đầu ra rõ hoàn thành với 4/6 mục; không cần bảng evidence theo nguồn hay ma trận rubric → R8 đạt trong lần chạy này.
   - Continuation (`CONT-001`): tác nhân ngữ cảnh mới giữ đúng Task ID/mục tiêu, chọn đúng next action, không lặp việc đã xong, phân biệt rõ confirmed/reported → 5/5 điều kiện đạt; đồng thời phát hiện chỉ dẫn lỗi thời trong mục F/G6 (`F-003`). Lần chạy này dùng **cùng mô hình**, nên chưa kiểm chứng được handoff khác nhà cung cấp.
   - Di động (`PORT-001`): tác nhân **chỉ nhận bản snippet siêu gọn (1218 B)**, không nhận bộ tài liệu: chọn mức nhỏ cho câu hỏi ổn định và mức cao cho nhiệm vụ cần nội dung chính xác theo ấn bản; **từ chối bịa** nội dung không truy cập được và nói rõ giới hạn công cụ → các quy tắc cốt lõi có hiệu lực từ bản rút gọn. Cùng **giới hạn**: cùng mô hình đã viết snippet.
+  - Hình thức trả lời (`PORT-002`, 2026-10-12): với snippet v0.6, tác nhân trả lời thẳng, **không** mở bài, **không** nêu tên mức thủ tục, **không** báo cáo tuân thủ quy tắc, không thêm phần giải thích quy trình; từ chối bịa nội dung không truy cập được. Cùng **giới hạn**: cùng mô hình đã viết bản sửa, nên lần chạy này **không** tự nó chứng minh được `F-004` đã đóng.
 - **Đã xác minh (2026-10-12):** `scripts/verify_package.sh` chạy sạch (EXIT=0) cho repo. Repo từng đi trước gói v0.5 (`PILOT-01` 12241 B so với gói 7394 B) — **đã xử lý**: chốt repository (nhánh `main`) làm nguồn sự thật duy nhất, ngừng dùng gói và zip, commit v0.5. Ghi nhận ở `F-003` (`closed`).
-- **Chưa xác minh bằng thực nghiệm:** hệ thống giảm bao nhiêu công việc lặp lại; khả năng tiếp tục đúng sau khi đổi phiên hoặc **đổi nhà cung cấp/mô hình** (lần chạy `CONT-001` dùng cùng mô hình); mức nhất quán của rubric giữa người chấm/AI; v0.5 có tốt hơn v0.4 hay không.
+- **Đã xác nhận bằng thực nghiệm ngoài mô hình này (do người dùng báo cáo, 2026-10-12):** snippet v0.5 **không** đủ để một AI khác nhà cung cấp chỉ áp dụng quy tắc — AI đó báo cáo việc tuân thủ và trả lời lan (`F-004`, `OVERHEAD` + `REQ`). Đây là bằng chứng **chống lại** giả định rằng bản rút gọn đã đủ; nó cũng cho thấy phép thử cùng mô hình (`RUN-PORT-001-1`) có điểm mù hệ thống.
+- **Chưa xác minh bằng thực nghiệm:** hệ thống giảm bao nhiêu công việc lặp lại; khả năng tiếp tục đúng sau khi đổi phiên hoặc **đổi nhà cung cấp/mô hình** (lần chạy `CONT-001` dùng cùng mô hình); mức nhất quán của rubric giữa người chấm/AI; v0.5 có tốt hơn v0.4 hay không; **snippet v0.6 có sửa được `F-004` khi dùng với AI khác nhà cung cấp hay không**.
 - **Không được suy ra:** một lần chạy cho mỗi mức không chứng minh phân loại mode là tối ưu; việc tạo đủ file không chứng minh hệ thống đã cải thiện chất lượng sử dụng AI.
 
 ## D. Việc còn mở
@@ -59,7 +62,7 @@ Xây dựng từng bước một quy trình làm việc với nhiều AI, dựa 
 | OPEN-3 | Xác minh PILOT-01 về sáu nguyên tắc trong sách | Nội dung được đối chiếu với đúng ấn bản/nguồn có thể kiểm tra; nếu không truy cập được thì ghi rõ hạn chế | Vừa — **blocked**: ấn bản/chương đã xác minh, nội dung chương không truy cập được (`F-002`) |
 | OPEN-4 | Nghiên cứu sâu rubric và phân loại lỗi | Tổng hợp từ nguồn gốc và cập nhật đề xuất kèm căn cứ | Vừa |
 | OPEN-5 | Kiểm tra tính linh hoạt của v0.5 bằng case FLEX | Có ít nhất một tác vụ đơn giản và một tác vụ cần xác minh sâu; ghi chất lượng và thủ tục | Cao — **một phần**: `FLEX-001`, `FLEX-002` đã chạy; `FLEX-003`, `FLEX-004` chưa |
-| OPEN-6 | Kiểm chứng tính di động của quy tắc (`PORT-001`) | Một AI/phiên **khác nhà cung cấp** nhận snippet và hành xử đúng quy tắc cốt lõi | Cao — **chạy 1 lần cùng mô hình** (`RUN-PORT-001-1`): chọn đúng mức, từ chối bịa. Chưa chứng minh được với AI khác |
+| OPEN-6 | Kiểm chứng tính di động của quy tắc (`PORT-001`/`PORT-002`) | Một AI/phiên **khác nhà cung cấp** nhận snippet và (a) hành xử đúng quy tắc cốt lõi, (b) **chỉ áp dụng** mà không báo cáo tuân thủ hay trả lời lan | Cao — **đã có bằng chứng phủ định**: AI khác nhà cung cấp với snippet v0.5 gây lỗi `F-004`. Snippet v0.6 đã sửa nhưng mới chạy **cùng mô hình** (`RUN-PORT-002-1`); chờ người dùng xác nhận lại bằng AI khác nhà cung cấp |
 
 ## E. Quyết định cần giữ
 
@@ -71,16 +74,16 @@ Xây dựng từng bước một quy trình làm việc với nhiều AI, dựa 
 
 ## F. Bước tiếp theo
 
-**Next action:** chạy `CONT-001` để kiểm tra cơ chế handoff trên một Task Run có checkpoint thật (xem G6). Mức Standard đã chạy xong (`SYS-002`), không lặp lại.
+**Next action:** người dùng dán snippet v0.6 ([`templates/PORTABLE_SNIPPET.md`](../templates/PORTABLE_SNIPPET.md)) vào một AI **khác nhà cung cấp** và kiểm tra theo tiêu chí **hình thức** của `PORT-002` — đây là điều kiện đóng `F-004`. Không lặp lại các việc đã xong: mức Standard đã chạy (`SYS-002`), `CONT-001` đã chạy (`RUN-CONT-001-1`), `PORT-001`/`PORT-002` đã chạy.
 
-**Expected observable result:** một bản ghi so sánh hành động của AI tiếp nhận với mục G của Task Run đầu vào; kết quả `CONT-001` chấm theo từng điều kiện. Không kết luận cải thiện nếu chỉ mới tạo tài liệu.
+**Expected observable result:** một bản ghi chấm theo `PORT-002` (không mở bài, không nêu tên mức, không báo cáo tuân thủ, không trả lời lan), do người dùng thực hiện trên AI khác nhà cung cấp. Không kết luận cải thiện nếu chỉ mới tạo tài liệu.
 
 ## G. Continuation / Handoff
 
 ### G1. Trạng thái hiện tại
 - **Task status:** `in_progress`
 - **Last updated:** `2026-10-12`
-- **Last checkpoint:** `CP-9 — tạo snippet di động (PORTABLE_SNIPPET.md) và chạy PORT-001 lần đầu`
+- **Last checkpoint:** `CP-10 — phát hiện F-004 (snippet gây báo cáo tuân thủ) và viết lại snippet thành v0.6`
 - **Current objective:** phát triển và kiểm chứng một quy trình làm việc với nhiều AI, dựa trên phương pháp sẵn có.
 - **Completion criteria changed?:** `no`
 
@@ -96,10 +99,11 @@ Xây dựng từng bước một quy trình làm việc với nhiều AI, dựa 
 | DONE-7 | Pilot Standard (`SYS-002`) đã chạy bằng mini template | `tasks/SYS-002_doc_consistency_check.md` | Đã quan sát 1 lần; không đo thời gian |
 | DONE-8 | `CONT-001` đã chạy 1 lần với tác nhân ngữ cảnh mới; phát hiện `F-003` | `evaluation/EVALUATION_CASE_SET.md` `RUN-CONT-001-1`; `improvement/FAILURE_CHANGE_LOG.md` `F-003` | Đã quan sát; người chấm tự xác minh lại các phát hiện; **chưa** kiểm chứng với AI/mô hình khác |
 | DONE-9 | Snippet di động `templates/PORTABLE_SNIPPET.md` đã tạo; `PORT-001` đã chạy 1 lần | `templates/PORTABLE_SNIPPET.md`; `evaluation/EVALUATION_CASE_SET.md` `RUN-PORT-001-1` | Đã quan sát 1 lần cùng mô hình; **chưa** chứng minh tính di động sang AI khác |
+| DONE-10 | Snippet viết lại thành v0.6 để sửa lỗi báo cáo tuân thủ; `PORT-002` đã chạy 1 lần | `templates/PORTABLE_SNIPPET.md`; `improvement/FAILURE_CHANGE_LOG.md` `F-004`; `evaluation/EVALUATION_CASE_SET.md` `RUN-PORT-002-1` | Lỗi `F-004` do **người dùng** xác nhận ở AI khác nhà cung cấp; bản sửa mới chạy **cùng mô hình** → `testing`, chưa đóng |
 
 ### G3. Đang thực hiện
-- **Current subtask:** `CONT-001` đã chạy 1 lần (`RUN-CONT-001-1`); việc còn lại là lặp lại với AI/mô hình khác nhà cung cấp.
-- **Current state:** v0.5 đã tạo; pilot Quick, Standard, Rigorous và `CONT-001` đã chạy 1 lần với kết quả quan sát được; lệch đồng bộ artifact (F-001) đã sửa và có kiểm tra tự động; repo đã chốt làm nguồn sự thật duy nhất và v0.5 đã được commit (F-003 `closed`); snippet di động đã tạo và chạy thử 1 lần.
+- **Current subtask:** đã ghi nhận `F-004` (snippet gây báo cáo tuân thủ ở AI khác nhà cung cấp) và viết lại snippet thành v0.6; việc còn lại là **người dùng xác nhận lại bằng AI khác nhà cung cấp** (chính AI đã phát hiện lỗi). Song song: lặp `CONT-001` với AI/mô hình khác.
+- **Current state:** v0.5 đã tạo; pilot Quick, Standard, Rigorous và `CONT-001` đã chạy 1 lần với kết quả quan sát được; lệch đồng bộ artifact (F-001) đã sửa và có kiểm tra tự động; repo đã chốt làm nguồn sự thật duy nhất và v0.5 đã được commit (F-003 `closed`); snippet di động đã tạo, chạy thử 1 lần (`PORT-001`), phát hiện lỗi thiết kế thật (`F-004`) qua thử nghiệm ngoài mô hình này, và đã viết lại thành v0.6 (`PORT-002`).
 - **Blocker:** `PILOT-01` bị chặn ở quyền truy cập nội dung chương 21 (nguồn trả phí/kiểm soát truy cập). Không có blocker kỹ thuật cho `CONT-001`; giới hạn là chưa có AI khác nhà cung cấp để thử.
 
 ### G4. Việc còn mở
@@ -108,18 +112,19 @@ Xây dựng từng bước một quy trình làm việc với nhiều AI, dựa 
 - `OPEN-3`: **blocked** — hoàn thiện `PILOT-01` khi có quyền truy cập nguồn gốc; xem `F-002`.
 - `OPEN-4`: tiếp tục nghiên cứu rubric và failure analysis từ tài liệu gốc.
 - `OPEN-5`: chạy và ghi kết quả `FLEX-003`, `FLEX-004` (điều chỉnh mức khi có rủi ro mới; không phạt cách giải hợp lệ khác nhau).
+- `OPEN-6`: **đã có bằng chứng phủ định** — AI khác nhà cung cấp với snippet v0.5 báo cáo tuân thủ và trả lời lan (`F-004`). Đã viết lại snippet v0.6; cần người dùng xác nhận lại bằng AI khác nhà cung cấp. Xem `PORT-002`.
 
 ### G5. Quyết định và ràng buộc cần giữ
-- **Decisions to preserve:** dựa trên phương pháp có sẵn trước; không tạo quy tắc mới chỉ từ cảm giác; dùng cùng Task ID khi mục tiêu không đổi; ưu tiên mức thủ tục tối thiểu nhưng đủ cho nhiệm vụ; v0.4 giữ làm bản tham chiếu, v0.5 chưa được xác minh hiệu quả.
+- **Decisions to preserve:** dựa trên phương pháp có sẵn trước; không tạo quy tắc mới chỉ từ cảm giác; dùng cùng Task ID khi mục tiêu không đổi; ưu tiên mức thủ tục tối thiểu nhưng đủ cho nhiệm vụ; v0.4 giữ làm bản tham chiếu, v0.5 chưa được xác minh hiệu quả. **Quy tắc về tính trung thực không tự động tạo ra quy tắc về hình thức trả lời** — chỉ dẫn cho AI phải nói rõ cả hai. **Không đặt tên cho cơ chế nội bộ trong chỉ dẫn dành cho AI** (tên trở thành thứ AI nhắc lại).
 - **Confirmed facts:** bộ tài liệu v0.4/v0.5 và các đường dẫn nói trên tồn tại trong repository; bản repo của `PILOT-01` từng lệch khỏi gói v0.5 và đã được khôi phục khớp gói (kiểm tra bằng `diff`/`sha256sum`). **Nguồn sự thật từ 2026-10-12 là repository (nhánh `main`); gói và zip đã ngừng dùng.**
-- **Assumptions to revalidate:** cơ chế handoff sẽ giảm lặp việc và làm tăng tính nhất quán; cần đo qua sử dụng thực tế.
+- **Assumptions to revalidate:** cơ chế handoff sẽ giảm lặp việc và làm tăng tính nhất quán; cần đo qua sử dụng thực tế. Giả định "snippet rút gọn đã đủ để AI khác chỉ áp dụng quy tắc" **đã bị bằng chứng phủ định một lần** (`F-004`) và bản sửa chưa được kiểm chứng ngoài mô hình này.
 - **Do not repeat:** không cần thiết kế lại cấu trúc tổng thể từ đầu, trừ khi pilot chỉ ra lỗi căn bản.
 
 ### G6. Bước tiếp theo
-- **Next action:** chạy `CONT-001` — đã thực hiện một lần ngày 2026-10-12 (`RUN-CONT-001-1`); xem kết quả và giới hạn trong `evaluation/EVALUATION_CASE_SET.md`. Việc còn lại: lặp lại với một AI/phiên **khác nhà cung cấp hoặc khác mô hình** để kiểm chứng đầy đủ, và đo thời gian/lượt.
-- **Purpose:** kiểm tra cơ chế handoff có thực sự giảm lặp việc và giữ đúng trạng thái hay không, thay vì chỉ tồn tại dưới dạng template.
-- **Expected observable result:** một bản ghi so sánh hành động của AI tiếp nhận với mục G của Task Run đầu vào, chấm từng điều kiện bắt buộc của `CONT-001`.
-- **Fallback if blocked:** nếu không thể chuyển sang phiên/AI khác, ghi rõ giới hạn và thực hiện phần có thể (ví dụ tự kiểm tra mục G có đủ trường cần thiết không).
+- **Next action:** **người dùng** dán snippet v0.6 vào AI **khác nhà cung cấp** (chính AI đã phát hiện `F-004`) và kiểm tra: không báo cáo tuân thủ, không trả lời lan, không nêu tên mức. Đó là điều kiện đóng `F-004`. Song song: lặp `CONT-001` với một AI/phiên **khác nhà cung cấp hoặc khác mô hình**.
+- **Purpose:** kiểm chứng bản sửa snippet có hiệu lực **ngoài** mô hình đã viết nó — đây chính là điểm mù đã làm `PORT-001` kết luận sai.
+- **Expected observable result:** một bản ghi `RUN-PORT-002-2` (hoặc tương đương) do người dùng cung cấp, chấm theo tiêu chí **hình thức** của `PORT-002`.
+- **Fallback if blocked:** nếu chưa có AI khác nhà cung cấp, ghi rõ `F-004` vẫn `testing`; **không** dùng kết quả cùng mô hình để đóng lỗi.
 
 ### G7. Tài liệu cần nạp để tiếp tục
 | File | Lý do | Vai trò |
@@ -128,13 +133,14 @@ Xây dựng từng bước một quy trình làm việc với nhiều AI, dựa 
 | `WORKING_AGREEMENT.md` | Quy tắc áp dụng chung | Source of truth về quy tắc |
 | `templates/TASK_RUN_MINI_TEMPLATE.md` | Hồ sơ ngắn cho Standard | Template rút gọn |
 | `templates/TASK_RUN_TEMPLATE.md` | Template đầy đủ cho Rigorous/việc dài hạn | Source of truth cho Task Run đầy đủ |
+| `templates/PORTABLE_SNIPPET.md` | Bản rút gọn để dán vào AI bất kỳ (v0.6) | Chỉ dẫn di động; đang `testing` cho `F-004` |
 | `evaluation/EVALUATION_RUBRIC.md` | Tiêu chí đánh giá | Hướng dẫn đánh giá |
 | `evaluation/EVALUATION_CASE_SET.md` | Case `CONT-001` và các case seed | Kế hoạch kiểm thử |
 | `research/SOURCES_AND_METHOD.md` | Cơ sở phương pháp | Tham chiếu nghiên cứu |
 | `scripts/verify_package.sh` | Kiểm tra tính nhất quán inventory/manifest/liên kết | Kiểm tra hồi quy |
 
 - **Source of truth:** file này cho trạng thái dự án; các file trên cho nội dung/quy tắc tương ứng.
-- **Related Task/Case/Failure IDs:** `CONT-001`, `RES-001`; chưa có Failure ID mới được xác nhận.
+- **Related Task/Case/Failure IDs:** `CONT-001`, `RES-001`, `PORT-001`, `PORT-002`; `F-001`–`F-004` (trong đó `F-004` đang `testing`).
 
 ### G8. Lịch sử checkpoint
 | Checkpoint | Ngày | Thay đổi | Bằng chứng |
@@ -148,19 +154,20 @@ Xây dựng từng bước một quy trình làm việc với nhiều AI, dựa 
 | CP-7 | 2026-10-12 | Chạy `CONT-001` với tác nhân ngữ cảnh mới; ghi `RUN-CONT-001-1`; phát hiện và ghi `F-003` (chỉ dẫn lỗi thời) cùng việc repo đi trước gói v0.5; sửa next action ở mục F/G6 | `evaluation/EVALUATION_CASE_SET.md`, `improvement/FAILURE_CHANGE_LOG.md` |
 | CP-8 | 2026-10-12 | Chốt repository (nhánh `main`) làm nguồn sự thật duy nhất; ngừng dùng gói v0.5 và zip (đã kiểm tra là tập con của repo); commit v0.5; đóng `F-003` | `improvement/FAILURE_CHANGE_LOG.md` `F-003`, `CHANGELOG.md`, commit v0.5 |
 | CP-9 | 2026-10-12 | Tạo `templates/PORTABLE_SNIPPET.md` (bản 2844 B và 1218 B) để dán vào AI bất kỳ; chạy `PORT-001` lần đầu | `templates/PORTABLE_SNIPPET.md`; `evaluation/EVALUATION_CASE_SET.md` `RUN-PORT-001-1` |
+| CP-10 | 2026-10-12 | Người dùng thử snippet v0.5 với AI khác nhà cung cấp → lỗi báo cáo tuân thủ và trả lời lan (`F-004`, `OVERHEAD`+`REQ`); viết lại snippet thành v0.6 (mục **TRẢ LỜI** đứng đầu, bỏ tên mức, văn phong mệnh lệnh); chạy `PORT-002` 1 lần (cùng mô hình) | `templates/PORTABLE_SNIPPET.md`; `improvement/FAILURE_CHANGE_LOG.md` `F-004`; `evaluation/EVALUATION_CASE_SET.md` `PORT-002`/`RUN-PORT-002-1` |
 
 ### G9. Chỉ dẫn cho AI nhận bàn giao
-Đọc file này trước để khôi phục mục tiêu và trạng thái; sau đó đọc `README.md`, `WORKING_AGREEMENT.md`, chọn mini/full template theo nhiệm vụ và đọc các case `FLEX-*` cùng `CONT-001`. Tiếp tục cùng Task ID `SYS-001`. Không thiết kế lại từ đầu. **Trước khi thực hiện bất cứ next action nào, đối chiếu nó với bảng DONE ở G2 và bảng open ở mục D — mục F/G6 từng chứa chỉ dẫn lỗi thời (`F-003`).** Cả bốn pilot Quick/Standard/Rigorous/`CONT-001` đã chạy 1 lần; việc còn lại là lặp `CONT-001` với AI/mô hình khác nhà cung cấp và chạy `FLEX-003`/`FLEX-004`. `PILOT-01` đang `blocked` ở nguồn nên không lặp lại các truy vấn đã ghi ở mục B của file đó trừ khi có quyền truy cập mới. **Repository (nhánh `main`) là nguồn sự thật duy nhất; gói v0.5 và zip đã ngừng dùng — đừng đọc chúng.** Chạy `bash scripts/verify_package.sh` sau khi sửa file. Không đánh dấu bất cứ tiêu chí nào là đã kiểm chứng cho đến khi có bằng chứng thực tế.
+Đọc file này trước để khôi phục mục tiêu và trạng thái; sau đó đọc `README.md`, `WORKING_AGREEMENT.md`, chọn mini/full template theo nhiệm vụ và đọc các case `FLEX-*`, `CONT-001` và `PORT-*`. Tiếp tục cùng Task ID `SYS-001`. Không thiết kế lại từ đầu. **Trước khi thực hiện bất cứ next action nào, đối chiếu nó với bảng DONE ở G2 và bảng open ở mục D — mục F/G6 từng chứa chỉ dẫn lỗi thời (`F-003`).** Sáu lần chạy đã có, mỗi loại một lần: Quick, Standard, Rigorous, `CONT-001`, `PORT-001`, `PORT-002`; việc còn lại là lặp `CONT-001` với AI/mô hình khác nhà cung cấp, chạy `FLEX-003`/`FLEX-004`, và **để người dùng xác nhận snippet v0.6 với AI khác nhà cung cấp** (điều kiện đóng `F-004`). `PILOT-01` đang `blocked` ở nguồn nên không lặp lại các truy vấn đã ghi ở mục B của file đó trừ khi có quyền truy cập mới. **Repository (nhánh `main`) là nguồn sự thật duy nhất; gói v0.5 và zip đã ngừng dùng — đừng đọc chúng.** Chạy `bash scripts/verify_package.sh` sau khi sửa file. Không đánh dấu bất cứ tiêu chí nào là đã kiểm chứng cho đến khi có bằng chứng thực tế. **Không dùng kết quả chạy cùng mô hình để đóng một lỗi về tính di động — đó chính là điểm mù đã làm `PORT-001` kết luận sai (`F-004`).**
 
 
 ## H. Checkpoint v0.5 — Mức thủ tục linh hoạt
 
 - **Ngày:** 2026-10-12
-- **Trạng thái:** tài liệu v0.5 được tạo; cả bốn lần chạy (Quick/Standard/Rigorous/`CONT-001`) đã có một lần.
+- **Trạng thái:** tài liệu v0.5 được tạo; sáu lần chạy đã có (Quick/Standard/Rigorous/`CONT-001`/`PORT-001`/`PORT-002`), mỗi loại một lần.
 - **Lý do:** người dùng nêu lo ngại rằng quy trình v0.4 có thể quá cứng nhắc.
 - **Thay đổi:** thêm Quick/Standard/Rigorous; bổ sung mini template; cho phép bỏ qua mục không liên quan; thêm chiều R8 về tính tương xứng và case FLEX-001–FLEX-004.
 - **Điều cần giữ:** các chế độ không làm giảm nghĩa vụ trung thực, yêu cầu bắt buộc hoặc xác minh tương xứng với rủi ro. v0.4 vẫn được giữ làm bản tham chiếu.
 - **Bằng chứng hiện có:** các file v0.5 đã được tạo và kiểm tra cấu trúc/liên kết; ba mức và `CONT-001` đã chạy 1 lần với kết quả quan sát được; chưa có bằng chứng định lượng rằng v0.5 tốt hơn v0.4.
-- **Open items:** thử `FLEX-003`/`FLEX-004`; so sánh thao tác và kết quả với v0.4; chỉnh cấu trúc nếu xuất hiện thủ tục thừa hoặc bỏ sót xác minh; xử lý việc repo đi trước gói v0.5.
-- **Next action:** lặp `CONT-001` với một AI/phiên khác nhà cung cấp; xử lý `F-003` và lệch repo-vs-gói.
+- **Open items:** thử `FLEX-003`/`FLEX-004`; so sánh thao tác và kết quả với v0.4; chỉnh cấu trúc nếu xuất hiện thủ tục thừa hoặc bỏ sót xác minh; kiểm chứng snippet v0.6 ngoài mô hình này (`F-004`).
+- **Next action:** người dùng xác nhận snippet v0.6 với một AI **khác nhà cung cấp** (điều kiện đóng `F-004`); lặp `CONT-001` với một AI/phiên khác nhà cung cấp. `F-003` và việc lệch repo-vs-gói đã xử lý xong — không còn nằm trong next action.
 

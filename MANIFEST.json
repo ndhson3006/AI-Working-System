@@ -19,7 +19,14 @@
     "Ran CONT-001 continuation/handoff pilot with a fresh-context agent; recorded RUN-CONT-001-1 and F-003 (stale next-action guidance in the handoff record)",
     "Corrected the stale next action in SYS-001 sections F and G6; noted that the repo now leads the v0.5 package (repo/package drift, still open)",
     "Extended scripts/verify_package.sh with an optional second-directory comparison mode that reports size drift and files present on only one side",
-    "Added templates/PORTABLE_SNIPPET.md: a condensed portable version of the working rules to paste into any AI's custom instructions, in a full (~2.8 KB) and a minimal (~1.2 KB) variant"
+    "Added templates/PORTABLE_SNIPPET.md: a condensed portable version of the working rules to paste into any AI's custom instructions, in a full (~2.8 KB) and a minimal (~1.2 KB) variant",
+    "Recorded F-004: the v0.5 snippet, used with a different vendor's AI, made the model report its own rule-compliance and answer beyond the question instead of only applying the rules",
+    "Rewrote templates/PORTABLE_SNIPPET.md as v0.6: a RESPONSE section first (no preamble, no process narration, no mode names, no compliance report, explain only when asked), mode names removed entirely, imperative short-sentence voice",
+    "Added evaluation case PORT-002 to test response form rather than content alone, and recorded RUN-PORT-002-1",
+    "Noted in SYS-001 that RUN-PORT-001-1 (same model as the snippet's author) could not have caught F-004; the closing condition requires confirmation from a different vendor",
+    "Added the response-form rule to the source of truth: WORKING_AGREEMENT.md section 1 gains a 'apply, do not report' subsection and section 2 gains invariant 9, so the condensed snippet is not an unsourced rule",
+    "Added rubric dimension R9 (response form: apply silently, do not report compliance) to evaluation/EVALUATION_RUBRIC.md; no prior dimension scored this failure",
+    "Recorded the versioning question: the WORKING_AGREEMENT rule change is a minor change (v0.6) under the project's own versioning rule, but no version bump was made in this session"
   ],
   "files": [
     "AI_WORKING_SYSTEM_PROJECT_HANDOFF.md",
@@ -42,7 +49,7 @@
     "templates/TASK_RUN_MINI_TEMPLATE.md",
     "templates/TASK_RUN_TEMPLATE.md"
   ],
-  "package_revision": "2026-10-12-cont-001-run",
+  "package_revision": "2026-10-12-port-002-run",
   "file_count_excluding_manifest_and_inventory": 19,
   "manifest_policy": "files lists package payload excluding MANIFEST.json and FILE_INVENTORY.md; FILE_INVENTORY.md lists all files except itself."
 }

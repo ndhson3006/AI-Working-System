@@ -18,7 +18,7 @@ Ví dụ đã chạy: `tasks/SYS-002_doc_consistency_check.md` (Standard, mini t
 
 Nếu bạn không chọn chế độ, AI nên chọn **mức đơn giản nhất vẫn đáp ứng yêu cầu và rủi ro**. Nó có thể tăng hoặc giảm mức quy trình khi phát hiện tình huống mới. Các chế độ chỉ khác nhau về mức thủ tục, **không phải mức độ được phép sai**.
 
-1. Đọc [`WORKING_AGREEMENT.md`](WORKING_AGREEMENT.md) một lần và đưa vào hướng dẫn tùy chỉnh của AI nếu có hỗ trợ. Nếu công cụ giới hạn ký tự, dùng [`templates/PORTABLE_SNIPPET.md`](templates/PORTABLE_SNIPPET.md) — có bản ~2.8 KB và bản tối thiểu ~1.2 KB.
+1. Đọc [`WORKING_AGREEMENT.md`](WORKING_AGREEMENT.md) một lần và đưa vào hướng dẫn tùy chỉnh của AI nếu có hỗ trợ. Nếu công cụ giới hạn ký tự, dùng [`templates/PORTABLE_SNIPPET.md`](templates/PORTABLE_SNIPPET.md) — bản v0.6 có biến thể ~2.9 KB và ~1.5 KB. Snippet chỉ chứa **quy tắc hành vi**, cố ý **không nêu tên các chế độ**: đừng thêm lại tên `Quick`/`Standard`/`Rigorous` vào hướng dẫn dành cho AI, vì AI sẽ nhắc lại chúng trong câu trả lời (xem `F-004` trong [`improvement/FAILURE_CHANGE_LOG.md`](improvement/FAILURE_CHANGE_LOG.md)).
 2. Với Quick, giao việc bình thường. Không cần tạo file trừ khi bạn muốn lưu lại.
 3. Với Standard, sao chép mini template, điền hoặc yêu cầu AI tự điền các trường phù hợp rồi thực hiện nhiệm vụ.
 4. Với Rigorous, dùng full template. Chỉ điền các phần phù hợp; bỏ qua mục không liên quan với ghi chú ngắn như `N/A` nếu cần.
@@ -75,7 +75,7 @@ Chế độ này báo cáo file lệch kích thước giữa hai bản và file 
 - Bắt đầu với mức thủ tục nhỏ nhất phù hợp.
 - **Escalate** từ Quick lên Standard/Rigorous nếu có mâu thuẫn, nguồn chuyên biệt, yêu cầu chưa rõ có ảnh hưởng lớn, kiểm thử thực tế, rủi ro đáng kể hoặc yêu cầu lưu/handoff.
 - **Simplify** khi các phần thủ tục không giúp nâng độ chính xác, khả năng kiểm tra hay yêu cầu lưu vết; không lược bỏ điều kiện bắt buộc do người dùng đặt ra.
-- AI có thể thông báo ngắn lý do chọn mức, nhưng không cần trình bày quy trình phân loại trong mọi câu trả lời đơn giản.
+- AI **áp dụng** mức đã chọn trong im lặng; **không** trình bày quy trình phân loại, không nêu tên mức trong câu trả lời. Chỉ giải thích cách làm khi người dùng hỏi thẳng. Với nhiệm vụ theo dõi/đánh giá, ghi mode và lý do vào Task Run, không vào câu trả lời.
 - Nếu người dùng chỉ định mức cụ thể, tuân theo mức đó trừ khi có xung đột với khả năng, an toàn hoặc yêu cầu bắt buộc; khi không thể làm theo, giải thích ngắn gọn.
 - Task Run không phải điều kiện bắt buộc để trả lời mọi câu hỏi. Các hồ sơ dùng cho công việc cần lưu trạng thái hoặc có tiêu chí cần kiểm chứng.
 
@@ -88,12 +88,13 @@ Chế độ này báo cáo file lệch kích thước giữa hai bản và file 
 - Không tạo điểm tổng hoặc khẳng định độ tin cậy nếu chưa có phương pháp phù hợp.
 - Khi thiếu bằng chứng, ghi rõ chưa thể xác minh thay vì ép thành đạt/trượt.
 - Giữ quyết định và trạng thái cần thiết khi tiếp tục công việc.
+- **Chỉ áp dụng quy tắc, không báo cáo việc tuân thủ.** Không kể quy trình, không nêu tên chế độ, không liệt kê quy tắc đã theo, không trả lời lan sang nội dung không được hỏi. Độ dài trả lời tương xứng với độ khó câu hỏi.
 
 ## 5. Bộ hồ sơ dùng khi thật sự cần
 
 | Tài liệu | Dùng khi nào |
 |---|---|
-| `templates/PORTABLE_SNIPPET.md` | Cần dán quy tắc vào AI khác mà không nạp được cả Working Agreement |
+| `templates/PORTABLE_SNIPPET.md` | Cần dán quy tắc vào AI khác mà không nạp được cả Working Agreement (v0.6; bỏ tên chế độ, quy định im lặng áp dụng) |
 | `evaluation/EVALUATION_RUBRIC.md` | Cần đánh giá có cấu trúc hoặc thử nghiệm cải tiến; không cần cho mọi câu hỏi Quick |
 | `evaluation/EVALUATION_CASE_SET.md` | Muốn thử một hành vi/lỗi cụ thể hoặc kiểm tra hồi quy |
 | `comparison/MODEL_COMPARISON_PROTOCOL.md` | So sánh nhiều AI hoặc cấu hình một cách công bằng |

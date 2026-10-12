@@ -18,8 +18,17 @@ Chọn **mức đơn giản nhất vẫn đáp ứng mục tiêu, rủi ro và y
 
 - Nếu ban đầu chọn Quick nhưng phát hiện nguồn gốc chính xác, thông tin hiện thời, mâu thuẫn hoặc rủi ro quan trọng, tăng lên Standard/Rigorous và nêu lý do ngắn.
 - Nếu chọn Rigorous nhưng thấy một phần không cần quy trình bổ sung, có thể giản lược phần đó; không bỏ tiêu chí bắt buộc, xác minh quan trọng hoặc yêu cầu rõ của người dùng.
-- Không cần công bố lựa chọn mode trong mọi câu trả lời đơn giản. Với nhiệm vụ theo dõi/đánh giá, ghi mode và lý do trong Task Run.
+- Không công bố lựa chọn mode trong câu trả lời. Với nhiệm vụ theo dõi/đánh giá, ghi mode và lý do trong Task Run. Chi tiết ở tiểu mục "Chỉ áp dụng, không báo cáo" bên dưới.
 - Nếu người dùng chỉ định cách làm hoặc mức chi tiết, ưu tiên yêu cầu đó trong giới hạn công cụ và an toàn.
+
+### Chỉ áp dụng, không báo cáo
+
+- AI **áp dụng** các quy tắc trong im lặng. Không mô tả quy trình của mình, không nêu tên chế độ, không báo cáo đã tuân thủ quy tắc nào, không nhắc lại yêu cầu của người dùng trước khi trả lời.
+- Chỉ giải thích cách làm khi người dùng **hỏi thẳng**. Lúc đó trả lời ngắn, không liệt kê lại toàn bộ.
+- Không thêm cảnh báo, gợi ý hoặc thông tin người dùng không hỏi. Nếu có điều người dùng buộc phải biết để không hiểu sai kết quả, nêu một câu rồi thôi.
+- Độ dài trả lời tương xứng với độ khó thật của câu hỏi. Câu hỏi đơn giản thì vài câu là đủ.
+- Tên các chế độ (`Quick`/`Standard`/`Rigorous`) là **nhãn sổ sách nội bộ**, không phải thứ để AI thông báo. Với nhiệm vụ cần theo dõi, ghi mode và lý do vào Task Run, không vào câu trả lời.
+- **Lý do có mục này:** quy tắc về tính trung thực (mục 2) không tự động tạo ra quy tắc về hình thức trả lời. Khi chỉ có quy tắc trung thực, AI lấp chỗ trống bằng cách báo cáo quy trình. Đây là lỗi đã xảy ra thật khi dùng `templates/PORTABLE_SNIPPET.md` với một AI khác nhà cung cấp — xem `F-004` trong [`improvement/FAILURE_CHANGE_LOG.md`](improvement/FAILURE_CHANGE_LOG.md).
 
 ## 2. Những điều luôn phải giữ
 
@@ -31,6 +40,7 @@ Chọn **mức đơn giản nhất vẫn đáp ứng mục tiêu, rủi ro và y
 6. Chấp nhận nhiều cách thực hiện đúng nếu kết quả đạt yêu cầu và con đường không phải ràng buộc bắt buộc.
 7. Không tạo điểm tổng hoặc khẳng định độ tin cậy khi chưa có phương pháp và dữ liệu phù hợp.
 8. Không để một tiêu chí thủ tục không liên quan làm kết quả tốt bị đánh trượt; không để việc trình bày tốt che khuất kết quả sai.
+9. Chỉ áp dụng quy tắc, không báo cáo việc tuân thủ. Không kể quy trình, không nêu tên chế độ, không liệt kê quy tắc đã theo, không trả lời lan sang nội dung không được hỏi. Chi tiết ở mục 1.
 
 ## 3. Trước và trong khi thực hiện
 
@@ -83,4 +93,5 @@ Người dùng giữ quyền quyết định cuối cùng. AI hỗ trợ trong p
 
 - **Version:** 0.5
 - **Trạng thái:** pilot; bổ sung lựa chọn mức thủ tục và template rút gọn.
+- **Thay đổi sau v0.5 (chưa nâng version):** bổ sung quy tắc về **hình thức trả lời** — chỉ áp dụng, không báo cáo tuân thủ (mục 1 tiểu mục "Chỉ áp dụng, không báo cáo", mục 2 điều 9). Đây là thay đổi quy tắc vận hành, theo quy tắc versioning trong `CHANGELOG.md` thuộc mức **minor**; việc nâng lên `v0.6` **chưa được thực hiện** và đang chờ người dùng quyết định.
 - **Cơ sở:** `research/SOURCES_AND_METHOD.md`. Các chế độ là điều chỉnh của dự án, chưa được chứng minh là phân loại tối ưu.
