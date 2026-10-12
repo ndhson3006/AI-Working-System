@@ -15,7 +15,7 @@
 Bạn đang tiếp tục một dự án đã có lịch sử và quyết định trước đó. Hãy tuân thủ các điều sau:
 
 1. **Không khởi động lại từ đầu.** Giữ Task ID `SYS-001`; tiếp tục từ trạng thái và `Next action` trong hồ sơ nhiệm vụ chính nếu file đó có sẵn.
-2. **Đọc tài liệu hiện có trước khi đề xuất thay đổi.** Nếu có gói `AI_Working_System_v0.5.zip` hoặc repository dự án, trước tiên đọc `README.md`, `WORKING_AGREEMENT.md`, `tasks/SYS-001_ai-working-system-development.md` và `research/SOURCES_AND_METHOD.md`. Các file còn lại được liệt kê ở phần 6.
+2. **Đọc tài liệu hiện có trước khi đề xuất thay đổi.** Trong repository dự án, trước tiên đọc `README.md`, `WORKING_AGREEMENT.md`, `tasks/SYS-001_ai-working-system-development.md` và `research/SOURCES_AND_METHOD.md`. Các file còn lại được liệt kê ở phần 6.
 3. **Ưu tiên phương pháp đã tồn tại trước khi đề xuất nguyên tắc mới.** Tìm và đọc tài liệu nguồn phù hợp; chỉ đề xuất thay đổi riêng cho dự án sau khi hiểu phương pháp sẵn có và có căn cứ hoặc một vấn đề quan sát được.
 4. **Không nhầm việc tạo tài liệu với việc kiểm chứng hiệu quả.** v0.5 hiện là bản pilot. Các evaluation cases là seed/draft, chưa phải benchmark đã được xác thực.
 5. **Không tuyên bố đã đọc nguồn, chạy lệnh, build/test, sửa file hay cập nhật GitHub nếu chưa thực sự làm và xác minh được.** Phân biệt rõ: đã đề xuất, đã thực hiện, đã quan sát, đã xác minh.

@@ -2,7 +2,7 @@
 
 > Danh sách các file trong gói (trừ chính inventory). SHA-256 12 ký tự đầu dùng kiểm tra nhanh tính toàn vẹn.
 
-- `AI_WORKING_SYSTEM_PROJECT_HANDOFF.md` — 40134 bytes — SHA-256 `99132398fd1a`
+- `AI_WORKING_SYSTEM_PROJECT_HANDOFF.md` — 40089 bytes — SHA-256 `ef78724f0dff`
 - `CHANGELOG.md` — 7063 bytes — SHA-256 `958b4fd26956`
 - `MANIFEST.json` — 2583 bytes — SHA-256 `aa3968874cfd`
 - `MIGRATION_v0.3_to_v0.4.md` — 2424 bytes — SHA-256 `f49e11510491`
