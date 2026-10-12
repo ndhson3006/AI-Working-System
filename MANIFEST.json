@@ -18,7 +18,8 @@
     "Added scripts/verify_package.sh to check inventory size/hash, relative Markdown links, and manifest consistency",
     "Ran CONT-001 continuation/handoff pilot with a fresh-context agent; recorded RUN-CONT-001-1 and F-003 (stale next-action guidance in the handoff record)",
     "Corrected the stale next action in SYS-001 sections F and G6; noted that the repo now leads the v0.5 package (repo/package drift, still open)",
-    "Extended scripts/verify_package.sh with an optional second-directory comparison mode that reports size drift and files present on only one side"
+    "Extended scripts/verify_package.sh with an optional second-directory comparison mode that reports size drift and files present on only one side",
+    "Added templates/PORTABLE_SNIPPET.md: a condensed portable version of the working rules to paste into any AI's custom instructions, in a full (~2.8 KB) and a minimal (~1.2 KB) variant"
   ],
   "files": [
     "AI_WORKING_SYSTEM_PROJECT_HANDOFF.md",
@@ -37,10 +38,11 @@
     "tasks/SYS-001_ai-working-system-development.md",
     "tasks/SYS-002_doc_consistency_check.md",
     "templates/EVALUATION_CASE_TEMPLATE.md",
+    "templates/PORTABLE_SNIPPET.md",
     "templates/TASK_RUN_MINI_TEMPLATE.md",
     "templates/TASK_RUN_TEMPLATE.md"
   ],
   "package_revision": "2026-10-12-cont-001-run",
-  "file_count_excluding_manifest_and_inventory": 18,
+  "file_count_excluding_manifest_and_inventory": 19,
   "manifest_policy": "files lists package payload excluding MANIFEST.json and FILE_INVENTORY.md; FILE_INVENTORY.md lists all files except itself."
 }

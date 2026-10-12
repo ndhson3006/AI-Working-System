@@ -19,6 +19,11 @@
   - Mở rộng `scripts/verify_package.sh` với chế độ đối chiếu hai thư mục (`... <bản-gốc> <bản-đối-chiếu>`): báo lệch kích thước từng file dùng chung và file chỉ có ở một bên. Đã chạy thật, phát hiện 10 file lệch + 1 file chỉ có ở repo.
   - **Nguồn sự thật được chốt:** repository (nhánh `main`). Gói `AI_Working_System_v0.5/` và `AI_Working_System_v0.5.zip` ngừng dùng — đã kiểm tra là tập con của repo nên không mất nội dung. Đóng `F-003`.
 
+- **Tính di động của quy tắc (cập nhật cùng ngày, không đổi phương pháp):**
+  - Thêm `templates/PORTABLE_SNIPPET.md`: bản rút gọn của quy tắc làm việc để dán vào hướng dẫn tùy chỉnh của AI bất kỳ. Hai biến thể: đầy đủ (~2.8 KB) và tối thiểu (~1.2 KB) cho nơi giới hạn ký tự chặt.
+  - Chạy `PORT-001` lần đầu (`RUN-PORT-001-1`): tác nhân chỉ nhận bản tối thiểu chọn đúng mức cho hai loại nhiệm vụ và **từ chối bịa** nội dung nguồn không truy cập được.
+  - **Giới hạn:** lần chạy dùng cùng mô hình đã viết snippet; tính di động sang AI khác nhà cung cấp vẫn **chưa được chứng minh** (`OPEN-6`).
+
 - Bổ sung `AI_WORKING_SYSTEM_PROJECT_HANDOFF.md` vào gói phân phối để AI khác có thể khôi phục bối cảnh, lịch sử quyết định, giới hạn và next actions mà không phải dựa vào lịch sử hội thoại.
 - Đồng bộ README, hồ sơ `SYS-001`, manifest và file inventory để tham chiếu tài liệu handoff. Đây là cập nhật đóng gói/tài liệu, không thay đổi phương pháp vận hành và không nâng version lên v0.6.
 

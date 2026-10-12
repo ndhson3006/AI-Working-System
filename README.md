@@ -18,7 +18,7 @@ Ví dụ đã chạy: `tasks/SYS-002_doc_consistency_check.md` (Standard, mini t
 
 Nếu bạn không chọn chế độ, AI nên chọn **mức đơn giản nhất vẫn đáp ứng yêu cầu và rủi ro**. Nó có thể tăng hoặc giảm mức quy trình khi phát hiện tình huống mới. Các chế độ chỉ khác nhau về mức thủ tục, **không phải mức độ được phép sai**.
 
-1. Đọc [`WORKING_AGREEMENT.md`](WORKING_AGREEMENT.md) một lần và đưa vào hướng dẫn tùy chỉnh của AI nếu có hỗ trợ.
+1. Đọc [`WORKING_AGREEMENT.md`](WORKING_AGREEMENT.md) một lần và đưa vào hướng dẫn tùy chỉnh của AI nếu có hỗ trợ. Nếu công cụ giới hạn ký tự, dùng [`templates/PORTABLE_SNIPPET.md`](templates/PORTABLE_SNIPPET.md) — có bản ~2.8 KB và bản tối thiểu ~1.2 KB.
 2. Với Quick, giao việc bình thường. Không cần tạo file trừ khi bạn muốn lưu lại.
 3. Với Standard, sao chép mini template, điền hoặc yêu cầu AI tự điền các trường phù hợp rồi thực hiện nhiệm vụ.
 4. Với Rigorous, dùng full template. Chỉ điền các phần phù hợp; bỏ qua mục không liên quan với ghi chú ngắn như `N/A` nếu cần.
@@ -38,6 +38,7 @@ AI-Working-System/          # repository là nguồn sự thật duy nhất
 ├── FILE_INVENTORY.md
 ├── MANIFEST.json
 ├── templates/
+│   ├── PORTABLE_SNIPPET.md         # bản rút gọn để dán vào AI bất kỳ
 │   ├── TASK_RUN_MINI_TEMPLATE.md   # Standard
 │   ├── TASK_RUN_TEMPLATE.md        # Rigorous / nhiệm vụ dài hạn
 │   └── EVALUATION_CASE_TEMPLATE.md
@@ -92,6 +93,7 @@ Chế độ này báo cáo file lệch kích thước giữa hai bản và file 
 
 | Tài liệu | Dùng khi nào |
 |---|---|
+| `templates/PORTABLE_SNIPPET.md` | Cần dán quy tắc vào AI khác mà không nạp được cả Working Agreement |
 | `evaluation/EVALUATION_RUBRIC.md` | Cần đánh giá có cấu trúc hoặc thử nghiệm cải tiến; không cần cho mọi câu hỏi Quick |
 | `evaluation/EVALUATION_CASE_SET.md` | Muốn thử một hành vi/lỗi cụ thể hoặc kiểm tra hồi quy |
 | `comparison/MODEL_COMPARISON_PROTOCOL.md` | So sánh nhiều AI hoặc cấu hình một cách công bằng |

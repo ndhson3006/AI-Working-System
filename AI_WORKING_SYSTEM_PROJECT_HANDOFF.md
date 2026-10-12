@@ -276,6 +276,7 @@ Gốc trong repository: `/home/ndhson/devbix/work/AI-Working-System/`. **Reposit
 | `FILE_INVENTORY.md` | Danh sách file, kích thước và hash rút gọn để kiểm tra nhanh |
 | `MANIFEST.json` | Phiên bản, trạng thái, thay đổi và file được khai báo trong gói |
 | `templates/TASK_RUN_MINI_TEMPLATE.md` | Hồ sơ Standard rút gọn |
+| `templates/PORTABLE_SNIPPET.md` | Bản rút gọn quy tắc để dán vào AI khác (2 biến thể) |
 | `templates/TASK_RUN_TEMPLATE.md` | Hồ sơ đầy đủ cho Rigorous/nhiệm vụ kéo dài |
 | `templates/EVALUATION_CASE_TEMPLATE.md` | Khung chi tiết hóa một evaluation case |
 | `evaluation/EVALUATION_RUBRIC.md` | Rubric R1–R8; chọn chiều phù hợp, chưa có trọng số tổng thống nhất |
@@ -300,7 +301,7 @@ Gốc trong repository: `/home/ndhson/devbix/work/AI-Working-System/`. **Reposit
 - v0.4 có continuation/handoff trong full template và hồ sơ `SYS-001`.
 - v0.5 có Quick/Standard/Rigorous, mini template, nguyên tắc bỏ qua mục không phù hợp, R8 và FLEX cases.
 - **Nguồn sự thật:** repository (nhánh `main`), commit `v0.5` ngày 2026-10-12. Gói phát hành `AI_Working_System_v0.5/` và `.zip` đã **ngừng dùng** — snapshot trước pilot, lệch 10 file so với repo.
-- Pilot đã chạy ngày 2026-10-12: `FLEX-001` (Quick), `FLEX-002`/`PILOT-01` (Rigorous), `SYS-002` (Standard), `CONT-001` (handoff).
+- Pilot đã chạy ngày 2026-10-12: `FLEX-001` (Quick), `FLEX-002`/`PILOT-01` (Rigorous), `SYS-002` (Standard), `CONT-001` (handoff), `PORT-001` (snippet di động).
 - Lỗi đồng bộ artifact đã được phát hiện và sửa (`F-001`); `scripts/verify_package.sh` được thêm làm kiểm tra hồi quy.
 - **Lệch repo-vs-gói hiện tại:** sau các pilot, repo mới hơn gói ở nhiều file (`PILOT-01` 12241 vs 7394 B; `README.md` 9246 vs 8440; `CHANGELOG.md` 5423 vs 4051; `SYS-001` 17972 vs 12840). `verify_package.sh` **không** phát hiện được loại lệch này vì nó chỉ kiểm tra nhất quán nội bộ một thư mục. Trạng thái `open`.
 - **Chưa commit:** git HEAD vẫn là `34b51d7 "update v0.4"`. Toàn bộ v0.5, các pilot và bản sửa `F-001` nằm ở working tree chưa commit.
@@ -314,6 +315,7 @@ Gốc trong repository: `/home/ndhson/devbix/work/AI-Working-System/`. **Reposit
 - mode lựa chọn có chính xác khi chuyển giữa câu hỏi đơn giản và nhiệm vụ nguồn-cụ-thể không — **đã có 1 lần mỗi mức Quick/Standard/Rigorous; chưa có đối chứng v0.4 và chưa đo thời gian/lượt**.
 - mini template có lưu đủ thông tin với ít công sức hơn không — **đã chạy 1 lần (`SYS-002`): dùng 4/6 mục, đủ cho nhiệm vụ nhỏ; chưa đo thời gian**.
 - handoff có giúp AI khác tiếp tục đúng mà không lặp công việc hay làm mất quyết định không — **đã chạy 1 lần (`CONT-001`, `RUN-CONT-001-1`): 5/5 điều kiện đạt, nhưng dùng cùng mô hình nên chưa chứng minh được handoff khác nhà cung cấp**.
+- bản rút gọn quy tắc có dùng được ở AI khác không — **đã tạo `templates/PORTABLE_SNIPPET.md` và chạy 1 lần (`PORT-001`): chọn đúng mức, từ chối bịa. Cùng mô hình nên tính di động vẫn chưa được chứng minh (`OPEN-6`)**.
 - rubric có được nhiều người chấm/AI áp dụng nhất quán không — **chưa đo**.
 - sửa quy trình có cải thiện lỗi mục tiêu mà không gây hồi quy không — **chưa thử**.
 - kết quả PILOT-01 có đủ sáu nguyên tắc đúng từ ấn bản sách không — **`blocked`**: đã xác minh ấn bản (Fourth Edition, 2025) và chương (`Learning about Processes and Threads`, chương 21 trên nền tảng nhà xuất bản), nhưng nội dung chương không truy cập được (HTTP 403/CAPTCHA). Xem `F-002`.
