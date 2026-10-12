@@ -1,67 +1,86 @@
-# Working Agreement — AI Working System v0.4
+# Working Agreement — AI Working System v0.5
 
 ## Mục đích
 
-Tài liệu này ghi các quy tắc chung dùng với nhiều công cụ AI. Nó hỗ trợ Task Run nhưng không thay thế việc đặc tả nhiệm vụ riêng. Đây là hướng dẫn thực hành tổng hợp, không phải chính sách chính thức của nhà cung cấp AI.
+Quy tắc dùng chung khi làm việc với nhiều công cụ AI. Quy tắc này xác định những điều cần bảo vệ; không bắt mọi nhiệm vụ đi qua cùng một chuỗi bước. Đây là hướng dẫn thực hành tổng hợp, không phải chính sách chính thức của nhà cung cấp AI.
 
-## 1. Trước khi thực hiện
+## 1. Chọn mức thủ tục phù hợp
 
-1. Giữ nguyên yêu cầu gốc; nếu phải diễn giải để làm rõ, ghi rõ điểm diễn giải.
-2. Xác định đầu ra cần có, phạm vi, ràng buộc, nguồn cần ưu tiên và điều kiện hoàn thành.
-3. Chọn mức xác minh tương xứng với rủi ro và tính chất nhiệm vụ. Kết luận ảnh hưởng đến phần cứng, dữ liệu, bảo mật, tiền bạc hoặc quyết định quan trọng cần kiểm chứng mạnh hơn câu hỏi kiến thức phổ thông.
-4. Không yêu cầu người dùng cung cấp lại thông tin vốn đã có trong hội thoại hoặc có thể truy cập hợp lý bằng công cụ khả dụng.
-5. Nếu một thông tin thiết yếu còn thiếu và không thể tự xác minh, nêu thiếu hụt cụ thể; không lấp chỗ trống bằng giả định im lặng.
+Chọn **mức đơn giản nhất vẫn đáp ứng mục tiêu, rủi ro và yêu cầu lưu vết**. Ba chế độ là nhãn vận hành để chọn lượng hồ sơ, không phải thang chất lượng.
 
-## 2. Trong khi thực hiện
+| Chế độ | Tín hiệu thường gặp | Cách làm mặc định |
+|---|---|---|
+| **Quick** | Câu hỏi nhỏ, ổn định, ít rủi ro, không cần trạng thái lưu lâu dài | Trả lời trực tiếp; Task Run và rubric đầy đủ thường không cần |
+| **Standard** | Có nhiều yêu cầu, cần tra cứu/tổng hợp, viết hoặc phân tích, muốn giữ lại kết quả | Đặc tả ngắn, tiêu chí thành công chính, bằng chứng cho khẳng định quan trọng và kiểm tra kết quả; dùng mini template khi cần lưu hồ sơ |
+| **Rigorous** | Nguồn/phiên bản chính xác, debug trên môi trường thật, hành động có hậu quả, so sánh AI, nghiên cứu sâu, công việc xuyên phiên, hoặc người dùng yêu cầu | Dùng full Task Run và các phần rubric/nhật ký phù hợp; giữ bằng chứng và checkpoint |
 
-1. Chọn phương pháp đơn giản nhất đáp ứng mục tiêu; không mặc định tất cả nhiệm vụ đều cần tìm web, lập kế hoạch dài hoặc dùng agent.
-2. Với câu hỏi cần thông tin cập nhật, đặc thù, nguồn gốc hoặc nội dung chính xác từ một tài liệu, chủ động tìm đúng nguồn và phiên bản nếu có công cụ phù hợp.
-3. Nếu nguồn đầu tiên chưa đủ, đánh giá xem có phương án tìm kiếm hợp lý khác; ghi lại giới hạn trước khi dừng.
-4. Phân biệt thông tin có nguồn trực tiếp, suy luận và điều chưa xác minh.
-5. Không tự đổi mục tiêu, tiêu chí hoàn thành hoặc phạm vi để làm nhiệm vụ có vẻ hoàn tất.
-6. Với debugging, làm theo giả thuyết và bằng chứng hiện tại. Tránh lặp lại bước đã xác nhận nếu không có lý do mới; mỗi bước tiếp theo cần có mục tiêu chẩn đoán rõ.
-7. Không thực hiện hành động gây tác động bên ngoài hoặc phá hủy dữ liệu chỉ vì một prompt yêu cầu chung chung; yêu cầu xác nhận và quyền phù hợp khi hành động có hậu quả đáng kể.
+### Điều chỉnh mức trong khi làm
 
-## 3. Báo cáo và bằng chứng
+- Nếu ban đầu chọn Quick nhưng phát hiện nguồn gốc chính xác, thông tin hiện thời, mâu thuẫn hoặc rủi ro quan trọng, tăng lên Standard/Rigorous và nêu lý do ngắn.
+- Nếu chọn Rigorous nhưng thấy một phần không cần quy trình bổ sung, có thể giản lược phần đó; không bỏ tiêu chí bắt buộc, xác minh quan trọng hoặc yêu cầu rõ của người dùng.
+- Không cần công bố lựa chọn mode trong mọi câu trả lời đơn giản. Với nhiệm vụ theo dõi/đánh giá, ghi mode và lý do trong Task Run.
+- Nếu người dùng chỉ định cách làm hoặc mức chi tiết, ưu tiên yêu cầu đó trong giới hạn công cụ và an toàn.
 
-1. Phân biệt **đề xuất**, **đã thử**, **đã quan sát** và **đã xác minh độc lập**.
-2. Không tuyên bố đã tìm kiếm, mở file, chạy lệnh, build, kiểm thử, thay đổi trạng thái hoặc đặt dịch vụ nếu hành động đó chưa thực sự diễn ra hoặc không có bằng chứng đủ để xác nhận.
-3. Một đường dẫn hoặc trích dẫn chỉ là bằng chứng nếu nội dung thực tế hỗ trợ khẳng định được nêu.
-4. Khi nguồn có thể không đầy đủ, lỗi thời hoặc không truy cập được, ghi rõ giới hạn đó.
-5. Khi có nhiều lời giải đúng, không bắt buộc một định dạng hoặc đường đi duy nhất nếu người dùng không yêu cầu.
+## 2. Những điều luôn phải giữ
 
-## 4. Trước khi kết thúc
+1. Giữ nguyên yêu cầu gốc; nếu cần diễn giải, ghi rõ điểm có ý nghĩa. Không tự đổi nhiệm vụ để làm nó dễ hoàn thành hơn.
+2. Không yêu cầu người dùng lặp lại thông tin đã có trong ngữ cảnh hoặc có thể truy cập hợp lý bằng công cụ hiện có.
+3. Không bịa dữ kiện, nguồn, hành động, kết quả build/test, thay đổi file hay trạng thái bên ngoài.
+4. Phân biệt điều đã xác minh, điều đã quan sát, lời báo cáo, suy luận và giả định chưa xác nhận.
+5. Nêu thiếu hụt có ảnh hưởng đến kết luận; chỉ hỏi người dùng khi thông tin thiết yếu không thể tìm/kiểm tra được hoặc cần quyết định của họ.
+6. Chấp nhận nhiều cách thực hiện đúng nếu kết quả đạt yêu cầu và con đường không phải ràng buộc bắt buộc.
+7. Không tạo điểm tổng hoặc khẳng định độ tin cậy khi chưa có phương pháp và dữ liệu phù hợp.
+8. Không để một tiêu chí thủ tục không liên quan làm kết quả tốt bị đánh trượt; không để việc trình bày tốt che khuất kết quả sai.
 
-1. Đối chiếu đầu ra với từng tiêu chí hoàn thành.
-2. Ghi rõ phần hoàn thành, phần còn thiếu và bằng chứng cho kết luận.
-3. Nếu chưa có đủ thông tin để chấm, dùng **chưa thể đánh giá**, không ép thành đạt hoặc trượt.
-4. Nếu có sai sót, xem xét cả khả năng lỗi nằm ở yêu cầu, nguồn, công cụ, môi trường hoặc rubric.
-5. Đề xuất thay đổi quy trình chỉ khi có căn cứ; nếu mới là giả thuyết, ghi rõ và đề xuất cách kiểm thử.
+## 3. Trước và trong khi thực hiện
 
-## 5. Quy tắc về đánh giá
+- Xác định mục tiêu, đầu ra và các ràng buộc ảnh hưởng đến tính đúng đắn. Chỉ cần mức chi tiết tương xứng với nhiệm vụ.
+- Chọn phương pháp đơn giản nhất phù hợp; không mặc định mọi nhiệm vụ đều cần web search, kế hoạch dài, agent hoặc nhật ký chi tiết.
+- Với thông tin cập nhật, nội dung cụ thể từ tài liệu/ấn bản, hoặc kết luận cần căn cứ chuyên biệt, chủ động tìm đúng nguồn nếu có công cụ phù hợp.
+- Nếu nguồn đầu tiên chưa đủ, cân nhắc phương án hợp lý khác; trước khi dừng, phân biệt “đã tìm mà không có” với “chưa thể truy cập/kiểm tra”.
+- Ghi những hành động, nguồn và kết quả có ý nghĩa. Không ghi nhật ký từng thao tác nhỏ trừ khi cần cho debug/audit.
+- Với debugging, dùng bằng chứng hiện có, chọn bước tiếp theo có mục đích chẩn đoán rõ, tránh lặp kiểm tra đã xác nhận nếu không có lý do mới. Tôn trọng yêu cầu tương tác từng bước của người dùng nếu đã nêu.
+- Không thực hiện hành động có hậu quả đáng kể hoặc có thể phá hủy dữ liệu chỉ dựa vào chỉ dẫn chung; cần quyền và xác nhận phù hợp.
 
-- Chất lượng đầu ra và con đường thực hiện là hai mặt khác nhau. Chỉ chấm thao tác nếu thao tác đó là một phần của yêu cầu hoặc mang ý nghĩa an toàn/chất lượng rõ ràng.
-- Dùng bộ chấm xác định (ví dụ test chạy được, nội dung trích dẫn, đầu ra trạng thái) khi phù hợp; dùng đánh giá của con người cho phán đoán cần ngữ cảnh; dùng LLM-as-judge thận trọng và hiệu chỉnh với con người.
-- Không tổng hợp các chiều thành một điểm duy nhất nếu chưa có lý do và trọng số phù hợp với mục tiêu.
-- Bộ kiểm thử phải có trường hợp hành vi cần xảy ra và trường hợp không nên xảy ra để tránh tối ưu lệch một phía.
+## 4. Bằng chứng và báo cáo
 
-## 6. Quyền và trách nhiệm
+- “Đề xuất”, “đã thử”, “đã quan sát” và “đã xác minh độc lập” là những trạng thái khác nhau.
+- Một đường dẫn không đủ nếu nội dung của nó không hỗ trợ khẳng định. Khi có thể, cung cấp vị trí nguồn hoặc kết quả kiểm tra cụ thể.
+- Khi không có khả năng đọc file, chạy lệnh, build/test hoặc cập nhật repository, nói rõ giới hạn; không báo như đã thực hiện.
+- Không buộc mọi câu trả lời phải có bảng chứng cứ. Với câu hỏi nhỏ, có thể trả lời ngắn và chỉ nêu căn cứ khi cần.
 
-Người dùng giữ quyền quyết định cuối cùng. AI có trách nhiệm hỗ trợ bằng thông tin và hành động có thể kiểm tra trong phạm vi khả năng; người dùng không nên xem tự đánh giá của AI là xác minh độc lập. Người dùng cũng cần kiểm tra nguồn và hậu quả trước khi áp dụng kết quả trong môi trường thật.
+## 5. Đánh giá kết quả theo mức
 
-## 7. Tiếp tục công việc qua nhiều phiên (Continuation / Handoff)
+- **Quick:** không cần rubric đầy đủ; vẫn phải đáp ứng yêu cầu và minh bạch với giới hạn có ý nghĩa.
+- **Standard:** đối chiếu các điều kiện thành công chính; xác minh những khẳng định quan trọng; lưu hồ sơ nếu công việc cần được tiếp tục hoặc tái kiểm tra.
+- **Rigorous:** chấm từng tiêu chí bắt buộc, ghi các bằng chứng quan trọng, kiểm tra giới hạn và những chiều đánh giá có liên quan. Không phải mọi chiều rubric đều áp dụng.
+- Dùng bộ chấm xác định khi có thể; dùng phán đoán của người khi cần ngữ cảnh; dùng LLM-as-judge thận trọng và không xem nó là ground truth.
+- Nếu kết quả bị đánh trượt nhưng lý do không rõ, xem lại rubric, dữ liệu và môi trường trước khi đổ lỗi cho AI.
 
-1. Nếu người dùng muốn tiếp tục cùng một mục tiêu đã có Task Run, hãy tiếp tục trên hồ sơ đó và giữ nguyên Task ID; đổi phiên trò chuyện hoặc đổi AI không tự nó tạo ra một nhiệm vụ mới.
-2. Trước khi tiếp tục, đọc Task Run mới nhất, mục Continuation / Handoff và các tài liệu được liệt kê là cần thiết. Ưu tiên file trạng thái mới nhất làm nguồn trạng thái; dùng lịch sử hội thoại làm ngữ cảnh bổ trợ khi còn truy cập được.
-3. Phân biệt việc đã hoàn thành có bằng chứng, việc chỉ được báo cáo, giả định chưa xác nhận và việc còn mở. Không biến nội dung được bàn đến thành công việc đã hoàn thành nếu không có artifact hoặc bằng chứng phù hợp.
-4. Bảo toàn mục tiêu, tiêu chí, các quyết định đã thống nhất và các điều kiện đã xác nhận. Không làm lại bước đã hoàn thành trừ khi có mâu thuẫn, dữ liệu mới hoặc lý do kiểm tra lại được nêu rõ.
-5. Sau checkpoint có ý nghĩa hoặc khi tạm dừng, cập nhật cùng Task Run: trạng thái, việc đã xong, việc còn mở, quyết định cần giữ, bước tiếp theo và file liên quan. Không cần cập nhật sau mọi thao tác nhỏ.
-6. Nếu tiêu chí hoặc phạm vi cần thay đổi, ghi lý do và sự chấp thuận của người dùng; không âm thầm điều chỉnh để khiến nhiệm vụ trông như hoàn thành.
-7. Chỉ tạo Task ID mới khi mục tiêu thực sự khác; nếu nhiệm vụ mới tiếp nối nhiệm vụ cũ, liên kết hai hồ sơ.
-8. Khi công cụ không thể chỉnh sửa file trực tiếp, xuất phần cập nhật đầy đủ để người dùng lưu. Không tuyên bố đã lưu, commit hay đồng bộ khi chưa thực sự thực hiện.
+## 6. Quyết định những phần nào cần lưu
+
+- Lưu Task Run khi nhiệm vụ nhiều bước, cần nguồn/tái kiểm tra, có đầu ra cần quản lý hoặc dự kiến tiếp tục qua nhiều phiên/AI.
+- Không bắt buộc lưu Task Run cho mọi câu hỏi nhỏ.
+- Dùng mini template cho Standard khi cần ghi ngắn; dùng full template cho Rigorous hoặc nhiệm vụ dài hạn.
+- Với một Task Run, chỉ điền các mục áp dụng. Ghi `N/A` khi cần làm rõ rằng mục đã được xem xét nhưng không phù hợp; không cần điền mọi bảng dòng nếu không có sự kiện tương ứng.
+- Chỉ cập nhật Failure/Change Log khi có lỗi đáng lưu giữ, thay đổi cần thử nghiệm hoặc bài học có thể tái sử dụng.
+
+## 7. Quyền và trách nhiệm
+
+Người dùng giữ quyền quyết định cuối cùng. AI hỗ trợ trong phạm vi khả năng và quyền được cấp. Mức thủ tục có thể linh hoạt, nhưng không được nới lỏng tính trung thực về nguồn/hành động, tiêu chí bắt buộc, quyền hạn hoặc yêu cầu an toàn.
+
+## 8. Continuation / Handoff
+
+1. Khi tiếp tục cùng mục tiêu, giữ Task ID và dùng hồ sơ mới nhất làm nguồn trạng thái chính.
+2. Đọc các file liên quan được chỉ ra trong mục G; không cần đọc toàn bộ repository nếu chỉ một phần có liên quan.
+3. Phân biệt việc đã hoàn thành có bằng chứng, việc chỉ được báo cáo, giả định và việc còn mở.
+4. Không làm lại việc đã xác nhận nếu không có mâu thuẫn, dữ liệu mới hoặc lý do rõ ràng.
+5. Cập nhật checkpoint khi có kết quả/đổi trạng thái có ý nghĩa hoặc khi bàn giao; không cập nhật sau mỗi thao tác nhỏ.
+6. Không âm thầm thay đổi mục tiêu/tiêu chí. Nếu thật sự cần, nêu lý do và xin quyết định khi liên quan đến lựa chọn của người dùng.
+7. Nếu không sửa được file trực tiếp, xuất phần cập nhật cần thiết và nêu rằng file chưa được lưu đồng bộ.
 
 ## Phiên bản
 
-- Version: 0.4
-- Trạng thái: bản thử nghiệm tổng hợp từ các nguồn trong `research/SOURCES_AND_METHOD.md`.
-- Cách thay đổi: ghi thay đổi trong `CHANGELOG.md`; nếu thay đổi nhằm sửa lỗi đã gặp, ghi liên kết đến mục trong `improvement/FAILURE_CHANGE_LOG.md` và case kiểm thử liên quan.
+- **Version:** 0.5
+- **Trạng thái:** pilot; bổ sung lựa chọn mức thủ tục và template rút gọn.
+- **Cơ sở:** `research/SOURCES_AND_METHOD.md`. Các chế độ là điều chỉnh của dự án, chưa được chứng minh là phân loại tối ưu.

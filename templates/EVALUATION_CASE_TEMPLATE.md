@@ -7,6 +7,8 @@
 - **Tên:** `[ngắn gọn]`
 - **Loại:** `[research / factual / coding / debugging / instruction-following / comparison / khác]`
 - **Mục tiêu đo:** `[năng lực hoặc hành vi]`
+- **Mode được thử (nếu liên quan):** `[Quick / Standard / Rigorous / adaptive / N/A]`
+- **Biến đang thử:** `[chất lượng đầu ra / chọn mode / mức thủ tục / hồi quy / khác]`
 - **Trạng thái:** `[draft / reviewed / active / retired]`
 - **Nguồn yêu cầu / lỗi gốc:** `[Task ID / Failure ID / nguồn khác]`
 - **Ngày tạo/cập nhật:** `[YYYY-MM-DD]`
@@ -47,3 +49,9 @@
 
 ## 7. Lịch sử
 - `[ngày] — [thay đổi và lý do]`
+
+
+## 8. Kiểm tra tính tương xứng (nếu case đo workflow)
+- **Có bước nào không cần thiết không?** `[dấu hiệu quan sát được / không]`
+- **Có bước thiết yếu nào bị bỏ không?** `[dấu hiệu / không]`
+- **Case đối chứng cho mức khác:** `[ID / N/A]`

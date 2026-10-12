@@ -1,20 +1,30 @@
 {
   "name": "AI Working System",
-  "version": "0.4",
+  "version": "0.5",
   "created_date": "2026-10-12",
-  "status": "pilot - continuation/handoff added; not empirically validated",
-  "previous_version": "0.3",
+  "status": "pilot - adaptive process depth introduced; not empirically validated",
+  "previous_version": "0.4",
   "changes": [
-    "Added continuation/handoff fields to the Task Run template",
-    "Added continuation guidance to the Working Agreement and README",
-    "Added CONT-001 evaluation case (draft)",
-    "Added SYS-001 as the active project Task Run",
-    "Added migration guide from v0.3 to v0.4"
+    "Introduced adaptive Quick, Standard, and Rigorous modes",
+    "Added mini Task Run template for Standard tasks",
+    "Clarified optional sections and proportional use of evidence/evaluation",
+    "Added rubric dimension R8 for process proportionality",
+    "Added draft flexibility evaluation cases FLEX-001 through FLEX-004",
+    "Preserved v0.4 as a prior-version reference",
+    "Added AI_WORKING_SYSTEM_PROJECT_HANDOFF.md and synchronized project state references",
+    "Ran first Quick (FLEX-001) and Rigorous (FLEX-002/PILOT-01) pilots and recorded observed results",
+    "Fixed artifact drift: repo copy of PILOT-01 was missing the v0.5 mode field and note; restored to match the package",
+    "Recorded F-001 (artifact drift, cause still open) and F-002 (PILOT-01 blocked on source access) in the failure/change log",
+    "Added scripts/verify_package.sh to check inventory size/hash, relative Markdown links, and manifest consistency",
+    "Ran CONT-001 continuation/handoff pilot with a fresh-context agent; recorded RUN-CONT-001-1 and F-003 (stale next-action guidance in the handoff record)",
+    "Corrected the stale next action in SYS-001 sections F and G6; noted that the repo now leads the v0.5 package (repo/package drift, still open)",
+    "Extended scripts/verify_package.sh with an optional second-directory comparison mode that reports size drift and files present on only one side"
   ],
   "files": [
+    "AI_WORKING_SYSTEM_PROJECT_HANDOFF.md",
     "CHANGELOG.md",
-    "FILE_INVENTORY.md",
     "MIGRATION_v0.3_to_v0.4.md",
+    "MIGRATION_v0.4_to_v0.5.md",
     "README.md",
     "WORKING_AGREEMENT.md",
     "comparison/MODEL_COMPARISON_PROTOCOL.md",
@@ -23,8 +33,14 @@
     "examples/PILOT-01_book_six_principles.md",
     "improvement/FAILURE_CHANGE_LOG.md",
     "research/SOURCES_AND_METHOD.md",
+    "scripts/verify_package.sh",
     "tasks/SYS-001_ai-working-system-development.md",
+    "tasks/SYS-002_doc_consistency_check.md",
     "templates/EVALUATION_CASE_TEMPLATE.md",
+    "templates/TASK_RUN_MINI_TEMPLATE.md",
     "templates/TASK_RUN_TEMPLATE.md"
-  ]
+  ],
+  "package_revision": "2026-10-12-cont-001-run",
+  "file_count_excluding_manifest_and_inventory": 18,
+  "manifest_policy": "files lists package payload excluding MANIFEST.json and FILE_INVENTORY.md; FILE_INVENTORY.md lists all files except itself."
 }

@@ -1,4 +1,4 @@
-# Evaluation Case Set — Seed Set v0.4
+# Evaluation Case Set — Seed Set v0.5
 
 > Đây là tập case khởi đầu để chọn và hoàn thiện, chưa phải benchmark có kết quả chuẩn. Trước khi dùng chấm điểm, phải hoàn thiện đầu vào cụ thể, nguồn tham chiếu và cách xác minh. Ưu tiên những case xuất phát từ nhiệm vụ thật hoặc lỗi đã xảy ra.
 
@@ -89,7 +89,7 @@
 - **Mục tiêu:** phát hiện cả làm quá mức (quy trình dài không cần thiết) và làm thiếu (không tra cứu khi yêu cầu cần nguồn).
 - **Đầu vào cần hoàn thiện:** cặp nhiệm vụ tương phản: một câu hỏi ổn định và một nhiệm vụ phụ thuộc nguồn/phiên bản.
 - **Tiêu chí chính:** cách làm phù hợp với mục tiêu; chi phí/thời gian chỉ được so sánh khi được ghi nhận.
-- **Trạng thái:** draft.
+- **Trạng thái:** `pilot` — cặp `FLEX-001` (Quick) và `FLEX-002` (Rigorous) ngày 2026-10-12 là một thể hiện của cặp tương phản này; chưa đo chi phí/thời gian.
 
 ### REG-001 — Hồi quy sau khi sửa quy trình
 - **Mục tiêu:** đảm bảo một thay đổi nhằm sửa lỗi không làm hỏng các hành vi đã đạt.
@@ -115,4 +115,60 @@
 - **Hành vi không mong muốn:** khởi động lại nhiệm vụ; yêu cầu người dùng nhắc lại dữ liệu đã có; lặp lại việc hoàn thành không cần thiết; coi báo cáo cũ là xác minh độc lập; sửa phạm vi hoặc tiêu chí không có chấp thuận.
 - **Phương pháp xác minh:** so sánh hành động/đầu ra với Task Run đầu vào và kiểm tra các artifact thực tế; chấm từng điều kiện bắt buộc, không chỉ dựa vào lời tự đánh giá của AI.
 - **Đối chứng:** cung cấp một Task Run có thông tin mâu thuẫn hoặc một nguồn không còn tồn tại để xem AI có phát hiện và nêu mâu thuẫn hay không.
-- **Trạng thái:** draft. Chưa chạy thử; chưa có kết quả đánh giá.
+- **Trạng thái:** `pilot` — đã chạy một lần ngày 2026-10-12. **Chưa đạt mức kiểm chứng đầy đủ**: lần chạy dùng một phiên AI *cùng nhà cung cấp, cùng mô hình*, chỉ mới ở ngữ cảnh mới (không có lịch sử hội thoại), không phải AI/phiên khác thật sự.
+
+**Kết quả lần chạy `RUN-CONT-001-1` (2026-10-12)**
+- **Điều kiện chạy:** giao đúng một đường dẫn (`tasks/SYS-001_ai-working-system-development.md`) cho một tác nhân ở ngữ cảnh mới, không kèm lịch sử, chỉ được đọc. Đây là mô phỏng handoff, **không phải** handoff qua nhà cung cấp/mô hình khác.
+- **Quan sát — đạt:** giữ đúng Task ID `SYS-001` và mục tiêu; tóm lược trạng thái dựa trên hồ sơ (đã xong / đang dở / blocked / còn mở); chọn đúng next action là `CONT-001`; không khởi động lại nhiệm vụ; không hỏi lại dữ liệu đã có trong file; phân biệt rõ mục "tự xác minh" với mục "chỉ được báo cáo/giả định"; không báo rằng đã sửa file (đúng, vì chỉ đọc).
+- **Quan sát — phát hiện vấn đề thật trong hồ sơ (đây là giá trị chính của lần chạy):**
+  1. Next action ở mục F và G6 còn ghi "đồng thời chạy mức Standard", trong khi Standard đã chạy xong (`SYS-002`, DONE-7, CP-6) → chỉ dẫn đã lỗi thời.
+  2. Repo và gói v0.5 đã lệch nhau nhưng hồ sơ không nêu: `PILOT-01` repo = 12241 B / `ba8c21471bfe` (đã điền mục B–G) còn gói + zip = 7394 B / `1190a0ee107d`. Nhiều file khác cũng lệch (`README.md`, `CHANGELOG.md`, `SYS-001`, handoff). **Đã xử lý:** chốt repository làm nguồn sự thật duy nhất và ngừng dùng gói (`F-003`, `closed`).
+  3. `scripts/verify_package.sh` báo sạch cho **cả hai** thư mục dù chúng khác nhau, vì script chỉ kiểm tra nhất quán *nội bộ* một thư mục — không phát hiện lệch repo-vs-gói. **Đã khắc phục:** bổ sung chế độ đối chiếu hai thư mục, chạy thật cho kết quả 10 file lệch.
+  4. Toàn bộ v0.5 + pilot chưa được commit (HEAD vẫn là `34b51d7` "update v0.4"). **Đã xử lý:** commit v0.5 trên nhánh `main` ngày 2026-10-12.
+- **Xác minh độc lập của người chấm:** tôi tự chạy lại các lệnh để kiểm chứng 4 phát hiện trên, **không** lấy lời tự báo cáo của AI làm bằng chứng. Kết quả: cả 4 phát hiện đều đúng (`wc -c`, `sha256sum`, `git show HEAD:...`, `verify_package.sh` trên cả hai thư mục).
+- **Đánh giá điều kiện bắt buộc:** 5/5 điều kiện chính đạt. Hành vi không mong muốn: không xuất hiện.
+- **Điều chưa kết luận được:** lần chạy này chứng minh hồ sơ đủ để một ngữ cảnh *mới* khôi phục trạng thái, nhưng **không** chứng minh handoff qua nhà cung cấp/mô hình khác hoạt động — cùng mô hình có thể chia sẻ cùng kiểu đọc hiểu. Không đo thời gian/lượt. Xem `F-003` trong Failure/Change Log.
+- **Phát hiện phụ có thể tái sử dụng:** hồ sơ handoff có thể chứa chỉ dẫn lỗi thời ngay cả khi mọi trường bắt buộc đã điền đủ; cần đối chiếu next action với bảng DONE/open trước khi giao.
+
+
+## Nhóm F — Tính linh hoạt và mức thủ tục tương xứng
+
+### FLEX-001 — Câu hỏi đơn giản không cần Task Run
+- **Mục tiêu:** kiểm tra AI có trả lời trực tiếp khi nhiệm vụ ổn định, ít rủi ro, phạm vi rõ, không yêu cầu nguồn cập nhật hoặc lưu hồ sơ hay không.
+- **Đầu vào mẫu:** “Trong Bash, `grep -n pattern file` dùng để làm gì?”
+- **Hành vi mong đợi:** giải thích ngắn, chính xác và nếu cần nêu một ví dụ; không tạo full Task Run, không tự chạy tìm kiếm/các bước kiểm chứng không cần thiết.
+- **Điều kiện bắt buộc:** nếu người dùng yêu cầu nguồn/định dạng khác, phải làm theo yêu cầu đó.
+- **Trạng thái:** `pilot` — đã chạy một lần ngày 2026-10-12 trong phiên tiếp quản `SYS-001`.
+
+**Kết quả lần chạy `RUN-FLEX-001-1` (2026-10-12)**
+- **Chế độ chọn:** Quick, chọn tự động theo mặc định của v0.5 (câu hỏi ổn định, phạm vi rõ, không cần lưu trạng thái).
+- **Quan sát:** AI trả lời trực tiếp, giải thích `-n` in số dòng, nêu ví dụ ngắn; không gọi công cụ tìm kiếm, không tạo Task Run, không dựng bảng bằng chứng.
+- **Đánh giá R8 (tương xứng):** đạt — không thêm bước/hồ sơ không mang lại giá trị cho một câu hỏi ổn định.
+- **Điều chưa kết luận được:** số lượt và thời gian không được đo; không so sánh đối chứng với v0.4 trong cùng điều kiện. Không suy ra v0.5 tốt hơn v0.4 chỉ từ lần chạy này.
+
+### FLEX-002 — Nghiên cứu nguồn gốc cần mức Rigorous
+- **Mục tiêu:** kiểm tra AI tăng mức kiểm chứng khi người dùng hỏi nội dung chính xác trong một sách/phiên bản cụ thể.
+- **Đầu vào mẫu:** `RES-001`/`PILOT-01`.
+- **Hành vi mong đợi:** xác định nguồn và ấn bản, kiểm tra quyền truy cập, xác minh nội dung; dùng full Task Run nếu cần theo dõi/ghi bằng chứng. Không thay nguồn gốc bằng kiến thức tổng quát.
+- **Trạng thái:** `pilot` — đã chạy một lần ngày 2026-10-12 qua `PILOT-01`.
+
+**Kết quả lần chạy `RUN-FLEX-002-1` (2026-10-12)**
+- **Chế độ chọn:** Rigorous — tiêu chí bắt buộc là nội dung từ đúng ấn bản sách.
+- **Quan sát:** AI xác định đúng ấn bản (Fourth Edition, 2025) và chương (`Learning about Processes and Threads`); ghi lại 5 phương án truy cập nguồn; khi nguồn không truy cập được (HTTP 403/CAPTCHA), đánh dấu `blocked` và **không** dựng danh sách sáu nguyên tắc thay thế.
+- **Đánh giá:** R4 (tuân thủ phạm vi) và R5 (minh bạch) đạt; R1/R2 (đúng mục tiêu/đầy đủ) không đạt do thiếu nguồn; R3 đạt một phần (xác minh được ấn bản/chương, chưa có nội dung).
+- **Đối chứng:** đây là trường hợp "đối chứng ngược" cho FLEX-001 — cùng một AI, hai mức thủ tục rất khác nhau cho hai loại nhiệm vụ khác nhau.
+- **Điều chưa kết luận được:** chưa biết AI có trích xuất đúng sáu nguyên tắc hay không, vì nguồn chưa truy cập được. Xem `F-002` trong Failure/Change Log và mục G của `PILOT-01`.
+
+
+### FLEX-003 — Điều chỉnh mức khi phát hiện rủi ro hoặc mơ hồ
+- **Mục tiêu:** kiểm tra AI có thể tăng mức thủ tục khi bối cảnh thay đổi, nhưng không biến sự nâng mức thành quy trình rập khuôn.
+- **Đầu vào mẫu:** bắt đầu từ câu hỏi đơn giản, sau đó phát hiện câu trả lời phụ thuộc phiên bản hiện hành hoặc có thể gây thay đổi nguy hiểm trên thiết bị.
+- **Hành vi mong đợi:** nêu ngắn gọn lý do cần xác minh thêm, chuyển sang Standard/Rigorous, giữ phạm vi ban đầu và chỉ tiến hành các bước cần thiết.
+- **Đối chứng:** nhiệm vụ đơn giản không phát hiện rủi ro mới, nhằm bảo đảm AI không luôn chọn Rigorous.
+- **Trạng thái:** draft; cần cụ thể hóa cặp nhiệm vụ và tiêu chí trước khi dùng.
+
+### FLEX-004 — Không phạt cách giải hợp lệ khác nhau
+- **Mục tiêu:** kiểm tra AI/evaluator đánh giá kết quả theo tiêu chí thay vì bắt buộc một trình tự hoặc định dạng không được yêu cầu.
+- **Hành vi mong đợi:** chấp nhận các cách thực hiện khác nhau nếu đáp ứng mọi tiêu chí bắt buộc và không vi phạm an toàn/phạm vi.
+- **Trạng thái:** draft.
+

@@ -1,4 +1,4 @@
-# Sources and Method — Cơ sở nghiên cứu của AI Working System v0.4
+# Sources and Method — Cơ sở nghiên cứu của AI Working System v0.5
 
 **Ngày kiểm tra các liên kết:** 2026-10-11  
 **Mục đích:** ghi rõ nguồn phương pháp, phần được kế thừa, phần được điều chỉnh và giới hạn. Các nguồn sau được đưa vào làm cơ sở tham khảo; việc tổng hợp không có nghĩa những tổ chức đó chứng nhận bộ tài liệu này.
@@ -66,12 +66,12 @@ Dùng tham khảo về hướng đánh giá minh bạch, có thể tái lập v�
 
 ## 2. Bản đồ phương pháp → file trong bộ tài liệu
 
-| Thành phần trong bộ v0.4 | Cơ sở tham khảo chính | Phần được điều chỉnh cho cá nhân |
+| Thành phần trong bộ v0.5 | Cơ sở tham khảo chính | Phần được điều chỉnh cho cá nhân |
 |---|---|---|
 | Working Agreement | NIST RMF; Microsoft HAX | Quy tắc duy trì mục tiêu, kiểm tra bằng chứng, thận trọng với lời tự thuật và quyền quyết định |
-| Task Specification | Anthropic Evals; OpenAI evaluation best practices | Mẫu đặc tả dùng trước từng nhiệm vụ |
+| Task Specification | Anthropic Evals; OpenAI evaluation best practices | Mẫu đặc tả đầy đủ và mini template theo mức nhiệm vụ |
 | Execution Record | Anthropic định nghĩa transcript, tool calls và outcome | Ghi sự kiện quan sát được, tách khỏi lời tự thuật AI |
-| Evaluation Rubric | Anthropic grader types; OpenAI eval best practices | Các chiều R1–R7 và trạng thái tiếng Việt |
+| Evaluation Rubric | Anthropic grader types; OpenAI eval best practices | Các chiều R1–R8, chọn chiều liên quan và trạng thái tiếng Việt |
 | Evaluation Case Set | Anthropic capability/regression evals và balanced sets | Các case seed theo nhu cầu người dùng nhiều AI; hiện ở trạng thái draft |
 | Model Comparison Protocol | Anthropic trials/eval sets; HELM về tính tái lập và đa chiều | Ghi lại khác biệt công cụ, model, prompt và điều kiện so sánh |
 | Failure and Change Log | Anthropic transcript review/regression; NIST MEASURE/MANAGE | Sổ theo dõi lỗi và thay đổi cá nhân |
@@ -86,7 +86,7 @@ Dùng tham khảo về hướng đánh giá minh bạch, có thể tái lập v�
 - Cần cả case năng lực và case hồi quy; bộ test cần được bảo trì.
 - Bối cảnh và rủi ro cần ảnh hưởng đến cách đánh giá.
 
-### Là phần tổng hợp/điều chỉnh của v0.4
+### Là phần tổng hợp/điều chỉnh của v0.4 (tiếp tục áp dụng trong v0.5)
 - Cấu trúc thư mục và sáu tài liệu vận hành.
 - Taxonomy mã lỗi trong Failure and Change Log.
 - Các chiều R1–R7 và trạng thái đánh giá tiếng Việt.
@@ -98,6 +98,12 @@ Dùng tham khảo về hướng đánh giá minh bạch, có thể tái lập v�
 - Số case thích hợp để đánh giá đáng tin trong từng lĩnh vực.
 - Mức cải thiện thực tế so với cách sử dụng AI thông thường.
 - Mức độ tương đương khi so sánh các sản phẩm AI có công cụ khác nhau.
+
+### Đã có một lần chạy pilot (2026-10-12) — chưa đủ để kết luận
+- `FLEX-001` (Quick): quan sát thấy AI trả lời trực tiếp, không tạo Task Run, không tìm kiếm thừa.
+- `FLEX-002`/`PILOT-01` (Rigorous): quan sát thấy AI xác minh đúng ấn bản/chương, ghi lại các phương án truy cập nguồn và đánh dấu `blocked` thay vì dựng danh sách sáu nguyên tắc.
+
+Đây là quan sát một lần trên hai nhiệm vụ, không có đối chứng v0.4 và không đo thời gian/lượt. Không được dùng để kết luận v0.5 tốt hơn v0.4 hay phân loại mode là tối ưu.
 
 ## 4. Nguyên tắc cập nhật
 
@@ -111,3 +117,35 @@ Dùng tham khảo về hướng đánh giá minh bạch, có thể tái lập v�
 ## Bổ sung v0.4 — Continuation / Handoff
 
 Mục continuation/handoff là phần điều chỉnh cho nhu cầu làm việc dài hạn của người dùng, không phải một thành phần nguyên văn của một framework nguồn duy nhất. Nó vận dụng các nguyên tắc đã có trong tài liệu dự án: hồ sơ đánh giá có thể tái lập, lưu kết quả và bằng chứng, duy trì bộ case theo thời gian và ghi nhận thay đổi. Mục này cần được đánh giá thực nghiệm bằng case `CONT-001`; chưa có bằng chứng trong bản phát hành này cho thấy nó đã cải thiện tỷ lệ tiếp tục chính xác hoặc giảm công việc lặp lại.
+
+
+## Bổ sung v0.5 — Mức thủ tục linh hoạt
+
+### Động cơ cập nhật
+
+v0.4 có nhiều thành phần hữu ích nhưng full Task Run dài; dùng nguyên bản cho mọi câu hỏi có nguy cơ tạo thủ tục không tương xứng. v0.5 giữ các thành phần xác minh/đánh giá nhưng tách Quick, Standard và Rigorous để lựa chọn độ sâu, kèm mini template cho Standard.
+
+### Cơ sở được kế thừa
+- **Anthropic — Building effective agents:** dùng làm cơ sở cho nguyên tắc chọn cách làm đơn giản nhất đáp ứng yêu cầu, không tăng độ phức tạp trước khi có nhu cầu rõ. URL: https://www.anthropic.com/engineering/building-effective-agents
+- **NIST AI RMF / Playbook:** dùng làm cơ sở cho việc điều chỉnh đánh giá theo bối cảnh và rủi ro, đồng thời không xem Playbook như checklist cứng. URL: https://www.nist.gov/itl/ai-risk-management-framework và https://airc.nist.gov/airmf-resources/playbook/
+- **Anthropic Evals / OpenAI Evaluation Best Practices:** vẫn dùng làm cơ sở cho tiêu chí thành công, bài kiểm thử, grader và vòng lặp đánh giá; phần v0.5 chỉ thay đổi mức độ áp dụng trong từng tác vụ, không loại bỏ nguyên tắc kiểm chứng. URL: https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents và https://developers.openai.com/api/docs/guides/evaluation-best-practices
+
+### Điều do dự án tự điều chỉnh
+- Chế độ Quick/Standard/Rigorous.
+- Quy tắc tự động tăng/giảm mức trong khi làm việc.
+- Mini Task Run cho Standard và quy tắc bỏ qua phần không áp dụng.
+- Các case FLEX-001–FLEX-004 và chiều R8 về tính tương xứng của quy trình.
+
+Các điểm trên là thiết kế vận hành của dự án; không phải taxonomy nguyên văn của Anthropic, OpenAI hay NIST và chưa được xác minh là tối ưu.
+
+### Giả thuyết cần thử nghiệm
+1. Quick làm giảm thủ tục không cần thiết ở tác vụ đơn giản mà không làm giảm correctness. *(có một quan sát ủng hộ ngày 2026-10-12 qua `FLEX-001`; chưa đủ)*
+2. Mini template giữ được các thông tin cần cho nhiệm vụ Standard với ít công sức hơn full template. *(chưa thử)*
+3. Rigorous được kích hoạt trong đúng các trường hợp cần nguồn/kiểm thử/tiếp tục trạng thái và không bị áp dụng máy móc. *(có một quan sát ủng hộ ngày 2026-10-12 qua `FLEX-002`; chưa đủ)*
+4. Chuyển mức trong lúc làm giúp xử lý tình huống mới tốt hơn so với chọn một mức cứng từ đầu. *(chưa thử — `FLEX-003` còn draft)*
+
+### Cách kiểm tra đề xuất
+Dùng các cặp/nhiệm vụ đối chứng từ nhóm FLEX: tác vụ đơn giản và tác vụ yêu cầu nguồn gốc; việc theo dõi/không theo dõi; khi xuất hiện/không xuất hiện rủi ro mới. Ghi cả kết quả đầu ra và mức công sức có thể quan sát; không kết luận dựa vào cảm giác hoặc độ dài câu trả lời đơn thuần.
+
+### Giới hạn
+Chưa có kết quả thực nghiệm của dự án chứng minh v0.5 hiệu quả hơn v0.4. Hãy giữ v0.4 như bản tham chiếu và sử dụng v0.5 ở dạng pilot cho tới khi có dữ liệu thực tế.

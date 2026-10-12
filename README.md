@@ -1,32 +1,45 @@
-# AI Working System — v0.4
+# AI Working System — v0.5
 
-> **Trạng thái:** bộ tài liệu thực hành thử nghiệm (pilot), tổng hợp từ các phương pháp đã công bố. Đây không phải tiêu chuẩn chính thức và chưa được xác nhận là tối ưu.
+> **Trạng thái:** bản pilot có quy trình linh hoạt; chưa được xác nhận bằng thử nghiệm đủ rộng.
 >
-> **Mục tiêu:** giúp một người dùng làm việc với nhiều AI theo cách có thể kiểm tra: xác định nhiệm vụ, thực hiện phù hợp, ghi nhận bằng chứng, đánh giá kết quả, học từ lỗi và kiểm tra tác động của thay đổi.
+> **Mục tiêu:** làm việc với nhiều AI theo cách đúng mục tiêu, có thể kiểm chứng và tiếp tục qua nhiều phiên — mà không biến mọi câu hỏi thành một thủ tục dài.
 
 ## 1. Bắt đầu nhanh
 
-1. Đọc [`WORKING_AGREEMENT.md`](WORKING_AGREEMENT.md) một lần.
-2. Với một nhiệm vụ mới, sao chép [`templates/TASK_RUN_TEMPLATE.md`](templates/TASK_RUN_TEMPLATE.md), đổi tên thành `YYYY-MM-DD-short-task-name.md` và điền phần A.
-3. Gửi đặc tả và phần **Chỉ dẫn dành cho AI** trong template cho AI bạn chọn. Không nhất thiết phải yêu cầu AI điền mọi trường trong nhật ký; ghi nhận những gì có thể quan sát được.
-4. Khi hoàn thành, dùng [`evaluation/EVALUATION_RUBRIC.md`](evaluation/EVALUATION_RUBRIC.md) để đánh giá kết quả. Phân biệt tự đánh giá của AI với kiểm tra độc lập của bạn.
-5. Nếu phát hiện lỗi đáng lưu giữ, thêm một bản ghi vào [`improvement/FAILURE_CHANGE_LOG.md`](improvement/FAILURE_CHANGE_LOG.md) và cân nhắc thêm một case vào [`evaluation/EVALUATION_CASE_SET.md`](evaluation/EVALUATION_CASE_SET.md).
-6. Khi so sánh các AI, tuân thủ [`comparison/MODEL_COMPARISON_PROTOCOL.md`](comparison/MODEL_COMPARISON_PROTOCOL.md).
-7. **Tiếp tục công việc đang làm:** mở Task Run hiện có, đọc mục G `Continuation / Handoff` và các file được liệt kê; giữ nguyên Task ID và tiếp tục từ `Next action`. Không tạo Task Run mới chỉ vì chuyển sang cuộc hội thoại hoặc AI khác.
-8. Sau checkpoint có ý nghĩa hoặc khi tạm dừng, cập nhật cùng Task Run. Chỉ tạo Task ID mới khi mục tiêu thực sự khác. Nếu AI không ghi được file, yêu cầu nó xuất nội dung cập nhật để lưu thủ công.
+**Bạn không cần mở tất cả file cho mỗi nhiệm vụ.** Trước hết chỉ cần chọn đúng mức quy trình:
+
+| Chế độ | Dùng khi | Hồ sơ nên dùng |
+|---|---|---|
+| **Quick** | Câu hỏi đơn giản, ít rủi ro, có câu trả lời trực tiếp và không cần lưu trạng thái | Thông thường không tạo Task Run |
+| **Standard** | Nhiệm vụ có vài điều kiện, cần nghiên cứu/viết/phân tích hoặc muốn giữ lại kết quả | `templates/TASK_RUN_MINI_TEMPLATE.md` |
+| **Rigorous** | Cần nguồn chính xác, kiểm thử thực tế, độ truy xuất cao, so sánh AI, xử lý rủi ro đáng kể hoặc tiếp tục qua nhiều phiên | `templates/TASK_RUN_TEMPLATE.md` |
+
+Ví dụ đã chạy: `tasks/SYS-002_doc_consistency_check.md` (Standard, mini template); `examples/PILOT-01_book_six_principles.md` (Rigorous, hiện `blocked` ở quyền truy cập nguồn).
+
+Nếu bạn không chọn chế độ, AI nên chọn **mức đơn giản nhất vẫn đáp ứng yêu cầu và rủi ro**. Nó có thể tăng hoặc giảm mức quy trình khi phát hiện tình huống mới. Các chế độ chỉ khác nhau về mức thủ tục, **không phải mức độ được phép sai**.
+
+1. Đọc [`WORKING_AGREEMENT.md`](WORKING_AGREEMENT.md) một lần và đưa vào hướng dẫn tùy chỉnh của AI nếu có hỗ trợ.
+2. Với Quick, giao việc bình thường. Không cần tạo file trừ khi bạn muốn lưu lại.
+3. Với Standard, sao chép mini template, điền hoặc yêu cầu AI tự điền các trường phù hợp rồi thực hiện nhiệm vụ.
+4. Với Rigorous, dùng full template. Chỉ điền các phần phù hợp; bỏ qua mục không liên quan với ghi chú ngắn như `N/A` nếu cần.
+5. Khi tạm dừng công việc đang làm, tiếp tục trên Task Run hiện có và cập nhật mục G, không tạo nhiệm vụ mới chỉ vì đổi phiên hoặc AI.
+6. Chỉ khi có lỗi lặp lại hoặc muốn cải tiến hệ thống, mới cần đến rubric đầy đủ, case set và Failure/Change Log.
 
 ## 2. Cấu trúc thư mục
 
 ```text
-AI_Working_System_v0.4/
+AI-Working-System/          # repository là nguồn sự thật duy nhất
 ├── README.md
+├── AI_WORKING_SYSTEM_PROJECT_HANDOFF.md  # bối cảnh/tiến độ để AI khác tiếp quản
 ├── WORKING_AGREEMENT.md
 ├── CHANGELOG.md
-├── MIGRATION_v0.3_to_v0.4.md
+├── MIGRATION_v0.3_to_v0.4.md       # hướng dẫn lịch sử
+├── MIGRATION_v0.4_to_v0.5.md       # nâng cấp sang chế độ linh hoạt
 ├── FILE_INVENTORY.md
 ├── MANIFEST.json
 ├── templates/
-│   ├── TASK_RUN_TEMPLATE.md
+│   ├── TASK_RUN_MINI_TEMPLATE.md   # Standard
+│   ├── TASK_RUN_TEMPLATE.md        # Rigorous / nhiệm vụ dài hạn
 │   └── EVALUATION_CASE_TEMPLATE.md
 ├── evaluation/
 │   ├── EVALUATION_RUBRIC.md
@@ -37,73 +50,85 @@ AI_Working_System_v0.4/
 │   └── FAILURE_CHANGE_LOG.md
 ├── research/
 │   └── SOURCES_AND_METHOD.md
+├── scripts/
+│   └── verify_package.sh            # kiểm tra inventory/hash, liên kết, manifest, đối chiếu hai bản
 ├── examples/
 │   └── PILOT-01_book_six_principles.md
 └── tasks/
-    └── SYS-001_ai-working-system-development.md
+    ├── SYS-001_ai-working-system-development.md   # hồ sơ trạng thái chính
+    └── SYS-002_doc_consistency_check.md           # ví dụ Standard (mini template)
 ```
 
-## 3. Các nguyên tắc vận hành
+Sau khi sửa bất kỳ file nào, chạy `bash scripts/verify_package.sh` để phát hiện sớm lệch kích thước/hash trong `FILE_INVENTORY.md`, liên kết hỏng và chênh lệch với `MANIFEST.json`. Script chỉ đọc, không sửa file.
 
-- **Yêu cầu cụ thể trước:** thành công được xác định từ yêu cầu gốc và tiêu chí chấp nhận, không phải từ việc câu trả lời trông thuyết phục.
-- **Kết quả trước quy trình cứng:** chấp nhận nhiều cách thực hiện hợp lệ nếu chúng đáp ứng yêu cầu và ràng buộc. Bắt buộc một trình tự chỉ khi trình tự đó thật sự là yêu cầu.
-- **Bằng chứng phân biệt với lời tự thuật:** “AI nói đã kiểm tra” không tương đương với việc kiểm tra đã được quan sát hoặc tái xác minh.
-- **Không tìm kiếm một cách máy móc:** tìm kiếm khi tính hiện thời, độ đặc thù, nguồn gốc hoặc độ bất định khiến nó cần thiết; cũng kiểm tra các trường hợp có thể trả lời trực tiếp.
-- **Không ép điểm số khi không có căn cứ:** dùng các trạng thái đạt / một phần / không đạt / chưa thể đánh giá / không áp dụng. Chưa có trọng số chung trong v0.4.
-- **Lưu lỗi thực tế:** ưu tiên các lỗi xảy ra thật; không chỉ tạo benchmark giả định.
-- **Kiểm tra lại bộ chấm:** khi AI bị đánh trượt, xem cả khả năng đề bài hoặc rubric sai.
-- **Bảo vệ dữ liệu:** không đưa bí mật, thông tin xác thực hoặc dữ liệu riêng tư vào AI không được phép xử lý chúng.
+Khi có nhiều bản của cùng bộ tài liệu (ví dụ một bản sao cũ hoặc bản nháp khác), truyền thêm thư mục thứ hai để kiểm tra chéo:
 
-## 4. Khi nào dùng phần nào?
+```bash
+bash scripts/verify_package.sh . /duong-dan/ban-doi-chieu
+```
 
-| Tình huống | Tài liệu chính |
+Chế độ này báo cáo file lệch kích thước giữa hai bản và file chỉ có ở một bên — loại lệch mà kiểm tra nội bộ một thư mục không thấy. Lưu ý: **kiểm tra nội bộ sạch không có nghĩa là hai bản khớp nhau**; phải chạy chế độ đối chiếu mới biết.
+
+## 3. Quy tắc chọn và thay đổi chế độ
+
+- Bắt đầu với mức thủ tục nhỏ nhất phù hợp.
+- **Escalate** từ Quick lên Standard/Rigorous nếu có mâu thuẫn, nguồn chuyên biệt, yêu cầu chưa rõ có ảnh hưởng lớn, kiểm thử thực tế, rủi ro đáng kể hoặc yêu cầu lưu/handoff.
+- **Simplify** khi các phần thủ tục không giúp nâng độ chính xác, khả năng kiểm tra hay yêu cầu lưu vết; không lược bỏ điều kiện bắt buộc do người dùng đặt ra.
+- AI có thể thông báo ngắn lý do chọn mức, nhưng không cần trình bày quy trình phân loại trong mọi câu trả lời đơn giản.
+- Nếu người dùng chỉ định mức cụ thể, tuân theo mức đó trừ khi có xung đột với khả năng, an toàn hoặc yêu cầu bắt buộc; khi không thể làm theo, giải thích ngắn gọn.
+- Task Run không phải điều kiện bắt buộc để trả lời mọi câu hỏi. Các hồ sơ dùng cho công việc cần lưu trạng thái hoặc có tiêu chí cần kiểm chứng.
+
+## 4. Nguyên tắc bất biến
+
+- Giữ nguyên mục tiêu và yêu cầu gốc; không âm thầm thay bài toán bằng câu hỏi gần giống.
+- Không bịa nguồn, hành động, kết quả build/test hoặc trạng thái file.
+- Phân biệt điều đã quan sát/xác minh với báo cáo của AI, suy luận và giả định.
+- Đánh giá theo tiêu chí thành công; chấp nhận các cách giải hợp lệ khác nhau nếu người dùng không yêu cầu một quy trình cụ thể.
+- Không tạo điểm tổng hoặc khẳng định độ tin cậy nếu chưa có phương pháp phù hợp.
+- Khi thiếu bằng chứng, ghi rõ chưa thể xác minh thay vì ép thành đạt/trượt.
+- Giữ quyết định và trạng thái cần thiết khi tiếp tục công việc.
+
+## 5. Bộ hồ sơ dùng khi thật sự cần
+
+| Tài liệu | Dùng khi nào |
 |---|---|
-| Tác vụ thông thường, nghiên cứu, học tập, viết | `templates/TASK_RUN_TEMPLATE.md` + `evaluation/EVALUATION_RUBRIC.md` |
-| Nhiệm vụ kỹ thuật có build/test/log/board | Task template; bổ sung bằng chứng kiểm thử thực tế |
-| Tìm nội dung trong sách/tài liệu cụ thể | Task template với nguồn/ấn bản và tiêu chí truy xuất nguồn gốc rõ ràng |
-| So sánh ChatGPT, Claude, Gemini hoặc các AI khác | `comparison/MODEL_COMPARISON_PROTOCOL.md` |
-| Lỗi lặp lại hoặc thay đổi cách làm | `improvement/FAILURE_CHANGE_LOG.md` |
-| Tiếp tục việc qua nhiều phiên/AI | Mục G trong Task Run hiện có; `tasks/SYS-001_ai-working-system-development.md` là ví dụ hồ sơ đang mở |
-| Tổ chức bộ kiểm thử nhỏ theo năng lực/lỗi | `evaluation/EVALUATION_CASE_SET.md` |
+| `evaluation/EVALUATION_RUBRIC.md` | Cần đánh giá có cấu trúc hoặc thử nghiệm cải tiến; không cần cho mọi câu hỏi Quick |
+| `evaluation/EVALUATION_CASE_SET.md` | Muốn thử một hành vi/lỗi cụ thể hoặc kiểm tra hồi quy |
+| `comparison/MODEL_COMPARISON_PROTOCOL.md` | So sánh nhiều AI hoặc cấu hình một cách công bằng |
+| `improvement/FAILURE_CHANGE_LOG.md` | Có lỗi đáng lưu giữ hoặc đang thử thay đổi quy trình |
+| `research/SOURCES_AND_METHOD.md` | Cần biết cơ sở phương pháp, nguồn tham chiếu và giới hạn |
+| `scripts/verify_package.sh` | Sau khi sửa file, để kiểm tra tính nhất quán của bộ tài liệu; truyền thêm thư mục thứ hai để đối chiếu repo-vs-gói |
 
-Không phải nhiệm vụ nào cũng cần dùng tất cả file. NIST AI RMF Playbook cũng khuyến nghị sử dụng các gợi ý phù hợp với ngữ cảnh, không xem tài liệu của họ như checklist bắt buộc phải hoàn thành toàn bộ.
-
-## 5. Vòng lặp công việc
+## 6. Vòng lặp cải tiến
 
 ```text
-Xác định nhiệm vụ
-      ↓
-Chọn cách thực hiện phù hợp
-      ↓
-Thực hiện và ghi nhận bằng chứng
-      ↓
-Đánh giá kết quả theo rubric
-      ↓
-Có lỗi đáng lưu giữ? ── Không ──> Lưu kết quả và kết thúc
-      │
-     Có
-      ↓
-Ghi Failure/Change Log → thêm/sửa Evaluation Case
-      ↓
-Thử thay đổi trên case mục tiêu và case hồi quy
+Nhiệm vụ thật → kết quả + bằng chứng → phát hiện vấn đề (nếu có)
+                                      ↓
+                           ghi lỗi/giả thuyết thay đổi
+                                      ↓
+                     thử case mục tiêu + case hồi quy phù hợp
+                                      ↓
+                       giữ / sửa / hoàn tác / chưa đủ dữ liệu
 ```
 
-## 6. Giới hạn đã biết
+Không cần khởi động vòng lặp cải tiến nếu nhiệm vụ đã hoàn thành tốt và không có vấn đề có ý nghĩa.
 
-- Bộ tài liệu này không thể tự quan sát hành động nội bộ hoặc công cụ mà giao diện AI không cho phép xem.
-- Lời AI tự chấm không phải bằng chứng độc lập; các kết luận quan trọng cần kiểm tra bằng nguồn gốc, test, log hoặc người có chuyên môn.
-- Các rubric nghiên cứu có phần phán đoán; cần hiệu chỉnh bằng ví dụ thật và áp dụng nhất quán.
-- So sánh mô hình không công bằng nếu khác biệt công cụ, dữ liệu hoặc quyền truy cập không được ghi lại.
-- v0.4 chưa được kiểm thử thực nghiệm trên một tập nhiệm vụ đủ lớn. Không được tuyên bố nó đã cải thiện hiệu suất trước khi đo.
+## 7. Giới hạn
 
-## 7. Continuation / Handoff
+- v0.5 là cách tổng hợp/điều chỉnh cho cá nhân, không phải framework được một tổ chức bên ngoài chứng nhận.
+- Bộ case vẫn ở trạng thái `draft` cho đến khi có đầu vào cụ thể, ground truth và phương pháp xác minh.
+- Hệ thống không tự nhìn thấy hoạt động nội bộ của AI hoặc hành động/công cụ không được giao diện cung cấp.
+- Các chế độ Quick/Standard/Rigorous là điều chỉnh do dự án đề xuất để kiểm soát mức thủ tục; chưa được xác nhận thực nghiệm là cách phân nhóm tối ưu.
+- Không tuyên bố v0.5 tốt hơn v0.4 cho đến khi thử nghiệm cho thấy chất lượng không giảm và mức công sức phù hợp hơn.
 
-Mục G trong Task Run là điểm lưu trạng thái để tiếp tục cùng một mục tiêu qua nhiều phiên hoặc nhiều AI. Đây là phần bổ sung quy trình của v0.4; nó chưa được xác nhận qua thử nghiệm đủ rộng. Case `CONT-001` trong evaluation case set được dùng để thử hành vi tiếp tục công việc.
+## 8. Continuation / Handoff
 
-## 8. Nâng cấp từ v0.3
+Với công việc kéo dài, dùng mục G trong full template. `tasks/SYS-001_ai-working-system-development.md` là hồ sơ trạng thái vận hành chính của dự án; `AI_WORKING_SYSTEM_PROJECT_HANDOFF.md` là bản tổng hợp bối cảnh, lịch sử quyết định, giới hạn và chỉ dẫn tiếp quản. Khi tiếp tục, đọc cả hai tài liệu (sau đó đọc các file được tham chiếu), giữ Task ID và tiếp tục từ `Next action`. Nếu nội dung khác nhau, ưu tiên Task Run mới nhất cho trạng thái cụ thể và kiểm tra `CHANGELOG.md`/file nguồn cho quy tắc hiện hành.
 
-Xem [`MIGRATION_v0.3_to_v0.4.md`](MIGRATION_v0.3_to_v0.4.md) để áp dụng thay đổi mà không làm mất hồ sơ nhiệm vụ đang có.
+Cơ chế này đã được chạy thử một lần (`CONT-001`, kết quả ở `evaluation/EVALUATION_CASE_SET.md`): một tác nhân ở ngữ cảnh mới chỉ nhận đường dẫn Task Run đã khôi phục đúng mục tiêu, trạng thái và next action. **Giới hạn:** lần chạy dùng cùng mô hình, nên chưa chứng minh được handoff qua nhà cung cấp/mô hình khác. Bài học từ lần chạy đó: hồ sơ có thể chứa chỉ dẫn **lỗi thời** ngay cả khi đã điền đủ trường — trước khi thực hiện next action, hãy đối chiếu nó với bảng việc đã xong và việc còn mở (`F-003`).
 
-## 9. Tài liệu tham chiếu
+## 9. Nguồn và thay đổi
 
-Xem [`research/SOURCES_AND_METHOD.md`](research/SOURCES_AND_METHOD.md) để biết nguồn gốc, phần phương pháp được kế thừa và các quyết định điều chỉnh cho bản này.
+- [`research/SOURCES_AND_METHOD.md`](research/SOURCES_AND_METHOD.md) — cơ sở và giới hạn của phương pháp.
+- [`CHANGELOG.md`](CHANGELOG.md) — lịch sử thay đổi.
+- [`MIGRATION_v0.4_to_v0.5.md`](MIGRATION_v0.4_to_v0.5.md) — cách nâng cấp mà không ghi đè bản v0.4.

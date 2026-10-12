@@ -1,4 +1,4 @@
-# Model Comparison Protocol — v0.4
+# Model Comparison Protocol — v0.5
 
 ## Mục tiêu
 
@@ -22,6 +22,9 @@ Không bắt đầu bằng mục tiêu mơ hồ “AI nào thông minh hơn?”.
 - Chọn các case đại diện cho mục tiêu cần đo; thêm case đối chứng nếu có nguy cơ tối ưu lệch một hành vi.
 
 ## 3. Ghi lại điều kiện
+
+Ghi thêm **mode thủ tục** (Quick/Standard/Rigorous) và cách mode được chọn. Khi câu hỏi so sánh là năng lực của model, giữ mode tương đương giữa các lượt; nếu mục tiêu chính là so sánh cách chọn/áp dụng mode, đó phải được định nghĩa rõ là biến đang thử. Không được để một model nhận quy trình chi tiết hơn rồi kết luận chênh lệch chỉ do model.
+
 
 Cho mỗi lần chạy, ghi:
 - Tên nhà cung cấp, tên model và phiên bản hiển thị nếu có;
@@ -75,3 +78,8 @@ Không tuyên bố đây là so sánh thuần túy giữa các mô hình khi đi
 | Case ID | Model / phiên bản | Run ID | Công cụ và đầu vào | Kết quả task | Kết quả từng rubric | Thời gian (nếu đo) | Ghi chú giới hạn |
 |---|---|---|---|---|---|---|---|
 | `[id]` | `[model]` | `[run]` | `[điều kiện]` | `[trạng thái]` | `[ghi rõ]` | `[nếu có]` | `[ghi chú]` |
+
+
+## 9. Tránh so sánh độ dài thủ tục như chất lượng
+
+Không chấm một model cao hơn chỉ vì nó ghi nhiều bước hoặc tạo Task Run dài hơn. Đánh giá correctness, completeness, groundedness và tiêu chí bắt buộc trước; chỉ đánh giá proportionality khi đây là mục tiêu đo đã xác định.

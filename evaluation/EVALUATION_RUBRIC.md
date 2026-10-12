@@ -1,6 +1,12 @@
-# Evaluation Rubric — v0.4
+# Evaluation Rubric — v0.5
 
-## 1. Mục đích và cơ sở
+## 1. Mục đích, phạm vi và cách dùng linh hoạt
+
+Không dùng rubric đầy đủ cho mọi tác vụ. Quick thường chỉ cần kiểm tra yêu cầu trực tiếp; Standard nên kiểm tra tiêu chí thành công và các khẳng định quan trọng; Rigorous dùng rubric chi tiết khi cần truy xuất, kiểm thử, so sánh hoặc kiểm soát rủi ro.
+
+Với Standard/Rigorous, chỉ đánh giá các chiều có ý nghĩa. `Không áp dụng` là trạng thái hợp lệ khi chiều đó không liên quan; không phạt vì bỏ một phép đo không cần thiết. Không bắt buộc các chiều có trọng số như nhau và không tạo tổng điểm nếu chưa có cơ sở.
+
+
 
 Rubric này dùng để đánh giá kết quả của một nhiệm vụ theo những chiều riêng biệt. Nó được tổng hợp từ khuyến nghị về grader của Anthropic, Evaluation Best Practices của OpenAI và nguyên tắc quản lý/đo lường rủi ro của NIST. Các tiêu chí dưới đây là bản điều chỉnh cho người dùng cá nhân, không phải rubric nguyên văn từ các tổ chức đó.
 
@@ -18,7 +24,7 @@ Dùng một trong các trạng thái sau cho từng chiều:
 
 Trạng thái toàn nhiệm vụ không được xác định bằng cách đếm đơn giản các ô. Nếu tiêu chí bắt buộc không đạt, không được gọi nhiệm vụ là hoàn thành chỉ vì các chiều khác đạt.
 
-## 3. Các chiều đánh giá
+## 3. Các chiều đánh giá (chọn theo nhiệm vụ, không bắt buộc tất cả)
 
 ### R1. Đúng mục tiêu / correctness
 
@@ -74,6 +80,18 @@ Trạng thái toàn nhiệm vụ không được xác định bằng cách đế
 
 **Lưu ý:** không tối ưu tốc độ bằng cách hy sinh yêu cầu quan trọng hoặc chất lượng bằng chứng.
 
+### R8. Mức độ tương xứng của quy trình (chỉ cần khi đánh giá chính hệ thống làm việc)
+
+**Câu hỏi:** mức thủ tục, ghi chép, tìm kiếm và kiểm tra có tương xứng với độ phức tạp/rủi ro và mục tiêu hay không?
+
+- **Đạt:** dùng đủ các kiểm tra quan trọng nhưng không thêm bước/hồ sơ không mang lại giá trị rõ.
+- **Đạt một phần:** có thủ tục lặp lại hoặc thiếu một bước có ích nhưng chưa làm sai kết luận chính.
+- **Không đạt:** hoặc bỏ kiểm tra thiết yếu, hoặc buộc quy trình nặng nề không cần thiết đến mức làm cản trở nhiệm vụ.
+- **Chưa thể đánh giá:** không có dữ liệu về thao tác/công sức hoặc không thể suy ra từ hồ sơ.
+- **N/A:** chỉ đánh giá chất lượng nội dung mà không có mục tiêu so sánh quy trình.
+
+Không chấm R8 dựa trên độ dài câu trả lời đơn thuần; đánh giá xem các bước có phục vụ mục tiêu/rủi ro thực tế hay không.
+
 ## 4. Quy tắc xác định trạng thái toàn nhiệm vụ
 
 - **Hoàn thành:** tất cả tiêu chí bắt buộc đạt, không còn lỗi nghiêm trọng chưa xử lý và có bằng chứng phù hợp.
@@ -107,3 +125,12 @@ Xem lại case hoặc rubric trước khi đổ lỗi cho AI nếu:
 ## 7. Đánh giá nhiều AI
 
 Không tạo bảng xếp hạng tổng thể từ một nhiệm vụ hoặc vài ví dụ. Báo cáo kết quả theo từng chiều và theo nhóm nhiệm vụ. Khi điều kiện thực hiện không giống nhau, nêu rõ giới hạn so sánh. Chỉ tính các chỉ số tổng hợp khi mục tiêu, cách tính, dữ liệu và trọng số đã được nêu rõ.
+
+
+## 8. Quy tắc chống cứng nhắc
+
+- Không yêu cầu mọi Task Run phải có đủ bảy/tám chiều đánh giá. Chọn chiều liên quan từ tiêu chí thành công và loại nhiệm vụ.
+- Không yêu cầu mọi nhiệm vụ có web search, transcript, checkpoint, Failure Analysis hoặc tổng điểm. Chỉ áp dụng khi yêu cầu/điều kiện thực tế cần chúng.
+- Một quy trình đơn giản được xem là phù hợp nếu nó chứng minh đủ các tiêu chí bắt buộc. Một quy trình chi tiết không được ưu tiên chỉ vì ghi lại nhiều thao tác hơn.
+- Không bỏ qua kiểm tra quan trọng chỉ để nhanh hơn. Tính tương xứng là cân bằng giữa độ tin cậy, rủi ro, thời gian và chi phí.
+- Nếu đánh giá rằng quy trình quá nặng hoặc quá nhẹ, ghi rõ dấu hiệu quan sát được và thử nghiệm thay đổi trước khi sửa Working Agreement chung.

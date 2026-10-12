@@ -1,8 +1,15 @@
-# Task Run — [TASK-ID] — [Tên nhiệm vụ]
+# Task Run — [TASK-ID] — [Tên nhiệm vụ] — v0.5
 
-> Dùng một bản sao cho mỗi nhiệm vụ. Điền phần A trước khi AI bắt đầu. Các phần ghi nhận kết quả phải phản ánh việc đã quan sát hoặc xác minh; không điền giả định như sự thật.
+> Đây là **template đầy đủ**, dành cho chế độ Rigorous hoặc công việc Standard cần trạng thái xuyên phiên. Với Quick thường không cần Task Run; với Standard ngắn, ưu tiên `TASK_RUN_MINI_TEMPLATE.md`. Template có tính mô-đun: điền phần liên quan, bỏ mục không áp dụng, không tạo nội dung giả để lấp đủ biểu mẫu. Các mục bỏ qua không tự động làm nhiệm vụ thất bại.
 
 ## A. Task Specification — Đặc tả nhiệm vụ
+
+### A0. Mức thực hiện (bắt buộc khi dùng hồ sơ)
+- **Mode:** `[Quick / Standard / Rigorous]`
+- **Ai chọn:** `[người dùng / AI đề xuất theo nguyên tắc v0.5]`
+- **Lý do ngắn:** `[vì sao mức này phù hợp với độ phức tạp, rủi ro và nhu cầu lưu vết]`
+- **Có thể điều chỉnh không?:** `yes` — tăng/giảm mức nếu bối cảnh thay đổi; ghi lý do nếu ảnh hưởng cách xác minh hoặc chi phí đáng kể.
+- **Lưu ý:** mode chỉ quy định mức thủ tục, không hạ thấp điều kiện đúng đắn hoặc yêu cầu bắt buộc.
 
 ### A1. Metadata
 - **Task ID:** `[duy nhất]`
@@ -38,14 +45,14 @@
 - **Điều kiện chưa thể đánh giá:** `[bằng chứng/điều kiện nào thiếu]`
 - **Cần hỏi lại người dùng không?** `[không / có; thông tin tối thiểu còn thiếu]`
 
-## B. Execution Record — Nhật ký thực hiện
+## B. Execution Record — Nhật ký thực hiện (ghi các bước có ý nghĩa)
 
 ### B1. Cách tiếp cận
 - **Phương pháp chọn:** `[trả lời trực tiếp / nghiên cứu nguồn / nhiều bước / kiểm thử / debugging theo giả thuyết / khác]`
 - **Vì sao phù hợp:** `[lý do]`
 - **Điều kiện ban đầu được xác nhận:** `[phiên bản, dữ liệu, trạng thái]`
 
-### B2. Nhật ký hành động có thể quan sát
+### B2. Nhật ký hành động có thể quan sát (không cần ghi từng thao tác nhỏ)
 | # | Hành động đã thực sự diễn ra | Công cụ/nguồn/đầu vào | Kết quả quan sát được | Bằng chứng ghi lại | Trạng thái |
 |---|---|---|---|---|---|
 | 1 | `[điền]` | `[điền]` | `[điền]` | `[link, trích dẫn, log, artifact hoặc N/A]` | `[quan sát / xác minh / bị chặn]` |
@@ -59,22 +66,22 @@
 - **Có thay đổi kế hoạch không?** `[không/có; tại sao]`
 - **Nếu bị chặn, đã thử gì?** `[phương án, kết quả, bước chưa thử và lý do]`
 
-## C. Evidence Record — Bằng chứng
+## C. Evidence Record — Bằng chứng (dùng theo nhu cầu xác minh)
 
 | Evidence ID | Tiêu chí/kết luận được hỗ trợ | Nguồn hoặc artifact | Đã kiểm tra trực tiếp? | Hạn chế/độ mới | Loại |
 |---|---|---|---|---|---|
 | E1 | `[điền]` | `[URL hoặc tên file + vị trí, lệnh/log/test]` | `[có/không]` | `[điền]` | `[nguồn gốc / thực nghiệm / quan sát / báo cáo AI / suy luận]` |
 | E2 | `[điền]` | `[điền]` | `[có/không]` | `[điền]` | `[loại]` |
 
-### C1. Phân loại khẳng định cuối cùng
+### C.1 Phân loại khẳng định cuối cùng
 - **Đã xác minh:** `[chỉ những kết luận có bằng chứng hỗ trợ trực tiếp/kiểm tra được]`
 - **Suy luận:** `[kết luận suy ra và các dữ kiện hỗ trợ]`
 - **Chưa xác minh:** `[nội dung còn thiếu bằng chứng]`
 - **Mâu thuẫn nguồn/kết quả:** `[nếu có]`
 
-## D. Evaluation — Đánh giá kết quả
+## D. Evaluation — Đánh giá kết quả (chỉ chấm các chiều liên quan)
 
-Dùng `evaluation/EVALUATION_RUBRIC.md`. Chấm từng chiều; không tạo tổng điểm nếu chưa có trọng số có cơ sở.
+Dùng `evaluation/EVALUATION_RUBRIC.md` khi nhiệm vụ cần đánh giá có cấu trúc. Chỉ chấm tiêu chí bắt buộc và những chiều có ý nghĩa với nhiệm vụ; đặt `N/A` nếu không áp dụng, kèm lý do khi cần. Không tạo tổng điểm nếu chưa có trọng số có cơ sở. Với một nhiệm vụ Quick không cần Task Run đầy đủ, không dùng mục này theo mặc định.
 
 | Chiều | Trạng thái | Bằng chứng và lý do | Người đánh giá / phương pháp |
 |---|---|---|---|
@@ -93,7 +100,7 @@ Dùng `evaluation/EVALUATION_RUBRIC.md`. Chấm từng chiều; không tạo t�
 
 **Lý do và bằng chứng quyết định:** `[điền]`
 
-## E. Failure Analysis — Phân tích thất bại (nếu có)
+## E. Failure Analysis — Phân tích thất bại (chỉ khi có lỗi hoặc bất thường đáng phân tích)
 
 - **Quan sát cụ thể:** `[hành vi/kết quả thực tế, tránh nhãn chung chung]`
 - **Nhóm lỗi:** `[đọc FAILURE_CHANGE_LOG.md để chọn loại]`
@@ -104,7 +111,7 @@ Dùng `evaluation/EVALUATION_RUBRIC.md`. Chấm từng chiều; không tạo t�
 - **Case kiểm thử mục tiêu:** `[ID]`
 - **Case hồi quy cần chạy:** `[ID]`
 
-## F. Final Review — Trước khi kết thúc
+## F. Final Review — Trước khi kết thúc (độ chi tiết tương xứng với mode)
 
 - [ ] Mọi tiêu chí thành công đều được đánh giá.
 - [ ] Kết luận quan trọng gắn với nguồn hoặc bằng chứng phù hợp.
@@ -123,7 +130,7 @@ Dùng `evaluation/EVALUATION_RUBRIC.md`. Chấm từng chiều; không tạo t�
 
 ---
 
-## G. Continuation / Handoff — Tiếp tục công việc
+## G. Continuation / Handoff — Tiếp tục công việc (chỉ bắt buộc với việc kéo dài/bàn giao)
 
 > Cập nhật mục này khi tạm dừng, kết thúc một phiên làm việc, đạt checkpoint có ý nghĩa hoặc chuẩn bị chuyển nhiệm vụ sang AI/người khác. Không cần cập nhật sau từng thao tác nhỏ. Khi tiếp tục cùng một mục tiêu, giữ nguyên Task ID và cập nhật hồ sơ hiện có.
 
@@ -194,3 +201,12 @@ Khi được yêu cầu tiếp tục nhiệm vụ này:
 > Hãy thực hiện yêu cầu nguyên gốc theo đặc tả và tiêu chí ở phần A. Đừng tự thay đổi phạm vi hoặc tiêu chí. Chọn cách làm phù hợp, không mặc định mọi nhiệm vụ đều cần tìm kiếm sâu hay một quy trình cố định. Khi cần nguồn hoặc bằng chứng, chủ động tìm trong phạm vi công cụ được phép; nếu nguồn đầu tiên chưa đủ, cân nhắc các phương án hợp lý khác và ghi lại giới hạn trước khi kết luận bị chặn. Phân biệt dữ kiện đã kiểm tra, suy luận và điều chưa xác minh. Không tuyên bố đã thực hiện hành động nếu không thực sự làm hoặc không có bằng chứng có thể quan sát. Hoàn thành đầu ra trước, sau đó đối chiếu với từng tiêu chí; nêu phần đạt, chưa đạt và chưa thể đánh giá. Nếu thiếu điều kiện thiết yếu, giải thích chính xác thiếu gì và tiếp tục những phần có thể làm được. Không bắt buộc ghi lại chuỗi suy nghĩ nội bộ; thay vào đó hãy cung cấp căn cứ, kết quả kiểm tra, nguồn và lý do kết luận có thể xem xét được.
 >
 > **Nếu đây là việc tiếp tục:** trước tiên đọc Task Run hiện có và mục G. Giữ nguyên Task ID, mục tiêu, tiêu chí và quyết định đã thống nhất; tiếp tục từ bước tiếp theo trong G6 thay vì bắt đầu lại. Cập nhật cùng file sau checkpoint có ý nghĩa. Chỉ tạo Task Run mới khi người dùng giao một mục tiêu thực sự khác. Nếu không thể ghi file trực tiếp, trả lại toàn bộ phần cập nhật để người dùng lưu.
+
+
+## H. Quy tắc sử dụng linh hoạt
+
+- Không buộc điền hết các bảng. Nếu không có hành động quan sát được cần ghi, không tạo dòng giả.
+- Với nhiệm vụ nghiên cứu cụ thể, ưu tiên bằng chứng nguồn; với code, ưu tiên kết quả build/test thật nếu có; với debug, ưu tiên trạng thái đã xác nhận và kết quả có khả năng phân biệt giả thuyết.
+- Nếu nhiệm vụ kết thúc trong một lượt và không cần tiếp tục, phần G có thể bỏ qua. Nếu nhiệm vụ cần tiếp tục qua phiên/AI, mục G phải có `Next action`, trạng thái và nguồn trạng thái.
+- Không dùng sự đầy đủ của biểu mẫu thay cho chất lượng kết quả. Một hồ sơ ngắn, có bằng chứng phù hợp và đạt mục tiêu tốt hơn một hồ sơ dài nhưng rỗng hoặc không chính xác.
+- Nếu người dùng yêu cầu workflow cụ thể, giữ yêu cầu đó; việc giản lược chỉ áp dụng cho thủ tục không bắt buộc.
